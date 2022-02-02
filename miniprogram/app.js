@@ -1,3 +1,13 @@
+const Host = "127.0.0.1:4386"
+const Paths = {
+  login: "/user/login",
+  userInfo: "/user/info",
+  productList: "/product/list",
+  productInfo: "/product/info/",
+  productSearch: "/search/product",
+  productRank: "/product/rank"
+}
+
 // app.js
 App({
   onLaunch() {
@@ -15,6 +25,9 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    token: "",
+    userInfo: null,
+    baseURL: Host + "/api/v1",
+    paths: Paths
   }
 })

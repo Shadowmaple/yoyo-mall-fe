@@ -8,18 +8,57 @@
     "pages/search/search",
     "pages/product/product_list/product_list",
     "pages/product/product_info/product_info",
+    "pages/product/rank/rank",
+    "pages/order/order_confirm/order_confirm",
     "pages/order/order_info/order_info",
     "pages/order/order_list/order_list",
+    "pages/logistics/logistics",
     "pages/coupon/public_list/public_list",
     "pages/coupon/private_list/private_list",
-    "pages/logistics/logistics"
+    "pages/coupon/code_grab/code_grab",
+    "pages/collection/collection",
+    "pages/feedback/feedback",
+    "pages/address/list/list",
+    "pages/address/add/add"
   ],
+  "entryPagePath": "pages/index/index",
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "yoyo商城",
     "navigationBarTextStyle":"black"
   },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#25BFFF",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }, {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }, {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }, {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
+    ]
+  },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }
