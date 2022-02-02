@@ -1,0 +1,8 @@
+<view class="box">
+  <!-- 搜素图标 -->
+  <icon class="search-icon" type="search" size="28"></icon>
+  <input class="input" placeholder="{{text}}" maxlength="20" type="text" confirm-type="search" />
+  <!-- 清除输入图标 -->
+  <icon class="clear-icon" type="clear"></icon>
+  <slot></slot>
+</view>
