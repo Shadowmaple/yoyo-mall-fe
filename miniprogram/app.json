@@ -1,0 +1,25 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/user/user",
+    "pages/cart/cart",
+    "pages/category/category",
+    "pages/search/search",
+    "pages/product/product_list/product_list",
+    "pages/product/product_info/product_info",
+    "pages/order/order_info/order_info",
+    "pages/order/order_list/order_list",
+    "pages/coupon/public_list/public_list",
+    "pages/coupon/private_list/private_list",
+    "pages/logistics/logistics"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
