@@ -15,17 +15,30 @@
 
     <!-- 排序标签栏 -->
     <view class="tab-box">
-      <view>默认</view>
-      <view>销量</view>
-      <view>价格</view>
-      <view>好评</view>
-      <view>出版时间</view>
+      <view bindtap="clickChangeSortKind" data-kind="0">默认</view>
+      <view bindtap="clickChangeSortKind" data-kind="1">销量</view>
+      <view bindtap="clickChangeSortKind" data-kind="2">价格</view>
+      <view bindtap="clickChangeSortKind" data-kind="4">好评</view>
+      <view bindtap="clickChangeSortKind" data-kind="5">出版时间</view>
     </view>
 
     <!-- 商品展示列表 -->
     <view class="show-box">
-    
-    
+      <block wx:for="{{productList}}" wx:key="this">
+        <view class="item">
+          <image class="item-image" src="{{item.image}}"></image>
+          <view class="item-info">
+            <view class="item-title">{{item.title}}</view>
+            <view class="item-author">{{item.author}} 著</view>
+            <view class="item-price">￥{{item.cur_price}}</view>
+            <view class="item-other">
+              <view>{{item.comment_rate}}%好评（{{item.comment_num}}人）</view>
+              <!-- 购物车icon -->
+              <icon type="cancel"></icon>
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
   
   </view>

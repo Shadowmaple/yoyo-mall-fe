@@ -2,6 +2,7 @@
 
 const app = getApp()
 const basicColumn = {id: 0, name: '全部'}
+const request = require('../../../utils/request.js')
 
 Page({
   data: {
@@ -11,13 +12,40 @@ Page({
     curCidShow: {
       cid: {id: 0, name: '全部'},
       cid2: {id: 0, name: '全部'},
-    }
+    },
+    productList: [{
+      "id": 1,
+      "title": "失落的文明",
+      "author": "曾力",
+      "publisher": "",
+      "cid": 1,
+      "cid2": 2,
+      "price": 20,
+      "cur_price": 19.5,
+      "image": "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
+      "sale_num": 100,
+      "comment_num": 100,
+      "comment_rate": 98,
+      "score": 8.3,
+      "publish_time": "2021-04-02",
+      "has_star": false,
+      "has_in_cart": false,
+    }],
   },
   originalCidList: [],
+  reqParams: {
+    limit: 20,
+    page: 0,
+    cid: 0,
+    cid2: 0,
+    sort: 0,  
+  },
 
   onLoad: function (options) {
     console.log('onLoad options:', options)
     this.processCidList(options)
+
+    this.requestProductList()
   },
 
   // 处理类目选择器，格式转换
@@ -120,14 +148,17 @@ Page({
   clickChangeSortKind: function (e) {
     let kind = Number(e.currentTarget.dataset.kind)
     console.info('kind:', kind)
+    this.reqParams = kind
 
+    this.requestProductList()
   },
 
   requestProductList: function() {
-    let url = app.globalData.paths.productList
-    wx.request({
-      url: url,
+    let req = this.reqParams
 
-    })
+
+    // request.requestProductList(req, res => {
+
+    // })
   },
 })
