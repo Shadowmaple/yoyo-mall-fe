@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "search-tab": "../../../components/search/search"
+  },
+  "navigationBarTitleText": "图书列表",
+  "backgroundColor": "#787878"
 }

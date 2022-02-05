@@ -1,2 +1,32 @@
 <!--pages/product/product_list/product_list.wxml-->
-<text>pages/product/product_list/product_list.wxml</text>
+
+<!-- 分类图书列表 -->
+
+<view class="container">
+  <search-tab class="search" text="请输入关键字"></search-tab>
+
+  <view class="main">
+    <!-- 类目选择栏 -->
+    <view class="filter-box">
+      <picker mode="multiSelector" range="{{cidList}}" range-key="name" value="{{cidIndex}}" bindchange="bindPickerChange" bindcolumnchange="bindColumnChange">
+        <veiw>{{curCidShow.cid.name}} > {{curCidShow.cid2.name}}</veiw>
+      </picker>
+    </view>
+
+    <!-- 排序标签栏 -->
+    <view class="tab-box">
+      <view>默认</view>
+      <view>销量</view>
+      <view>价格</view>
+      <view>好评</view>
+      <view>出版时间</view>
+    </view>
+
+    <!-- 商品展示列表 -->
+    <view class="show-box">
+    
+    
+    </view>
+  
+  </view>
+</view>

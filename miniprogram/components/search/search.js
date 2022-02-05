@@ -10,5 +10,11 @@ Component({
     // 跳转页面地址
     src: String,
   },
-  methods: {}
+  methods: {
+    clickJump: function(e) {
+      wx.navigateTo({
+        url: '/pages/search/search/search',
+      })
+    }
+  }
 })

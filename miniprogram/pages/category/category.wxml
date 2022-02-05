@@ -1,2 +1,21 @@
 <!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class="container">
+  <search-tab class="search" text="请输入关键字"></search-tab>
+
+  <view class="main">
+    <view class="cate-list">
+      <block wx:for="{{cateList}}" wx:key="this">
+        <view class="cate-list-item" bindtap="clickSelectCid" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+      </block>
+    </view>
+
+    <view class="cate-item">
+      <block wx:for="{{cateList[selectData.index].list}}" wx:key="id">
+        <view class="cate-item-info" bindtap="clickSelectCid2" data-item="{{item}}">
+          <image class="cate-item-image" src="{{item.image}}"></image>
+          <view class="cate-item-name">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

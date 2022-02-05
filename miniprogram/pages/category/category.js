@@ -1,66 +1,61 @@
+const app = getApp()
+
 // pages/category/category.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    cateList: [{
+      id: 1,
+      name: '文学',
+      list: [{
+        id: 3,
+        name: '小说',
+        image: '',
+      }]
+    }],
+    selectData: {
+      index: 0,
+      id: 1,
+    },
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    this.setData({
+      cateList: app.globalData.category,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  clickSelectCid: function (e) {
+    let dataset = e.currentTarget.dataset
+    let index = dataset.index
+    let id = dataset.id
+    if (index < 0 || id <= 0) {
+      console.error('clickSelectCid error: ', dataset)
+      return
+    }
+    this.setData({
+      selectData: {
+        index: index,
+        id: id,
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  clickSelectCid2: function (e) {
+    let dataset = e.currentTarget.dataset
+    console.log(e)
+    let cid = this.data.selectData.id
+    let item = dataset.item
+    if (item == null) {
+      console.error('clickSelectCid2 error: item is null; e:', e.target)
+      return
+    }
+    console.log(item)
+    let cid2 = item.id
+    let name = item.name
+    let url = '../product/product_list/product_list?cid=' +
+      cid + '&cid2=' + cid2 + '&name=' + name
+    wx.navigateTo({
+      url: url,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
