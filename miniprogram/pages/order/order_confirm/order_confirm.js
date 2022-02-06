@@ -1,66 +1,45 @@
 // pages/order/order_confirm/order_confirm.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    address: {
+      name: '李明',
+      tel: '17396120043',
+      detail: '湖北省武汉市洪山区雄楚大道382号',
+    },
+    productNum: 0,
+    // 商品列表
+    list: [],
+    purchase: 0,
+    discount: 0,
+    freight: 0,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    let data = JSON.parse(options.data)
+    let purchase = parseFloat(data.purchase) // 需付款金额
+    let discount = parseFloat(data.discount) // 促销优惠金额
+    let list = data.list
+    this.setData({
+      productNum: list.length,
+      list: list,
+      purchase: purchase,
+      discount: discount,
+    })
+    console.log('onLoad:', list)
+  },
+
+  // 更改地址
+  bindChangeAddr: function(e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // 提交订单
+  bindConfirm: function(e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  // 选择优惠券
+  bindChooseCoupon: function(e) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -1,2 +1,67 @@
 <!--pages/order/order_confirm/order_confirm.wxml-->
-<text>pages/order/order_confirm/order_confirm.wxml</text>
+<view class="container">
+  <view class="address-box">
+    <view class="address-main">
+      <view class="address-line1">
+        <view>{{address.name}}</view>
+        <view>{{address.tel}}</view>
+      </view>
+      <view class="address-line2">{{address.detail}}</view>
+    </view>
+    <!-- 箭头 -->
+    <icon type="cancel"></icon>
+  </view>
+
+  <view class="pay-method-box">
+    <view>支付方式</view>
+    <view>微信支付</view>
+  </view>
+
+  <view class="product-box">
+    <view>共{{productNum}}件商品</view>
+    <view class="product-item" wx:for="{{list}}" wx:key="this">
+      <image class="item-image" src="{{item.image}}"></image>
+      <view class="item-main">
+        <view class="item-info">{{item.title}}</view>
+        <view class="item-purchase">
+          <view>￥{{item.cur_price}}</view>
+          <view>x{{item.num}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="freight">
+      <view>配送</view>
+      <view>快递运输￥6.00</view>
+    </view>
+    <view class="coupon">
+      <view>优惠券</view>
+      <view>无可用</view>
+    </view>
+  </view>
+
+  <view class="amount-box">
+    <view class="amount-total">
+      <view>商品金额</view>
+      <view>￥{{purchase}}</view>
+    </view>
+    <view class="amount-freight">
+      <view>运费</view>
+      <view>￥{{freight}}</view>
+    </view>
+    <view class="amount-discount">
+      <view>促销</view>
+      <view>￥{{discount}}</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-purchase">
+      <view>实付：</view>
+      <view class="footer-amount">￥{{purchase}}</view>
+    </view>
+
+    <view class="footer-button-wrap">
+      <button class="footer-button" type="primary">提交订单</button>
+    </view>
+  </view>
+</view>

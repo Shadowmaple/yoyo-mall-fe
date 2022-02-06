@@ -55,7 +55,6 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "networkTimeout": {
     "request": 10000,

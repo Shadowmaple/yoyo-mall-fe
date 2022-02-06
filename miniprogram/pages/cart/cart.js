@@ -6,15 +6,16 @@ Page({
   data: {
     isEdit: false,
     selectAll: false,
-    purchase: 0, // 当前需付费
-    discount: 0, // 优惠金额
+    selectNum: 0,
+    purchase: '0', // 当前需付费
+    discount: '0', // 优惠金额
     cartList: [{
       'id': 1,
       'product_id': 42,
       'title': '落叶飘零',
       'author': '林则明',
-      'price': '20.20',
-      'cur_price': '18.50',
+      'price': 20.20,
+      'cur_price': 18.50,
       'image': 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
       'num': 2,
       'selected': false,
@@ -27,17 +28,23 @@ Page({
     this.requestCart()
   },
 
+  // 页面切回来展示时刷新数据
+  onShow: function () {
+    this.requestCart()
+  },
+
   // 页面隐藏时保存商品数
   onHide: function () {
 
   },
-  
-  // 下拉刷新
-  onPullDownRefresh: function() {
 
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.requestCart()
   },
 
-  requestCart:function () {
+  // 请求购物车数据
+  requestCart: function () {
 
   },
 
@@ -52,7 +59,8 @@ Page({
   bindSelectAll: function (e) {
     let selectAll = !this.data.selectAll
     let cartList = this.data.cartList
-    let purchase = new Number(0), discount = new Number(0)
+    let purchase = new Number(0),
+      discount = new Number(0)
     for (let i in cartList) {
       cartList[i].selected = selectAll
       if (selectAll) {
@@ -61,8 +69,14 @@ Page({
       }
     }
 
+    let selectNum = new Number(0)
+    if (selectAll) {
+      selectNum = cartList.length
+    }
+
     this.setData({
       selectAll: selectAll,
+      selectNum: selectNum,
       purchase: purchase.toFixed(2),
       discount: discount.toFixed(2),
       cartList: cartList,
@@ -70,10 +84,11 @@ Page({
   },
 
   // 单选
-  bindSelect: function(e) {
+  bindSelect: function (e) {
     let dataset = e.currentTarget.dataset
     let idx = Number(dataset.idx)
     let cartList = this.data.cartList
+    let selectNum = this.data.selectNum
     // 更新该商品的选择状态
     cartList[idx].selected = !cartList[idx].selected
     // 更新付费金额和优惠金额数目
@@ -82,10 +97,15 @@ Page({
     if (cartList[idx].selected) {
       purchase += cartList[idx].cur_price
       discount += cartList[idx].price - cartList[idx].cur_price
+      selectNum++
     } else {
       purchase -= cartList[idx].cur_price
       discount -= cartList[idx].price - cartList[idx].cur_price
+      selectNum--
     }
+    purchase = purchase <= 0 ? 0 : purchase
+    discount = discount <= 0 ? 0 : discount
+    selectNum = selectNum <= 0 ? 0 : selectNum
 
     // 更新全选状态
     let flag = true
@@ -108,6 +128,7 @@ Page({
 
     this.setData({
       selectAll: selectAll,
+      selectNum: selectNum,
       purchase: purchase.toFixed(2),
       discount: discount.toFixed(2),
       cartList: cartList,
@@ -115,7 +136,7 @@ Page({
   },
 
   // 改变数量
-  bindChangeNum: function(e) {
+  bindChangeNum: function (e) {
     let num = e.detail.num
     let idx = e.currentTarget.dataset.idx
     let cartList = this.data.cartList
@@ -125,12 +146,49 @@ Page({
   },
 
   // 结算
+  // 结算时不删除购物车选中的商品，提交订单才删除
   bindConfirm: function (e) {
+    if (this.data.selectNum == 0) {
+      // 弹窗提示
+      wx.showToast({
+        title: '未选中商品',
+        icon: "error",
+        duration: 1000,
+      })
+      return
+    }
 
+    let cartList = this.data.cartList
+    let confirmList = new Array
+    for (let i in cartList) {
+      let item = cartList[i]
+      if (!item.selected) {
+        continue
+      }
+      confirmList.push({
+        'product_id': item.product_id,
+        'title': item.title,
+        'price': item.price,
+        'cur_price': item.cur_price,
+        'image': item.image,
+        'num': item.num,
+      })
+    }
+
+    let confirmData = {
+      'purchase': parseFloat(this.data.purchase),
+      'discount': parseFloat(this.data.discount),
+      'list': confirmList,
+    }
+    // 跳转到订单确认页面
+    let url = '../order/order_confirm/order_confirm?data=' + JSON.stringify(confirmData)
+    wx.navigateTo({
+      url: url,
+    })
   },
 
   // 批量移入收藏
-  bindBatchMoveToCollect: function(e) {
+  bindBatchMoveToCollect: function (e) {
 
   },
 
