@@ -1,0 +1,13 @@
+.number-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.number-cell {
+  width: 60rpx;
+  font-size: 28rpx;
+  background-color: rgb(212, 205, 205, 0.5);
+}

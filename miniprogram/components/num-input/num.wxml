@@ -1,0 +1,5 @@
+<view class="number-group">
+  <button size="mini" bindtap="preNum" disabled="{{disabled1}}">-</button>
+  <input class="number-cell" type="number" value='{{number}}' bindconfirm="bindInput" bindblur="bindInput"></input>
+  <button size="mini" bindtap="nextNum" disabled="{{disabled2}}">+</button>
+</view>

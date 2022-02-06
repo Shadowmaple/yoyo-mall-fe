@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "number-input": "/components/num-input/num"
+  },
+  "navigationBarTitleText": "购物车",
+  "backgroundColor": "#787878"
 }
