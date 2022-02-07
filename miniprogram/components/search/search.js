@@ -7,13 +7,25 @@ Component({
       type: String,
       value: "请输入关键字"
     },
+    // 点击是否跳转到指定页面
+    isJump: {
+      type: Boolean,
+      value: true,
+    },
     // 跳转页面地址
-    src: String,
+    src: {
+      type: String,
+      value: "/pages/search/search/search",
+    }
   },
   methods: {
-    clickJump: function(e) {
+    clickClick: function(e) {
+      if (!this.properties.isJump) {
+        return
+      }
+      let url = this.properties.src
       wx.navigateTo({
-        url: '/pages/search/search/search',
+        url: url,
       })
     }
   }

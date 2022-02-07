@@ -1,7 +1,8 @@
 const app = getApp()
+const model = require("model.js")
 
-var requestProductList = (req, callback) => {
-  let url = app.globalData.paths.productList
+var productList = (req, callback) => {
+  let url = model.BaseURL + model.Paths.productList
   wx.showLoading({
     title: '加载中',
   })
@@ -36,5 +37,5 @@ var requestProductList = (req, callback) => {
 }
 
 module.exports = {
-  requestProductList
+  productList
 }

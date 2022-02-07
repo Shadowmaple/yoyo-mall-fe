@@ -2,7 +2,7 @@ const app = getApp()
 const model = require("model.js")
 
 var orderCreate = (req, callback) => {
-  let url = model.Paths.orderCreate
+  let url = model.BaseURL + model.Paths.orderCreate
 
   let data = {
     'total_fee': req.totalFee,
@@ -54,7 +54,7 @@ var orderCreate = (req, callback) => {
 
 // 订单状态修改
 var orderUpdate = req => {
-  let url = model.Paths.orderUpdate + "/" + req.id
+  let url = model.BaseURL + model.Paths.orderUpdate + "/" + req.id
   let data = {
     status: req.status,
   }

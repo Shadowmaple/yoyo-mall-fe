@@ -2,7 +2,7 @@
 
 const app = getApp()
 const basicColumn = {id: 0, name: '全部'}
-const request = require('../../../utils/request.js')
+const request = require('../../../utils/request/product.js')
 
 Page({
   data: {

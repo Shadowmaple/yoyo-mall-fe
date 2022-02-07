@@ -1,8 +1,8 @@
 <view class="box">
   <!-- 搜素图标 -->
-  <icon class="search-icon" type="search" size="28"></icon>
-  <input class="input" placeholder="{{text}}" maxlength="20" type="text" confirm-type="search" bindtap="clickJump" />
+  <icon class="search-icon" type="search" size="22"></icon>
+  <input class="input" placeholder="{{text}}" maxlength="20" type="text" confirm-type="search" bindtap="clickClick" />
   <!-- 清除输入图标 -->
-  <icon class="clear-icon" type="clear"></icon>
+  <icon class="clear-icon" type="clear" size="17"></icon>
   <slot></slot>
 </view>

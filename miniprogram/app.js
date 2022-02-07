@@ -1,14 +1,16 @@
-const Host = "127.0.0.1:4096"
-const BaseURL = "http://" + Host + "/api/v1"
-const Paths = {
-  category: "/category",
-  login: "/user/login",
-  userInfo: "/user/info",
-  productList: "/product/list",
-  productInfo: "/product/info/",
-  productSearch: "/search/product",
-  productRank: "/product/rank"
-}
+// const Host = "127.0.0.1:4096"
+// const BaseURL = "http://" + Host + "/api/v1"
+// const Paths = {
+//   category: "/category",
+//   login: "/user/login",
+//   userInfo: "/user/info",
+//   productList: "/product/list",
+//   productInfo: "/product/info/",
+//   productSearch: "/search/product",
+//   productRank: "/product/rank"
+// }
+
+const model = require("./utils/request/model.js")
 
 const cates = [{
   "id": 1,
@@ -311,8 +313,6 @@ App({
   globalData: {
     token: "",
     userInfo: null,
-    baseURL: BaseURL,
-    paths: Paths,
     category: cates,
   },
 
@@ -333,26 +333,11 @@ App({
       },
     })
 
-    this.requestCategory()
-
-    // wx.chooseAddress({
-    //   success (res) {
-    //     console.log(res.userName)
-    //     console.log(res.postalCode)
-    //     console.log(res.provinceName)
-    //     console.log(res.cityName)
-    //     console.log(res.countyName)
-    //     console.log(res.detailInfo)
-    //     console.log(res.nationalCode)
-    //     console.log(res.telNumber)
-    //   }
-    // })
+    // this.requestCategory()
   },
 
-
-
   requestCategory: function () {
-    let url = BaseURL + Paths.category
+    let url = model.BaseURL + model.Paths.category
 
     wx.request({
       url: url,

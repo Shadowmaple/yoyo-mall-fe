@@ -2,17 +2,21 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user/user",
     "pages/cart/cart",
+    "pages/user/user/user",
+    "pages/user/user_info/user_info",
     "pages/category/category",
     "pages/search/search/search",
     "pages/search/search_list/search_list",
     "pages/product/product_list/product_list",
     "pages/product/product_info/product_info",
     "pages/product/rank/rank",
+    "pages/product/evaluations/evaluations",
+    "pages/product/evaluation_info/evaluation_info",
     "pages/order/order_confirm/order_confirm",
     "pages/order/order_info/order_info",
     "pages/order/order_list/order_list",
+    "pages/order/evaluate/evaluate",
     "pages/logistics/logistics",
     "pages/coupon/public_list/public_list",
     "pages/coupon/private_list/private_list",
@@ -20,7 +24,8 @@
     "pages/collection/collection",
     "pages/feedback/feedback",
     "pages/address/list/list",
-    "pages/address/add/add"
+    "pages/address/add/add",
+    "pages/message/message"
   ],
   "entryPagePath": "pages/index/index",
   "window":{
@@ -48,7 +53,7 @@
         "iconPath": "",
         "selectedIconPath": ""
       }, {
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/user/user/user",
         "text": "我的",
         "iconPath": "",
         "selectedIconPath": ""

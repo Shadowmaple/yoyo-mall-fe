@@ -1,6 +1,4 @@
 // pages/cart/cart.js
-const app = getApp()
-const request = require("../../utils/request.js")
 
 Page({
   data: {

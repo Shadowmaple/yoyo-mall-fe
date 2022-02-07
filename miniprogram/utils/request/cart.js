@@ -3,7 +3,7 @@ const model = require("model.js")
 
 // 购物车-删除商品
 var cartDel = (req, callback) => {
-  let url = model.Paths.cartDel
+  let url = model.BaseURL + model.Paths.cartDel
 
   let data = {
     list: req.list,

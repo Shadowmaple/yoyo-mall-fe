@@ -15,7 +15,10 @@
   <view class="pay-method-box">
     <view class="pay-method-line">
       <view>支付方式</view>
-      <view>微信支付</view>
+      <view class="pay-method-info">
+        <image class="pay-method-icon" src="/images/icon/wechat-fill.png"></image>
+        <view>微信支付</view>
+      </view>
     </view>
   </view>
 

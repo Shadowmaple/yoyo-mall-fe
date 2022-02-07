@@ -1,0 +1,71 @@
+/* pages/order/evaluate/evaluate.wxss */
+
+.level-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90%;
+  margin: 20rpx 20rpx;
+}
+
+.line-title {
+  width: 180rpx;
+}
+
+.score-line {
+  width: 90%;
+  margin: 20rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.score-slider {
+  width: 320rpx;
+  margin-left: 80rpx;
+}
+
+.input-content {
+  width: 85%;
+  border: 4rpx solid rgb(199, 195, 195);
+  padding: 20rpx 20rpx;
+  border-radius: 10rpx;
+  margin: 20rpx 0;
+}
+
+.img-box {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 20rpx 0;
+}
+
+.img-item {
+  height: 200rpx;
+  width: 200rpx;
+  background-color: rgb(199, 195, 195);
+}
+
+.radio-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 20rpx 20rpx;
+}
+
+.button {
+  position: absolute;
+  bottom: 20rpx;
+  background-color: #ff6347;
+  width: 90%;
+  height: 90rpx;
+  border-radius: 30rpx;
+  color: white;
+  font-size: 32rpx;
+  text-align: center;
+}

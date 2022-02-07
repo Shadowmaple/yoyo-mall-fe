@@ -7,7 +7,7 @@ Page({
     token: "",
     userInfo: {
       nickname: "没影子的猫h",
-      avatar: ""
+      avatar: "/images/user-unlogin.png"
     }
   },
 
@@ -19,18 +19,11 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {},
-
-  onPullDownRefresh: function () {},
-
   clickJumpUserInfo: function () {
-    var jumpUrl = '../user-info/user-info?nickName=' +
+    var url = '../user_info/user_info?nickName=' +
       this.data.nickname + '&avatar=' + this.data.avatar
     wx.navigateTo({
-      url: jumpUrl,
+      url: url,
     })
   },
 })

@@ -1,2 +1,64 @@
 <!--pages/order/order_list/order_list.wxml-->
-<text>pages/order/order_list/order_list.wxml</text>
+<view class="container">
+  <!-- 订单搜索框 -->
+  <!-- todo -->
+  <search-tab class="search" text="搜素订单"></search-tab>
+
+  <view class="tab-box">
+    <block wx:for="{{tabs}}" wx:key="id">
+      <view wx:if="{{item.id == tab}}" class="tab-item-selected" bindtap="bindSwitchTab" data-kind="{{item.id}}">{{item.name}}</view>
+      <view wx:else class="tab-item" bindtap="bindSwitchTab" data-kind="{{item.id}}">{{item.name}}</view>
+    </block>
+  </view>
+
+  <view class="list-box">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="item">
+        <view class="item-line1">
+          <view>订单编号：{{item.id}}</view>
+          <view class="item-status">{{statusMp[item.status]}}</view>
+        </view>
+
+        <view class="item-line2" bindtap="bindClickOrder">
+          <block wx:if="{{item.productNum == 1}}">
+            <image class="item-image" src="{{item.image}}"></image>
+            <view class="item-info">
+              <view>{{item.title}}</view>
+            </view>
+          </block>
+          <block wx:else>
+            <!-- 多个商品图书，则展示商品的图片，只展示前四个 -->
+            <block wx:for="{{item.products}}" wx:key="id" wx:for-item="p" wx:for-index="idx">
+              <block wx:if="{{idx < 4}}">
+                <image class="item-image" src="{{p.image}}"></image>
+              </block>
+            </block>
+          </block>
+        </view>
+
+        <view class="item-line3">
+          <view class="item-productNum">共{{item.productNum}}件商品</view>
+          <view style="color: #e7371f;">￥{{item.totalFee}}元</view>
+        </view>
+
+        <view class="item-line4">
+          <view class="item-remainTime"></view>
+          <view class="item-button" bindtap="bindGetLogistics">查看物流</view>
+          <block wx:if="{{item.status == 0}}">
+            <view class="item-button1" bindtap="bindPay">立即支付</view>
+          </block>
+          <block wx:if="{{item.status > 0 && item.status < 3}}">
+            <view class="item-button1" bindtap="bindReceive">确认收货</view>
+          </block>
+          <block wx:if="{{item.status == 3}}">
+            <view class="item-button1" bindtap="bindEvaluate">立即评价</view>
+          </block>
+          <block wx:if="{{item.status == 4 || item.status == 5 || item.status == 7}}">
+            <view class="item-button1" bindtap="bindBugAgain">再次购买</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>
