@@ -3,22 +3,24 @@
   <view class="address-box">
     <view class="address-main">
       <view class="address-line1">
-        <view>{{address.name}}</view>
+        <view class="address-name">{{address.name}}</view>
         <view>{{address.tel}}</view>
       </view>
       <view class="address-line2">{{address.detail}}</view>
     </view>
     <!-- 箭头 -->
-    <icon type="cancel"></icon>
+    <image class="arrow" src="/images/icon/arrow-right-line.svg" bindtap="bindChangeAddr"></image>
   </view>
 
   <view class="pay-method-box">
-    <view>支付方式</view>
-    <view>微信支付</view>
+    <view class="pay-method-line">
+      <view>支付方式</view>
+      <view>微信支付</view>
+    </view>
   </view>
 
   <view class="product-box">
-    <view>共{{productNum}}件商品</view>
+    <view class="product-header">共{{productNum}}件商品</view>
     <view class="product-item" wx:for="{{list}}" wx:key="this">
       <image class="item-image" src="{{item.image}}"></image>
       <view class="item-main">
@@ -35,20 +37,24 @@
     </view>
     <view class="coupon">
       <view>优惠券</view>
-      <view>无可用</view>
+      <view class="coupon-right">
+        <view>无可用</view>
+        <!-- 箭头 -->
+        <image class="arrow" src="/images/icon/arrow-right-line.svg" bindtap="bindChooseCoupon"></image>
+      </view>
     </view>
   </view>
 
   <view class="amount-box">
-    <view class="amount-total">
+    <view class="amount-item">
       <view>商品金额</view>
       <view>￥{{purchase}}</view>
     </view>
-    <view class="amount-freight">
+    <view class="amount-item">
       <view>运费</view>
       <view>￥{{freight}}</view>
     </view>
-    <view class="amount-discount">
+    <view class="amount-item">
       <view>促销</view>
       <view>￥{{discount}}</view>
     </view>
@@ -57,11 +63,11 @@
   <view class="footer">
     <view class="footer-purchase">
       <view>实付：</view>
-      <view class="footer-amount">￥{{purchase}}</view>
+      <view class="footer-amount">￥{{payment}}</view>
     </view>
 
     <view class="footer-button-wrap">
-      <button class="footer-button" type="primary">提交订单</button>
+      <button class="footer-button" type="primary" bindtap="bindConfirm">提交订单</button>
     </view>
   </view>
 </view>

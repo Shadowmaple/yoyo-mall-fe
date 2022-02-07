@@ -3,8 +3,12 @@
   <view class="header">
     <view class="header-left">
       <radio color="#f55844" checked="{{selectAll}}" bindtap="bindSelectAll">全选</radio>
-      <!-- <view>全选</view> -->
-      <view bindtap="bindEdit" class="header-edit">编辑商品</view>
+      <block wx:if="{{isEdit}}">
+        <view bindtap="bindEdit" class="header-edit">完成</view>
+      </block>
+      <block wx:else>
+        <view bindtap="bindEdit" class="header-edit">编辑商品</view>
+      </block>
     </view>
     <view class="header-right">
       <view>优惠券</view>

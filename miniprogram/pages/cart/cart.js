@@ -7,8 +7,8 @@ Page({
     isEdit: false,
     selectAll: false,
     selectNum: 0,
-    purchase: '0', // 当前需付费
-    discount: '0', // 优惠金额
+    purchase: '0', // 商品总金额
+    discount: '0', // 商品促销优惠金额
     cartList: [{
       'id': 1,
       'product_id': 42,
@@ -143,6 +143,24 @@ Page({
     cartList[idx].num = num
     cartList[idx].isEdit = true
     this.cartList = cartList
+
+    if (!cartList[idx].selected) {
+      return
+    }
+
+    // 重新计算应付金额和促销优惠金额
+    let purchase = 0, discount = 0
+    for (let i in cartList) {
+      let item = cartList[i]
+      if (item.selected) {
+        purchase += item.cur_price * item.num
+        discount += (item.price - item.cur_price) * item.num
+      }
+    }
+    this.setData({
+      purchase: purchase.toFixed(2),
+      discount: discount.toFixed(2),
+    })
   },
 
   // 结算
@@ -166,6 +184,7 @@ Page({
         continue
       }
       confirmList.push({
+        'id': item.id,
         'product_id': item.product_id,
         'title': item.title,
         'price': item.price,
