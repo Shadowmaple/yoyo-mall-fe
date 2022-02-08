@@ -56,7 +56,7 @@
     <!-- 我的地址 -->
     <view class="module-item">
       <image class="module-icon" src="/images/icon/wechat-fill.png"></image>
-      <navigator url="/pages/address/add/add" hover-class="navigator-hover" class="module-navigator">
+      <navigator url="/pages/address/list/list" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">我的地址</view>
       </navigator>
     </view>

@@ -204,6 +204,14 @@ Page({
     })
   },
 
+  bindJumpInfo: function (e) {
+    let productID = e.currentTarget.dataset.product
+    let url = "/pages/product/product_info/product_info?product_id=" + productID
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
   // 批量移入收藏
   bindBatchMoveToCollect: function (e) {
 

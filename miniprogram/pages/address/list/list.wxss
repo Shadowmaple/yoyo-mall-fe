@@ -1,1 +1,78 @@
 /* pages/address/list/list.wxss */
+
+.addr-item {
+  border: 1rpx solid rgb(0, 0, 0, 0.5);
+  width: 90%;
+  margin: 10rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addr-main {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 10rpx;
+  margin-left: 20rpx;
+}
+
+.addr-line1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+  font-size: 34rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+}
+
+.addr-line2 {
+  font-size: 28rpx;
+
+  /* 第二行省略多余的文字 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.addr-tel {
+  margin-left: 40rpx;
+}
+
+.addr-default {
+  font-size: 24rpx;
+  border: 1rpx solid tomato;
+  border-radius: 20rpx;
+  padding: 5rpx 0;
+  margin-left: 20rpx;
+  color: tomato;
+  width: 80rpx;
+  text-align: center;
+}
+
+.addr-op {
+  margin-right: 10rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20rpx 0;
+  width: 100%;
+}
+
+.footer-button {
+  background-color: tomato;
+  color: white;
+  margin: 0 40rpx;
+  height: 70rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

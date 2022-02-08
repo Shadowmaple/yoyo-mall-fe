@@ -1,1 +1,253 @@
 /* pages/product/product_info/product_info.wxss */
+
+.tab-left {
+  position: fixed;
+  left: 20rpx;
+  top: 50rpx;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 40rpx;
+  height: 60rpx;
+  width: 90rpx;
+  text-align: center;
+}
+
+.tab-back-icon {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.img-box {
+  width: 100%;
+  text-align: center;
+}
+
+.img-item {
+  height: 700rpx;
+}
+
+.price-box {
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+  background: linear-gradient(rgb(226, 83, 40) 50%, white);
+  color: white;
+}
+
+.price-block {
+  margin: 0 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-line1 {
+  display: flex;
+  flex-direction: row;
+  font-size: 42rpx;
+  margin-bottom: 10rpx;
+}
+
+.price-line2 {
+  display: flex;
+  flex-direction: row;
+  font-size: 26rpx;
+  color: rgb(218, 214, 214);
+}
+
+.price-origin {
+  text-decoration: line-through;
+  margin-right: 25rpx;
+}
+
+.info-box {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.info-title {
+  font-size: 42rpx;
+  margin: 0 20rpx;
+}
+
+.info-line {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 20rpx;
+}
+
+.info-line-cell {
+  margin-right: 20rpx;
+}
+
+.addr-box {
+  width: 95%;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  margin: 10rpx 0;
+}
+
+.addr-line {
+  display: flex;
+  flex-direction: row;
+  margin: 30rpx 20rpx;
+  font-size: 26rpx;
+}
+
+.addr-line-title {
+  width: 80rpx;
+}
+
+.addr-line-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  margin: 0 10rpx;
+}
+
+.addr-detail {
+  margin-left: 10rpx;
+}
+
+.addr-flag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.addr-flag-icon {
+  height: 30rpx;
+  width: 30rpx;
+  margin-right: 10rpx;
+}
+
+.comment-box {
+  width: 95%;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  margin: 10rpx 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-header {
+  margin: 20rpx 20rpx;
+}
+
+.comment-title {
+  font-size: 36rpx;
+}
+
+.comment-item {
+  margin: 20rpx 20rpx;
+}
+
+.comment-line1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comment-avatar {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  margin: 20rpx;
+  border: 1px solid rgb(196, 192, 191);
+}
+
+.comment-score {
+  margin-top: 10rpx;
+}
+
+/* 两行显示，最后一行超出的省略 */
+.comment-content {
+  margin: 0 20rpx;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.comment-button {
+  font-size: 26rpx;
+  width: 200rpx;
+  border: 1px solid rgb(196, 192, 191);
+  border-radius: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+  padding: 10rpx 20rpx;
+  align-self: center;
+}
+
+.detail-box {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  margin: 10rpx 0;
+  margin-bottom: 200rpx;
+}
+
+.detail-header {
+  font-size: 36rpx;
+  margin: 20rpx 20rpx;
+}
+
+.detail-main {
+  margin: 20rpx 20rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10rpx 0;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-item {
+  margin: 0 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.footer-button1 {
+  background-color: rgb(241, 201, 23);
+  color: white;
+  height: 80rpx;
+  text-align: center;
+  width: 200rpx;
+  border-radius: 35rpx 0 0 35rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-button2 {
+  background-color: rgb(235, 69, 39);
+  color: white;
+  height: 80rpx;
+  width: 200rpx;
+  border-radius: 0 35rpx 35rpx 0;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,2 +1,25 @@
 <!--pages/address/list/list.wxml-->
-<text>pages/address/list/list.wxml</text>
+<view class="container">
+  <view class="addr-item" wx:for="{{list}}" wx:key="id">
+    <view class="addr-main">
+      <view class="addr-line1">
+        <view>{{item.name}}</view>
+        <view class="addr-tel">{{item.tel}}</view>
+        <block wx:if="{{item.is_default}}">
+          <view class="addr-default">默认</view>
+        </block>
+      </view>
+      <view class="addr-line2">
+        {{item.province}} {{item.city}} {{item.district}} {{item.detail}}
+      </view>
+    </view>
+    <view class="addr-op" bindtap="bindOp" data-id="{{item.id}}" data-idx="{{index}}">
+      <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-button" bindtap="bindAdd">+ 添加收货地址</view>
+  </view>
+
+</view>

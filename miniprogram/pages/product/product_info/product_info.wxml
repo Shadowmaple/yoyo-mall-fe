@@ -1,2 +1,91 @@
 <!--pages/product/product_info/product_info.wxml-->
-<text>pages/product/product_info/product_info.wxml</text>
+<view class="container">
+  <view class="tab-left">
+    <image class="tab-back-icon" src="/images/icon/arrow-right-line.svg" bindtap="bindBack"></image>
+  </view>
+  <view class="img-box">
+    <block wx:if="{{info.images.length > 0}}">
+      <image class="img-item" src="{{info.images[0]}}"></image>
+    </block>
+  </view>
+
+  <view class="price-box">
+    <view class="price-block">
+      <view class="price-line1">￥{{info.cur_price}}</view>
+      <view class="price-line2">
+        <view class="price-origin">￥{{info.price}}</view>
+        <view>{{info.discount}}折</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-box">
+    <view class="info-title">{{info.title}}</view>
+    <view class="info-line">
+      <view class="info-line-cell">{{info.author}}</view>
+      <view class="info-line-cell">|</view>
+      <view class="info-line-cell">{{info.publisher}}</view>
+    </view>
+  </view>
+
+  <view class="addr-box">
+    <view class="addr-line">
+      <view class="addr-line-title">送至</view>
+      <view class="addr-line-content">
+        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <view class="addr-detail">{{addr}}</view>
+      </view>
+      <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
+    </view>
+    <view class="addr-line">
+      <view class="addr-line-title">运费</view>
+      <view class="addr-line-content">运费{{freight}}元</view>
+    </view>
+    <view class="addr-line">
+      <view class="addr-flag">
+        <image class="addr-flag-icon" src="/images/icon/wechat-fill.png"></image>
+        <view>支持七天无理由退货</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="comment-box">
+    <view class="comment-header">
+      <view class="comment-title">评论</view>
+    </view>
+    <view class="comment-item" wx:for="{{info.comment_list}}" wx:key="id">
+      <view class="comment-line1">
+        <image class="comment-avatar" src="{{item.user_avatar}}"></image>
+        <view>
+          <view>{{item.user_nickname}}</view>
+          <!-- todo:换成星星填充形式 -->
+          <view class="comment-score">{{item.score}}分</view>
+        </view>
+      </view>
+      <view class="comment-content">{{item.content}}</view>
+    </view>
+    <view class="comment-button" bindtap="bindEvaluationPage">查看更多评论</view>
+  </view>
+
+  <view class="detail-box">
+    <view class="detail-header">图书详情</view>
+    <view class="detail-main">{{info.detail}}</view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-left">
+      <view class="footer-item" bindtap="bindStar">
+        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <view>收藏</view>
+      </view>
+      <view class="footer-item" bindtap="bindJumpToCart">
+        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <view>购物车</view>
+      </view>
+    </view>
+    <view class="footer-right">
+      <view class="footer-button1" bindtap="bindBuy">立即购买</view>
+      <view class="footer-button2" bindtap="bindAddToCart">加入购物车</view>
+    </view>
+  </view>
+</view>

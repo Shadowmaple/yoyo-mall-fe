@@ -13,7 +13,7 @@
   </view>
 
   <!-- 畅销榜 -->
-  <view class="rank-box">
+  <view class="rank-box" bindtap="bindJumpToRank" data-kind="0">
     <view class="rank-title">图书畅销榜</view>
     <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
         <view class="rank-item" wx:for="{{saleRanks}}" wx:key="id">
@@ -24,7 +24,7 @@
   </view>
 
   <!-- 新书榜 -->
-  <view class="rank-box">
+  <view class="rank-box" bindtap="bindJumpToRank" data-kind="1">
     <view class="rank-title">新书榜</view>
     <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
         <view class="rank-item" wx:for="{{newBookRanks}}" wx:key="id">
@@ -35,7 +35,7 @@
   </view>
 
   <!-- 优惠榜 -->
-  <view class="rank-box">
+  <view class="rank-box" bindtap="bindJumpToRank" data-kind="2">
     <view class="rank-title">优惠榜</view>
     <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
         <view class="rank-item" wx:for="{{discountRanks}}" wx:key="id">
@@ -49,7 +49,7 @@
   <view class="list-box">
     <view class="list-title">推荐</view>
     <view class="list-main">
-      <view class="list-item" wx:for="{{recommendList}}" wx:key="id">
+      <view class="list-item" wx:for="{{recommendList}}" wx:key="id" bindtap="bindJumpToInfo" data-id="{{item.id}}">
         <image class="list-item-image" src="{{item.image}}"></image>
         <view class="list-item-title">{{item.title}}</view>
         <view>￥{{item.cur_price}}</view>

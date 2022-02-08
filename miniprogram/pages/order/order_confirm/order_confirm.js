@@ -58,7 +58,7 @@ Page({
   // 提交订单
   bindConfirm: function (e) {
     // 1.发起请求，创建订单，成功后弹起支付确认框，并跳转到订单详情页
-    // 2.发起请求，删除购物车中数据
+    // 2.发起请求，删除购物车中数据，若id不为0，则是“立即购买”过来的，无需删除
     let list = new Array
     let productList = this.data.productList
     let delList = new Array
@@ -73,7 +73,9 @@ Page({
         'cur_price': item.cur_price,
         'image': item.image,
       })
-      delList.push(item.id)
+      if (item.id > 0) {
+        delList.push(item.id)
+      }
     }
 
     // 创建订单请求参数
@@ -132,6 +134,9 @@ Page({
       })
     })
 
+    if (delList.length == 0) {
+      return
+    }
     // 删除购物车中记录
     let delReq = {
       list: delList

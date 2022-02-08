@@ -21,7 +21,7 @@
         <radio color="#f55844" checked="{{item.selected}}" bindtap="bindSelect" data-idx="{{index}}" class="item-radio"></radio>
         <image class="item-image" src="{{item.image}}"></image>
         <view class="item-info">
-          <view class="item-title">{{item.title}}</view>
+          <view class="item-title" bindtap="bindJumpInfo" data-product="{{item.product_id}}">{{item.title}}</view>
           <view class="item-purchase">
             <view class="item-cur-price">￥{{item.cur_price}}</view>
             <view class="item-price">￥{{item.price}}</view>

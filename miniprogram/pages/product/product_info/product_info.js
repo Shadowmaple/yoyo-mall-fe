@@ -1,66 +1,81 @@
 // pages/product/product_info/product_info.js
+const mock = require("../../../utils/mock-data/mock")
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    info: mock.productInfo,
+    addr: '湖北省武汉市洪山区雄楚大道382号华中师范大学',
+    freight: 10,
   },
+  id: 0, // product_id
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    if (options == null) {
+      return
+    }
+    this.id = options.id
+    // 请求 ...
+  },
+
+  bindBack: function (e) {
+    wx.navigateBack({
+      delta: 0,
+    })
+  },
+
+  // 收藏
+  bindStar: function (e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // 加入购物车
+  bindAddToCart: function (e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  // 跳转到评论页面
+  bindEvaluationPage: function(e) {
+    let url = '../evaluations/evaluations'
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
+  // 更改地址，计算运费
+  bindChangeAddr: function (e) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 立即购买，跳转到订单确认页面
+  bindBuy: function (e) {
+    let info = this.data.info
+    let confirmData = {
+      'purchase': info.cur_price,
+      'discount': info.price - info.cur_price,
+      'list': [{
+        'id': 0,
+        'product_id': info.id,
+        'title': info.title,
+        'price': info.price,
+        'cur_price': info.cur_price,
+        'image': info.images[0],
+        'num': 1,
+      }],
+    }
+    let url = '/pages/order/order_confirm/order_confirm?data=' + JSON.stringify(confirmData)
+    wx.navigateTo({
+      url: url,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  // 加入购物车并跳转到购物车页面
+  bindJumpToCart: function (e) {
+    // ... 加入购物车
+    // todo
 
+    let url = '/pages/cart/cart'
+    wx.switchTab({
+      url: url,
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
