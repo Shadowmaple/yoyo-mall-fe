@@ -1,2 +1,74 @@
 <!--pages/order/order_info/order_info.wxml-->
-<text>pages/order/order_info/order_info.wxml</text>
+<view class="container">
+  <view class="header">
+    <view class="header-title">{{statusMp[info.status]}}</view>
+  </view>
+
+  <view class="logis-box">
+    <view class="logis-info">
+      <image class="icon" src="/images/icon/wechat-fill.png"></image>
+      <view class="logis-status">{{logisticMp[info.status]}}</view>
+    </view>
+    <view class="logis-button" bindtap="bindJumpToLogistics">查看物流</view>
+  </view>
+
+  <view class="addr-box">
+    <image class="icon" src="/images/icon/wechat-fill.png"></image>
+    <view class="addr-info">
+      <view class="addr-line1">
+        <view class="addr-name">{{info.receive_name}}</view>
+        <view>{{info.receive_tel}}</view>
+      </view>
+      <view class="addr-line2">{{info.receive_addr}}</view>
+    </view>
+  </view>
+
+  <view class="product-box">
+    <view wx:for="{{info.products}}" wx:key="id" class="product-item">
+      <image class="item-image" src="{{item.image}}"></image>
+      <view class="item-info">
+        <view class="item-line1">{{item.title}}</view>
+        <view class="item-line2">
+          <view>￥{{item.cur_price}}</view>
+          <view>x{{item.num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="orderInfo-box">
+    <view class="orderInfo-line">订单编号：{{info.order_code}}</view>
+    <view class="orderInfo-line">下单时间：{{info.create_time}}</view>
+    <view class="orderInfo-line" wx:if="{{info.pay_time != ''}}">付款时间：{{info.pay_time}}</view>
+    <view class="orderInfo-line" wx:if="{{info.deliver_time != ''}}">发货时间：{{info.deliver_time}}</view>
+    <view class="orderInfo-line" wx:if="{{info.confirm_time != ''}}">签收时间：{{info.confirm_time}}</view>
+  </view>
+
+  <view class="purchase-box">
+    <view class="purchase-line">
+      <view>商品金额总计：</view>
+      <view>￥{{info.total_fee}}</view>
+    </view>
+    <view class="purchase-line">
+      <view>运费：</view>
+      <view>￥{{info.freight}}</view>
+    </view>
+    <view class="purchase-line">
+      <view>优惠券：</view>
+      <view>-￥{{info.coupon}}</view>
+    </view>
+    <view class="purchase-line">
+      <view>总付款：</view>
+      <view>￥{{info.payment}}</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-button" wx:if="{{info.status == 1 || info.status == 2}}" bindtap="bindReceive">确认签收</view>
+    <view class="footer-button" wx:if="{{info.status == 0}}" bindtap="bindCancelOrder">取消订单</view>
+    <view class="footer-button" wx:if="{{info.status == 0}}" bindtap="bindPay">立即支付</view>
+    <view class="footer-button" wx:if="{{info.status == 3}}" bindtap="bindEvaluate">立即评价</view>
+    <view class="footer-button" wx:if="{{info.status == 4 || info.status == 5 || info.status == 7 || info.status == 6}}" bindtap="bindBugAgain">再次购买</view>
+  </view>
+
+</view>

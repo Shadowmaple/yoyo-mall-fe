@@ -1,23 +1,60 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
+  <search-tab class="search" text="输入关键字搜索"></search-tab>
+
+  <view class="banner-box">
+    <swiper class="banner-swiper" autoplay="true" indicator-dots="true">
+      <block wx:for="{{banners}}" wx:key="*this">
+        <swiper-item>
+          <image class="banner-image" src="{{item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 畅销榜 -->
+  <view class="rank-box">
+    <view class="rank-title">图书畅销榜</view>
+    <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
+        <view class="rank-item" wx:for="{{saleRanks}}" wx:key="id">
+          <image class="rank-item-image" src="{{item.image}}"></image>
+          <view class="overflow-text">{{item.title}}</view>
+        </view>
+      </scroll-view>
+  </view>
+
+  <!-- 新书榜 -->
+  <view class="rank-box">
+    <view class="rank-title">新书榜</view>
+    <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
+        <view class="rank-item" wx:for="{{newBookRanks}}" wx:key="id">
+          <image class="rank-item-image" src="{{item.image}}"></image>
+          <view class="overflow-text">{{item.title}}</view>
+        </view>
+      </scroll-view>
+  </view>
+
+  <!-- 优惠榜 -->
+  <view class="rank-box">
+    <view class="rank-title">优惠榜</view>
+    <scroll-view class="rank-main" scroll-x="true" scroll-y="false" enable-flex="true">
+        <view class="rank-item" wx:for="{{discountRanks}}" wx:key="id">
+          <image class="rank-item-image" src="{{item.image}}"></image>
+          <view class="overflow-text">{{item.title}}</view>
+        </view>
+      </scroll-view>
+  </view>
+
+  <!-- 推荐 -->
+  <view class="list-box">
+    <view class="list-title">推荐</view>
+    <view class="list-main">
+      <view class="list-item" wx:for="{{recommendList}}" wx:key="id">
+        <image class="list-item-image" src="{{item.image}}"></image>
+        <view class="list-item-title">{{item.title}}</view>
+        <view>￥{{item.cur_price}}</view>
       </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
 </view>

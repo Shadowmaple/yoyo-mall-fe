@@ -29,6 +29,7 @@ page {
   border-radius: 50%;
   background-size: cover;
   border: 3px solid rgb(0, 153, 255);
+  overflow: hidden;
 }
 
 .userInfo-nickname {

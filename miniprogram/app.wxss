@@ -7,4 +7,16 @@
   justify-content: flex-start;
   padding: 0 0;
   box-sizing: border-box;
-} 
+}
+
+.icon {
+  height: 50rpx;
+  width: 50rpx;
+}
+
+/* 文字数超出省略，防止溢出占行 */
+.overflow-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

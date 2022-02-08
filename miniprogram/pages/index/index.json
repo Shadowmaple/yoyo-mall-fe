@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "search-tab": "/components/search/search"
+  },
   "navigationBarTitleText": "主页",
   "enablePullDownRefresh": true,
   "backgroundColor": "#787878"

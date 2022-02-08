@@ -1,1 +1,160 @@
 /* pages/order/order_info/order_info.wxss */
+
+.header {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 0;
+}
+
+.header-title {
+  font-size: 34rpx;
+  color: rgb(240, 73, 44);
+}
+
+.logis-box {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10rpx 0;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  padding: 20rpx 20rpx;
+}
+
+.logis-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.logis-status {
+  margin-left: 20rpx;
+}
+
+.logis-button {
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  padding: 20rpx 15rpx;
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+
+.addr-box {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10rpx 0;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  padding: 20rpx 20rpx;
+}
+
+.addr-info {
+  margin-left: 20rpx;
+}
+
+.addr-line1 {
+  display: flex;
+  flex-direction: row;
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.addr-line2 {
+  font-size: 26rpx;
+}
+
+.addr-name {
+  margin-right: 20rpx;
+}
+
+.product-box {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx 0;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  padding: 20rpx 20rpx;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 10rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgb(0, 0, 0, 0.2);
+}
+
+.item-image {
+  height: 200rpx;
+  width: 180rpx;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+}
+
+.item-line1 {
+  margin-top: 10rpx;
+}
+
+.item-line2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.orderInfo-box {
+  width: 90%;
+  margin: 10rpx 0;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  padding: 20rpx 20rpx;
+}
+
+.orderInfo-line {
+  margin: 10rpx 10rpx;
+}
+
+.purchase-box {
+  width: 90%;
+  margin: 10rpx 0;
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  padding: 20rpx 20rpx;
+  margin-bottom: 150rpx;
+}
+
+.purchase-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10rpx 10rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(219, 216, 216);
+  border-top: 2rpx solid rgb(0, 0, 0, 0.2);
+  padding: 10rpx 0;
+}
+
+.footer-button {
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  padding: 20rpx 20rpx;
+  font-size: 26rpx;
+  margin-right: 30rpx;
+  background-color: white;
+}
