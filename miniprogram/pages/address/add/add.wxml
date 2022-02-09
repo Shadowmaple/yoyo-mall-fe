@@ -1,2 +1,37 @@
 <!--pages/address/add/add.wxml-->
-<text>pages/address/add/add.wxml</text>
+<view class="container">
+  <view class="main-box">
+    <view class="main-line">
+      <view>收货人：</view>
+      <input placeholder="请输入收货人姓名" value="{{name}}" maxlength="10" confirm-type="next" bindinput="bindInputEvent" data-kind="0" />
+    </view>
+    <view class="main-line">
+      <view>手机号码：</view>
+      <input placeholder="请输入手机号" type="number" value="{{tel}}" maxlength="11" confirm-type="next" bindinput="bindInputEvent" data-kind="1" />
+    </view>
+    <view class="main-line">
+      <view>所在地区：</view>
+      <picker mode="region" header-text="收货地址" value="{{regionValue}}" bindchange="bindRegionChange">
+        <input placeholder="省市 城市 地区" value="{{region}}" />
+      </picker>
+      <view class="main-line-icon">
+        <image class="icon" src="/images/icon/map.png" bindtap="bindLocate"></image>
+      </view>
+    </view>
+    <view class="main-line">
+      <view class="main-line-name">详细地址：</view>
+      <textarea placeholder="街道、小区、单元室、门牌等" value="{{detail}}" auto-height="true" confirm-type="done" maxlength="100" bindinput="bindInputEvent" data-kind="3" />
+    </view>
+  </view>
+
+  <view class="sub-box">
+    <view class="default-line">
+      <view>设为默认地址</view>
+      <switch checked="{{is_default}}" type="switch" color="#fc4a2a" bindchange="bindChangeDefault"></switch>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-button" bindtap="bindConfirm">保存</view>
+  </view>
+</view>

@@ -9,15 +9,15 @@ Page({
   onLoad: function (options) {
     
   },
-
+ 
   onShow: function () {
-    // 请求地址列表
+    // 请求地址
+    // ...
   },
 
   bindOp: function (e) {
     let id = e.currentTarget.dataset.id
     let idx = e.currentTarget.dataset.idx
-    console.info('bindOp: ', id, idx)
 
     wx.showActionSheet({
       itemList: ['编辑','删除'],
@@ -35,7 +35,7 @@ Page({
   edit: function (idx, id) {
     let data = this.data.list[idx]
 
-    let url = '../add/add?data=?' + JSON.stringify(data)
+    let url = '../add/add?data=' + JSON.stringify(data)
     wx.navigateTo({
       url: url,
     })
@@ -49,7 +49,22 @@ Page({
   },
 
   del: function (idx, id) {
-    // 请求删除
-    // todo
+    wx.showModal({
+      content: '确认删除？',
+      success: res => {
+        if (!res.confirm) {
+          return
+        }
+        // 请求删除
+        // todo
+
+        let list = this.data.list
+        list.splice(idx, 1)
+        this.setData({
+          list: list,
+        })
+      },
+    })
+    
   },
 })

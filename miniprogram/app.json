@@ -65,5 +65,10 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息仅将用于填写收货地址"
+    }
+  }
 }

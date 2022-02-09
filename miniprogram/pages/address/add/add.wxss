@@ -1,1 +1,60 @@
 /* pages/address/add/add.wxss */
+
+.main-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2rpx solid rgb(0, 0, 0, 0.2);
+}
+
+.main-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 20rpx 30rpx;
+  border-bottom: 2rpx solid rgb(0, 0, 0, 0.2);
+}
+
+.main-line-icon {
+  position: absolute;
+  right: 20rpx;
+  margin-left: 10rpx;
+}
+
+.main-line-name {
+  white-space: nowrap;
+  margin-right: 5rpx;
+}
+
+.sub-box {
+  width: 100%;
+  margin-top: 20rpx;
+  border: 2rpx solid rgb(0, 0, 0, 0.2);
+}
+
+.default-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20rpx 0;
+  width: 100%;
+}
+
+.footer-button {
+  background-color: #fc4a2a;
+  color: white;
+  margin: 0 40rpx;
+  height: 70rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

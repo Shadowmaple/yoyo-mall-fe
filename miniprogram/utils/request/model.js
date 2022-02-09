@@ -11,6 +11,7 @@ const Paths = {
   orderCreate: "/order",
   orderUpdate: "/order",
   cartDel: "/cart",
+  addrAdd: "/address",
 }
 
 module.exports = {
