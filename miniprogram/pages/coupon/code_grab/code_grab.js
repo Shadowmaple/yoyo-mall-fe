@@ -1,66 +1,75 @@
 // pages/coupon/code_grab/code_grab.js
+
+const request = require('../../../utils/request/coupon')
+
+const exCoupon = {
+  "id": 2,
+  "begin_time": "2022-01-01 12:00:00",
+  "end_time": "2022-02-28 12:00:00",
+  "cid": 2,
+  "cid2": 4,
+  "title": "大额神券 满200减20",
+  "discount": 20,
+  "threshold": 200,
+}
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    code: "",
+    showCoupon: false,
+    coupon: exCoupon,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  bindInput: function (e) {
+    this.data.code = e.detail.value
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  bindGrab: function (e) {
+    let req = {
+      code: this.data.code,
+      id: 0,
+    }
 
+    request.couponGrab(req, res => {
+      // todo: 不同错误类型，兑换码错误、失效、无剩余等等
+      if (res.code != 0) {
+        console.warn('couponGrab error:', res.code, res.msg)
+        return
+      }
+      let data = res.data
+      let coupon = {
+        id: data.id,
+        begin_time: data.begin_time,
+        end_time: data.end_time,
+        cid: data.cid,
+        cid2: data.cid2,
+        title: data.title,
+        discount: data.discount,
+        threshold: data.threshold,
+      }
+      this.setData({
+        code: "",
+        showCoupon: true,
+        coupon: coupon,
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 对话框确认
+  bindConfirm: function (e) {
+    this.setData({
+      showCoupon: false,
+      coupon: {},
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  bindBack: function (e) {
+    wx.navigateBack({
+      delta: 0,
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

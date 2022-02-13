@@ -1,2 +1,37 @@
 <!--pages/coupon/code_grab/code_grab.wxml-->
-<text>pages/coupon/code_grab/code_grab.wxml</text>
+<view class="container">
+  <view class="main">
+    <input class="main-input" placeholder="请输入兑换码" bindinput="bindInput" maxlength="50" disabled="{{showCoupon}}" />
+    <view class="main-button" bindtap="bindGrab">立即兑换</view>
+  </view>
+
+  <text class="message">
+    温馨提示：
+    1. 一个兑换码只能兑换一张优惠券，不可重复兑换；
+    2. 优惠券兑换成功后，可在有效期内结算使用；
+    3. 不同批次的优惠券兑换码有兑换次数限制，超过限制不可兑换。
+  </text>
+
+  <!-- 兑换成功礼券信息弹窗 -->
+  <view class="coupon-box" wx:if="{{showCoupon}}">
+    <view class="coupon-title">成功获取一张卡券！</view>
+    <view class="coupon-line">{{coupon.title}}</view>
+    <view class="coupon-line">
+      立减金额：￥{{coupon.discount}}（
+      <block wx:if="{{coupon.threshold > 0}}">满{{coupon.threshold}}可用</block>
+      <block wx:else>无门槛</block>
+      ）
+    </view>
+    <view class="coupon-time">
+      <view>有效时间：</view>
+      <view class="coupon-time-value">{{coupon.begin_time}} ~ {{coupon.end_time}}</view>
+    </view>
+
+    <view class="coupon-button-box">
+      <view class="coupon-button" bindtap="bindBack">返回</view>
+      <view class="coupon-button" bindtap="bindConfirm">确定</view>
+    </view>
+
+  </view>
+
+</view>
