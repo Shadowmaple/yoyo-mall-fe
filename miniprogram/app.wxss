@@ -20,3 +20,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* 两行显示，最后一行超出的省略 */
+.overflow-text-line2 {
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

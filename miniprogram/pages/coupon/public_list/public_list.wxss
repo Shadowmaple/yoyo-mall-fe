@@ -1,1 +1,76 @@
 /* pages/coupon/public_list/public_list.wxss */
+
+.list-box {
+  width: 100%;
+}
+
+.item {
+  border: 2rpx solid #95A4A6;
+  border-radius: 20rpx;
+  margin: 10rpx 20rpx;
+  padding: 20rpx 10rpx;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-line1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-line1-discount {
+  font-size: 50rpx;
+  margin-left: 20rpx;
+  color: #E74C3C;
+}
+
+.item-line1-info {
+  margin-left: 40rpx;
+  font-size: 28rpx;
+}
+
+.item-threshold {
+  margin-top: 10rpx;
+  color: #E74C3C;
+}
+
+.item-line2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0;
+  margin-left: 20rpx;
+}
+
+.item-line2-left {
+  font-size: 26rpx;
+}
+
+.item-button {
+  background-color: #E74C3C;
+  /* border: 2rpx solid #E74C3C; */
+  border-radius: 30rpx;
+  padding: 15rpx 20rpx;
+  font-size: 26rpx;
+  color: white;
+  margin-right: 20rpx;
+}
+
+.item-button2 {
+  border: 2rpx solid #95A4A6;
+  border-radius: 30rpx;
+  padding: 15rpx 20rpx;
+  font-size: 26rpx;
+  color: #95A4A6;
+  margin-right: 20rpx;
+}
+
+.reach-bottom {
+  text-align: center;
+  font-size: 24rpx;
+  margin: 20rpx 0;
+  color: #95A4A6;
+}

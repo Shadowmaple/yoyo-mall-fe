@@ -1,2 +1,42 @@
 <!--pages/collection/collection.wxml-->
-<text>pages/collection/collection.wxml</text>
+<view class="container">
+  <view class="header">
+    <view class="header-left">
+      <block wx:if="{{isEdit}}">
+        <radio color="#f55844" checked="{{selectAll}}" bindtap="bindSelectAll">全选</radio>
+      </block>
+    </view>
+    <view class="header-right">
+      <block wx:if="{{isEdit}}">
+        <view bindtap="bindDel" class="header-item">删除</view>
+        <view bindtap="bindEdit" class="header-item">完成</view>
+      </block>
+      <block wx:else>
+        <view bindtap="bindEdit" class="header-item">编辑</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="main">
+
+    <view class="main-item" wx:for="{{list}}" wx:key="id">
+      <block wx:if="{{isEdit}}">
+        <radio color="#f55844" checked="{{item.selected}}" bindtap="bindSelect" data-idx="{{index}}" class="item-radio"></radio>
+      </block>
+      <image class="item-image" src="{{item.image}}"></image>
+      <view class="item-info">
+        <view class="item-title" bindtap="bindJumpInfo" data-product="{{item.product_id}}">{{item.title}}</view>
+        <view class="item-purchase">
+          <view class="item-cur-price">￥{{item.cur_price}}</view>
+          <view class="item-price">￥{{item.price}}</view>
+          <number-input class="item-number" min="1" max="99" default="{{item.num}}" bind:changeNum="bindChangeNum" data-idx="{{index}}"></number-input>
+        </view>
+        <view class="item-line3">
+          <view>剩余库存：{{item.stock}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

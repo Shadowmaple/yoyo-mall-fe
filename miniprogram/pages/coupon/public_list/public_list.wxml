@@ -1,2 +1,58 @@
 <!--pages/coupon/public_list/public_list.wxml-->
-<text>pages/coupon/public_list/public_list.wxml</text>
+<view class="container">
+  <view class="list-box">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+      <view class="item-line1">
+        <view class="item-line1-discount">￥{{item.discount}}</view>
+        <view class="item-line1-info">
+          <view>{{item.title}}</view>
+          <view class="item-threshold">
+            <block wx:if="{{item.threshold > 0}}">满{{item.threshold}}元可用</block>
+            <block wx:else>无门槛</block>
+          </view>
+        </view>
+      </view>
+
+      <view class="item-line2">
+        <block wx:if="{{item.status == 0}}">
+          <view class="item-line2-left">
+            <view>剩余数：{{item.remain}}</view>
+            <view>开抢时间：{{item.grab_begin_time}}</view>
+          </view>
+          <view class="item-button">等待开抢</view>
+        </block>
+        <block wx:if="{{item.status == 1}}">
+          <view class="item-line2-left">
+            <view>剩余数：{{item.remain}}</view>
+            <view>结束时间：{{item.grab_end_time}}</view>
+          </view>
+          <view class="item-button" bindtap="bindGrab" data-idx="{{index}}" data-id="{{item.id}}">立即领取</view>
+        </block>
+        <block wx:if="{{item.status == 2}}">
+          <view class="item-line2-left">
+            <view>剩余数：{{item.remain}}</view>
+            <view>结束时间：{{item.grab_end_time}}</view>
+          </view>
+          <view class="item-button2">已领取</view>
+        </block>
+        <block wx:if="{{item.status == 3}}">
+          <view class="item-line2-left">
+            <view>剩余数：0</view>
+            <view>结束时间：{{item.grab_end_time}}</view>
+          </view>
+          <view class="item-button2">已抢完</view>
+        </block>
+        <block wx:if="{{item.status == 4}}">
+          <view class="item-line2-left">
+            <view>剩余数：{{item.remain}}</view>
+            <view>结束时间：{{item.grab_end_time}}</view>
+          </view>
+          <view class="item-button2">已结束</view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="reach-bottom">已经到底啦~</view>
+
+</view>

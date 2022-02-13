@@ -1,2 +1,40 @@
 <!--pages/coupon/private_list/private_list.wxml-->
-<text>pages/coupon/private_list/private_list.wxml</text>
+<view class="container">
+  <view class="tab-box">
+    <block wx:for="{{tabs}}" wx:key="id">
+      <view wx:if="{{index == tab}}" class="tab-item-selected" bindtap="bindChangeTab" data-idx="{{index}}">{{item}}</view>
+      <view wx:else class="tab-item" bindtap="bindChangeTab" data-idx="{{index}}">{{item}}</view>
+    </block>
+  </view>
+
+  <view class="list-box">
+    <view class="list-item" wx:for="{{list}}" wx:key="id">
+
+      <view class="item-left">
+        <view class="item-discount">￥{{item.discount}}</view>
+        <view class="item-threshold">
+          <block wx:if="{{item.threshold > 0}}">满{{item.threshold}}元可用</block>
+          <block wx:else>无门槛</block>
+        </view>
+      </view>
+
+      <view class="item-center">
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-time">有效期至：{{item.end_time}}</view>
+      </view>
+
+      <view class="item-right">
+        <view wx:if="{{tab == 0}}" class="item-use" bindtap="bindUse">去使用</view>
+        <view wx:if="{{tab == 1}}" class="item-used">已使用</view>
+        <view wx:if="{{tab == 2}}" class="item-expired">已过期</view>
+      </view>
+    </view>
+    <view class="reach-bottom">已经到底啦~</view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-button" bindtap="bindGrabByCode">兑换</view>
+    <view class="footer-button" bindtap="bindGrab">前去领取</view>
+  </view>
+
+</view>

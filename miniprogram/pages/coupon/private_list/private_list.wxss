@@ -1,1 +1,128 @@
 /* pages/coupon/private_list/private_list.wxss */
+
+.tab-box {
+  width: 100%;
+  /* border-bottom: 4rpx solid rgb(0, 0, 0, 0.3); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0 0;
+}
+
+.tab-item {
+  padding: 20rpx 0;
+}
+
+.tab-item-selected {
+  color: #e7371f;
+  border-bottom: 7rpx solid #e7371f;
+  padding: 20rpx 0;
+}
+
+.list-box {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  border: 2rpx solid #95A4A6;
+  border-radius: 20rpx;
+  margin: 10rpx 20rpx;
+  padding: 20rpx 0;
+  height: 120rpx;
+}
+
+.item-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 150rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+.item-discount {
+  font-size: 42rpx;
+}
+
+.item-threshold {
+  font-size: 24rpx;
+  color: #95A4A6;
+}
+
+.item-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.item-title {
+  margin-top: 10rpx;
+}
+
+.item-time {
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+
+.item-right {
+  width: 100rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-use {
+  background-color: #E74C3C;
+  color: white;
+  border-radius: 20rpx;
+  font-size: 25rpx;
+  padding: 10rpx 10rpx;
+}
+
+.item-used, .item-expired {
+  border: 2rpx solid #95A4A6;
+  color: #95A4A6;
+  border-radius: 20rpx;
+  font-size: 25rpx;
+  padding: 10rpx 10rpx;
+}
+
+.reach-bottom {
+  text-align: center;
+  font-size: 24rpx;
+  margin: 20rpx 0;
+  color: #95A4A6;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20rpx 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.footer-button {
+  background-color: tomato;
+  color: white;
+  margin: 0 20rpx;
+  height: 70rpx;
+  width: 300rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
