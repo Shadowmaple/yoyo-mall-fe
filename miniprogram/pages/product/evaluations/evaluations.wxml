@@ -1,2 +1,59 @@
 <!--pages/product/evaluations/evaluations.wxml-->
-<text>pages/product/evaluations/evaluations.wxml</text>
+<view class="container">
+  <view class="item" wx:for="{{list}}" wx:key="id">
+    <view class="item-line1">
+      <block wx:if="{{item.user_avatar == '' || item.is_anonymous}}">
+        <image class="item-avatar" src="/images/user-unlogin.png"></image>
+      </block>
+      <block wx:else>
+        <image class="item-avatar" src="{{item.user_avatar}}"></image>
+      </block>
+      <view class="item-line1-col2">
+        <view>
+          <block wx:if="{{item.is_anonymous}}">匿名用户</block>
+          <block wx:else>{{item.user_nickname}}</block>
+        </view>
+        <!-- todo: 评分 -->
+        <view>{{item.score}}分</view>
+      </view>
+
+      <!-- todo -->
+      <!-- <view class="item-line1-right">
+        <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
+      </view> -->
+    </view>
+
+    <view class="item-line2" bindtap="bindJumpInfo" data-id="{{item.id}}" data-idx="{{index}}">
+      {{item.content}}
+    </view>
+
+    <view class="item-line3">
+      <block wx:for="{{item.pictures}}" wx:key="*this">
+        <image class="item-pic" src="{{item}}"></image>
+      </block>
+    </view>
+
+    <view class="item-line4">
+      <view class="item-line4-left">
+        <view class="item-time">{{item.time}}</view>
+      </view>
+
+      <view class="item-line4-right">
+        <!-- todo -->
+        <image class="item-icon" src="/images/icon/map.png"></image>
+        <view>{{item.reply_num}}</view>
+        
+        <!-- todo -->
+        <blcok wx:if="{{item.has_liked}}">
+          <image class="item-icon" src="/images/icon/map.png" bindtap="bindLike" data-idx="{{index}}"></image>
+        </blcok>
+        <block wx:else>
+          <image class="item-icon" src="/images/icon/map.png" bindtap="bindLike" data-idx="{{index}}"></image>
+        </block>
+        <view>{{item.like_num}}</view>
+      </view>
+    </view>
+  </view>
+
+
+</view>

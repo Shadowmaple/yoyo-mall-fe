@@ -1,2 +1,31 @@
 <!--pages/feedback/feedback.wxml-->
-<text>pages/feedback/feedback.wxml</text>
+<view class="container">
+  <view class="type-box">
+    <view class="box-name">反馈类型</view>
+    <picker class="type-picker" mode="selector" range="{{typeList}}" value="{{typeList[curType]}}" bindchange="bindTypeChange">
+      <view class="type-block">
+        <view class="type-value">{{typeList[curType]}}</view>
+        <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
+      </view>
+    </picker>
+  </view>
+
+  <view class="content-box">
+    <view class="box-name">反馈内容</view>
+    <textarea class="content-input" placeholder="请输入反馈内容" maxlength="400" confirm-type="done" bindinput="bindContentInput"></textarea>
+  </view>
+
+  <view class="pic-box">
+    <view class="box-name">图片</view>
+    <view class="pic-main">
+      <block wx:for="{{pictures}}" wx:key="*this">
+        <image class="pic-item" src="{{item}}"></image>
+      </block>
+      <view class="pic-item" bindtap="bindAddPicture">+</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-button" bindtap="bindConfirm">确认反馈</view>
+  </view>
+</view>

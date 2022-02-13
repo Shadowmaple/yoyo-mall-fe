@@ -25,7 +25,7 @@
     <!-- 商品展示列表 -->
     <view class="show-box">
       <block wx:for="{{productList}}" wx:key="this">
-        <view class="item">
+        <view class="item" bindtap="bindJumpInfo" data-id="{{item.id}}">
           <image class="item-image" src="{{item.image}}"></image>
           <view class="item-info">
             <view class="item-title">{{item.title}}</view>

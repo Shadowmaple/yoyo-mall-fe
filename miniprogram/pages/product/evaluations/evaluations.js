@@ -1,66 +1,28 @@
 // pages/product/evaluations/evaluations.js
+const mock = require('../../../utils/mock-data/comment')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    list: mock.evaluationList,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  bindJumpInfo: function (e) {
+    let id = e.currentTarget.dataset.id
+    let idx = e.currentTarget.dataset.idx
+    let data = JSON.stringify(this.data.list[idx])
 
+    let url = "../evaluation_info/evaluation_info?data=" + data
+    wx.navigateTo({
+      url: url,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  bindLike: function (e) {
+    let idx = e.currentTarget.dataset.idx
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

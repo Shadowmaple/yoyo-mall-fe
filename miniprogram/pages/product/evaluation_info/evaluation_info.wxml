@@ -1,2 +1,26 @@
 <!--pages/product/evaluation_info/evaluation_info.wxml-->
-<text>pages/product/evaluation_info/evaluation_info.wxml</text>
+<view class="container">
+  <view class="evaluation-box">
+    <view class="eva-line1">
+      <image src="{{evaluation.user_avatar}}"></image>
+      <view></view>
+    </view>
+    <view>{{evaluation.content}}</view>
+    <block wx:for="{{evaluation.pictures}}" wx:key="*this">
+      <image class="eva-img" src="{{item}}"></image>
+    </block>
+
+  </view>
+
+  <view class="comment-box">
+    <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+      <view></view>
+      <view></view>
+    </view>
+  </view>
+
+  <view class="publish-box">
+  
+  </view>
+
+</view>

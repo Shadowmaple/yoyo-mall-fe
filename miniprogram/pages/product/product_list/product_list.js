@@ -4,6 +4,25 @@ const app = getApp()
 const basicColumn = {id: 0, name: '全部'}
 const request = require('../../../utils/request/product.js')
 
+const extProducts = [{
+  "id": 1,
+  "title": "失落的文明",
+  "author": "曾力",
+  "publisher": "",
+  "cid": 1,
+  "cid2": 2,
+  "price": 20,
+  "cur_price": 19.5,
+  "image": "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
+  "sale_num": 100,
+  "comment_num": 100,
+  "comment_rate": 98,
+  "score": 8.3,
+  "publish_time": "2021-04-02",
+  "has_star": false,
+  "has_in_cart": false,
+}]
+
 Page({
   data: {
     searchText: "",
@@ -13,24 +32,7 @@ Page({
       cid: {id: 0, name: '全部'},
       cid2: {id: 0, name: '全部'},
     },
-    productList: [{
-      "id": 1,
-      "title": "失落的文明",
-      "author": "曾力",
-      "publisher": "",
-      "cid": 1,
-      "cid2": 2,
-      "price": 20,
-      "cur_price": 19.5,
-      "image": "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
-      "sale_num": 100,
-      "comment_num": 100,
-      "comment_rate": 98,
-      "score": 8.3,
-      "publish_time": "2021-04-02",
-      "has_star": false,
-      "has_in_cart": false,
-    }],
+    productList: extProducts,
   },
   originalCidList: [],
   reqParams: {
@@ -160,5 +162,14 @@ Page({
     // request.requestProductList(req, res => {
 
     // })
+  },
+
+  bindJumpInfo: function (e) {
+    let id = e.currentTarget.dataset.id
+
+    let url = '../product_info/product_info?id=' + id
+    wx.navigateTo({
+      url: url,
+    })
   },
 })
