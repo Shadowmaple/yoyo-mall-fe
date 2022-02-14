@@ -1,0 +1,28 @@
+
+.search {
+  width: 90%;
+  margin: 20rpx 0;
+}
+
+.history-box {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.history-title {
+  margin: 20rpx 30rpx;
+}
+
+.history-main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20rpx 30rpx;
+}
+
+.history-item {
+  margin: 20rpx 20rpx;
+  background-color: #959797;
+  border-radius: 40rpx;
+  font-size: 22rpx;
+}

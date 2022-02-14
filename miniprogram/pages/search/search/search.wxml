@@ -1,2 +1,13 @@
 <!--pages/search/search/search.wxml-->
-<text>pages/search/search/search.wxml</text>
+<view class="container">
+  <search-tab class="search" isJump="false" confirmSrc="/pages/search/search_list/search_list"></search-tab>
+
+  <view class="history-box">
+    <view class="history-title">搜素历史</view>
+    <view class="history-main">
+      <view class="history-item" wx:for="{{histories}}" wx:key="*this">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>
