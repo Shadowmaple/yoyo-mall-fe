@@ -35,12 +35,13 @@ const evaluation = {
 const commentList = [{
   "id": 1,
   "content": "不同城市有着自己的风格，不同的人参观同一座城市也可能有不同印象。试试闭上眼睛，尝试概括一下城市带给你什么样的印象？不一定是某个抽象的词语，可以具体到某个物件或者某个特别的场景。",
-  "user_nickname": "",
+  "user_nickname": "888",
   "user_avatar": "",
   "is_anonymous": false,
   "like_num": 2, // 点赞数
   "has_liked": false,
-  "can_handle": false
+  "can_handle": false,
+  "time": "2021-01-01"
 }]
 
 module.exports = {

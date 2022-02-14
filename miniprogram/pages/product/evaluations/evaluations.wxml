@@ -42,7 +42,7 @@
         <!-- todo -->
         <image class="item-icon" src="/images/icon/map.png"></image>
         <view>{{item.reply_num}}</view>
-        
+
         <!-- todo -->
         <blcok wx:if="{{item.has_liked}}">
           <image class="item-icon" src="/images/icon/map.png" bindtap="bindLike" data-idx="{{index}}"></image>

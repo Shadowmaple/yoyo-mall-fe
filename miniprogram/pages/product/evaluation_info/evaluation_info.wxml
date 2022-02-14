@@ -2,25 +2,74 @@
 <view class="container">
   <view class="evaluation-box">
     <view class="eva-line1">
-      <image src="{{evaluation.user_avatar}}"></image>
-      <view></view>
+      <block wx:if="{{evaluation.user_avatar == ''}}">
+        <image class="eva-avatar" src="/images/user-unlogin.png"></image>
+      </block>
+      <block wx:else>
+        <image class="eva-avatar" src="{{evaluation.user_avatar}}"></image>
+      </block>
+
+      <view>{{evaluation.user_nickname}}</view>
     </view>
-    <view>{{evaluation.content}}</view>
-    <block wx:for="{{evaluation.pictures}}" wx:key="*this">
-      <image class="eva-img" src="{{item}}"></image>
-    </block>
+    <view class="eva-line2">{{evaluation.score}}分</view>
+    <view class="eva-line3">{{evaluation.content}}</view>
+    <view class="eva-line4">
+      <block wx:for="{{evaluation.pictures}}" wx:key="*this">
+        <image class="eva-img" src="{{item}}"></image>
+      </block>
+    </view>
+    <view class="eva-line5">{{evaluation.time}}</view>
 
   </view>
 
   <view class="comment-box">
+    <view class="comment-title">回复</view>
     <view class="comment-item" wx:for="{{comments}}" wx:key="id">
-      <view></view>
-      <view></view>
+      <view class="comment-line1">
+        <block wx:if="{{item.is_anonymous || evaluation.user_avatar == ''}}">
+          <image class="comment-avatar" src="/images/user-unlogin.png"></image>
+        </block>
+        <block wx:else>
+          <image class="comment-avatar" src="{{item.user_avatar}}"></image>
+        </block>
+
+        <view class="comment-line1-col">
+          <view wx:if="{{item.is_anonymous}}">匿名用户</view>
+          <view wx:else>{{item.user_nickname}}</view>
+
+          <view class="comment-line1-col-time">{{item.time}}</view>
+        </view>
+      </view>
+      <view class="comment-line2">{{item.content}}</view>
+      <view class="comment-line3">
+        <!-- todo -->
+        <blcok wx:if="{{item.has_liked}}">
+          <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
+        </blcok>
+        <block wx:else>
+          <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
+        </block>
+        <view>{{item.like_num}}</view>
+      </view>
     </view>
   </view>
 
-  <view class="publish-box">
-  
+  <view class="bottom">- 没有更多啦 -</view>
+
+  <view class="footer">
+    <input class="footer-input" placeholder="说点什么吧~" bindconfirm="bindPublish" />
+
+    <!-- todo -->
+    <image class="footer-icon" src="/images/icon/map.png"></image>
+    <view>{{evaluation.reply_num}}</view>
+    <!-- todo -->
+    <blcok wx:if="{{evaluation.has_liked}}">
+      <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="0"></image>
+    </blcok>
+    <block wx:else>
+      <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="0"></image>
+    </block>
+    <view>{{evaluation.like_num}}</view>
   </view>
 
 </view>
