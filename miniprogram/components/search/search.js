@@ -17,12 +17,12 @@ Component({
     // 点击跳转页面地址
     jumpSrc: {
       type: String,
-      value: "",
+      value: "/pages/search/search/search",
     },
     // 输入确认跳转地址
     confirmSrc: {
       type: String,
-      value: "/pages/search/search_list/search_list"
+      value: ""
     }
   },
   methods: {
@@ -43,10 +43,16 @@ Component({
     },
 
     bindConfirm: function (e) {
+      let value = e.detail.value
+      var call = {
+        value: value,
+      }
+      this.triggerEvent('confirm', call)
+
       if (this.properties.confirmSrc == '') {
         return
       }
-      let value = e.detail.value
+      
       let url = this.properties.confirmSrc + '?value=' + value
       wx.navigateTo({
         url: url,

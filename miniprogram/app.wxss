@@ -14,6 +14,11 @@
   width: 50rpx;
 }
 
+.font {
+  /* 删除线 */
+  text-decoration: line-through;
+}
+
 /* 文字数超出省略，防止溢出占行 */
 .overflow-text {
   overflow: hidden;

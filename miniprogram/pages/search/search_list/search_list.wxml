@@ -1,2 +1,29 @@
 <!--pages/search/search_list/search_list.wxml-->
-<text>pages/search/search_list/search_list.wxml</text>
+<view class="container">
+  <search-tab class="search" text="{{key}}" isJump="false" bindconfirm="bindSearch"></search-tab>
+
+  <view class="list-box">
+    <view class="item" wx:for="{{list}}" wx:key="id" bindtap="bindJumpInfo" data-id="{{item.id}}">
+      <image class="item-image" src="{{item.image}}"></image>
+      <view class="item-info">
+        <view class="item-line1">{{item.title}}</view>
+        <view class="item-line2">{{item.author}} | {{item.publisher}}</view>
+        <view class="item-line3"></view>
+        <view class="item-line4">
+          <view class="item-line4-curPrice">￥{{item.cur_price}}</view>
+          <view class="item-line4-price">￥{{item.price}}</view>
+        </view>
+        <view class="item-line5">
+          <view>月销 {{item.sale_num}}</view>
+          <view class="item-comment">{{item.comment_rate}}%好评（{{item.comment_num}}人）</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <block wx:if="{{moreData}}">加载更多</block>
+    <block wx:else>- 没有更多啦 -</block>
+  </view>
+
+</view>

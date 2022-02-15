@@ -1,66 +1,64 @@
 // pages/search/search_list/search_list.js
+const request = require('../../../utils/request/search')
+const mock = require('../../../utils/mock-data/search')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    key: '略略略',
+    moreData: false,
+    list: mock.productList,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    if (options == null) {
+      return
+    }
+    let key = options.value
+    this.setData({
+      key: key,
+    })
 
+    this.requestList(key)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // todo 搜素
+  requestList: function (key) {
+    let req = {
+      key: key
+    }
 
+    wx.showLoading()
+    setTimeout(function () {
+      wx.hideLoading()
+      wx.showToast({
+        title: '内部错误',
+        icon: 'error',
+        duration: 1000,
+      })
+    }, 2000)
+
+    request.searchProduct(req, res => {
+      wx.hideLoading()
+      if (res.code != 0) {
+        return
+      }
+
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  bindJumpInfo: function (e) {
+    let id = e.currentTarget.dataset.id
+    let url = '/pages/product/product_info/product_info?id=' + id
+    wx.navigateTo({
+      url: url,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  // 搜索框搜索
+  bindSearch: function (e) {
+    let value = e.detail.value
+    console.info('--', value)
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    this.requestList(value)
   }
 })
