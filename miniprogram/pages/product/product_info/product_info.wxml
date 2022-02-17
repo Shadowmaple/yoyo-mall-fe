@@ -1,7 +1,7 @@
 <!--pages/product/product_info/product_info.wxml-->
 <view class="container">
   <view class="tab-left">
-    <image class="tab-back-icon" src="/images/icon/arrow-right-line.svg" bindtap="bindBack"></image>
+    <image class="tab-back-icon" src="/images/icon/arrow-left-s-line.png" bindtap="bindBack"></image>
   </view>
   <view class="img-box">
     <block wx:if="{{info.images.length > 0}}">
@@ -74,12 +74,18 @@
 
   <view class="footer">
     <view class="footer-left">
+      <view class="footer-item" bindtap="bindToHome">
+        <image class="icon" src="/images/icon/home-3-line.png"></image>
+        <view>首页</view>
+      </view>
       <view class="footer-item" bindtap="bindStar">
-        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <image class="icon" src="/images/icon/heart-3-fill.png" wx:if="{{info.has_star}}"></image>
+        <image class="icon" src="/images/icon/heart-3-line.png" wx:else></image>
         <view>收藏</view>
       </view>
       <view class="footer-item" bindtap="bindJumpToCart">
-        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <image class="icon" src="/images/icon/shopping-cart-fill.png" wx:if="{{info.has_in_cart}}"></image>
+        <image class="icon" src="/images/icon/shopping-cart-line.png" wx:else></image>
         <view>购物车</view>
       </view>
     </view>

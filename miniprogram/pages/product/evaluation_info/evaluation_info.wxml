@@ -44,10 +44,10 @@
       <view class="comment-line3">
         <!-- todo -->
         <blcok wx:if="{{item.has_liked}}">
-          <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
+          <image class="footer-icon" src="/images/icon/thumb-up-line-red.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
         </blcok>
         <block wx:else>
-          <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
+          <image class="footer-icon" src="/images/icon/thumb-up-line.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
         </block>
         <view>{{item.like_num}}</view>
       </view>
@@ -60,14 +60,14 @@
     <input class="footer-input" placeholder="说点什么吧~" bindconfirm="bindPublish" />
 
     <!-- todo -->
-    <image class="footer-icon" src="/images/icon/map.png"></image>
+    <image class="footer-icon" src="/images/icon/message-3-line-black.png"></image>
     <view>{{evaluation.reply_num}}</view>
     <!-- todo -->
     <blcok wx:if="{{evaluation.has_liked}}">
-      <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="0"></image>
+      <image class="footer-icon" src="/images/icon/thumb-up-line-red.png" bindtap="bindLike" data-kind="0"></image>
     </blcok>
     <block wx:else>
-      <image class="footer-icon" src="/images/icon/map.png" bindtap="bindLike" data-kind="0"></image>
+      <image class="footer-icon" src="/images/icon/thumb-up-line.png" bindtap="bindLike" data-kind="0"></image>
     </block>
     <view>{{evaluation.like_num}}</view>
   </view>

@@ -232,8 +232,8 @@ const productInfo = {
     }
   ],
   "detail": "嘉德罗斯阿方经理大三角俩访问就俩问了", // 详情信息，暂时先这样，目录、简介看情况能不能获取到
-  "has_star": false, // 是否收藏
-  "has_in_cart": false, // 是否加入购物车
+  "has_star": true, // 是否收藏
+  "has_in_cart": true, // 是否加入购物车
   "cart_num": 0 // 加入购物车中的数量
 }
 

@@ -5,7 +5,12 @@
   <view class="main">
     <view class="cate-list">
       <block wx:for="{{cateList}}" wx:key="this">
-        <view class="cate-list-item" bindtap="clickSelectCid" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+        <block wx:if="{{index == selectData.index}}">
+          <view class="cate-list-item-selected" bindtap="clickSelectCid" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+        </block>
+        <block wx:else>
+          <view class="cate-list-item" bindtap="clickSelectCid" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+        </block>
       </block>
     </view>
 

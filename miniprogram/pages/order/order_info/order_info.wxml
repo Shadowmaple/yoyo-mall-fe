@@ -6,14 +6,14 @@
 
   <view class="logis-box">
     <view class="logis-info">
-      <image class="icon" src="/images/icon/wechat-fill.png"></image>
+      <image class="icon" src="/images/icon/truck-line-black.png"></image>
       <view class="logis-status">{{logisticMp[info.status]}}</view>
     </view>
     <view class="logis-button" bindtap="bindJumpToLogistics">查看物流</view>
   </view>
 
   <view class="addr-box">
-    <image class="icon" src="/images/icon/wechat-fill.png"></image>
+    <image class="icon" src="/images/icon/map.png"></image>
     <view class="addr-info">
       <view class="addr-line1">
         <view class="addr-name">{{info.receive_name}}</view>

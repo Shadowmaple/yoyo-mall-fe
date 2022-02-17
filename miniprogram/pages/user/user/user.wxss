@@ -1,11 +1,11 @@
 /* pages/user/user.wxss */
 
-page {
+/* page {
   background: #f6f6f6;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
+} */
 
 /* userInfo */
 
@@ -28,7 +28,7 @@ page {
   margin: 20rpx;
   border-radius: 50%;
   background-size: cover;
-  border: 3px solid rgb(0, 153, 255);
+  border: 3px solid #E74C3C;
   overflow: hidden;
 }
 
@@ -55,21 +55,25 @@ page {
   height: 170rpx;
   margin: 10rpx 0;
   border: 4rpx solid rgba(0, 0, 0, 0.3);
+  border-radius: 20rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .order-item {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   margin: 10rpx 10rpx;
+  font-size: 28rpx;
 }
 
 .order-icon {
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
   margin: 10rpx;
 }
 
@@ -80,6 +84,7 @@ page {
   height: auto;
   margin: 10rpx 0;
   border: 4rpx solid rgba(0, 0, 0, 0.3);
+  border-radius: 20rpx;
 }
 
 .module-item {

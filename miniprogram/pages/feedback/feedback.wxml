@@ -5,7 +5,7 @@
     <picker class="type-picker" mode="selector" range="{{typeList}}" value="{{typeList[curType]}}" bindchange="bindTypeChange">
       <view class="type-block">
         <view class="type-value">{{typeList[curType]}}</view>
-        <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
+        <image class="icon" src="/images/icon/arrow-drop-down-line.png"></image>
       </view>
     </picker>
   </view>

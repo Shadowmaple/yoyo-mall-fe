@@ -10,10 +10,12 @@ Page({
   },
 
   onLoad: function (options) {
+    console.info('-- onload: ', options.data)
     if (options == null || options == "") {
       return
     }
     let data = JSON.parse(options.data)
+    console.info('--', data)
     let id = data.id
 
     // todo 请求评论列表

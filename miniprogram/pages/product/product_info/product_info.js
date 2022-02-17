@@ -23,6 +23,13 @@ Page({
     })
   },
 
+  bindToHome: function (e) {
+    let url = '/pages/index/index'
+    wx.switchTab({
+      url: url,
+    })
+  },
+
   // 收藏
   bindStar: function (e) {
 

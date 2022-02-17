@@ -34,7 +34,7 @@
             <view class="item-other">
               <view>{{item.comment_rate}}%好评（{{item.comment_num}}人）</view>
               <!-- 购物车icon -->
-              <icon type="cancel"></icon>
+              <image class="icon" src="/images/icon/shopping-cart-line-red.png"></image>
             </view>
           </view>
         </view>
