@@ -1,5 +1,6 @@
 // index.js
-const mock = require("../../utils/mock-data/mock")
+const mock = require("../../utils/mock-data/product")
+const request = require('../../utils/request/product')
 const banners = ['/images/banner/banner1.png', '/images/banner/banner2.png']
 
 
@@ -9,7 +10,14 @@ Page({
     saleRanks: mock.ranks, // 图书畅销榜
     newBookRanks: mock.ranks, // 新书榜
     discountRanks: mock.ranks, // 优惠榜单
-    recommendList: mock.productList, // 推荐列表
+    recommendList: [], // 推荐列表
+  },
+  reqParams: {
+    limit: 20,
+    page: 0,
+    cid: 0,
+    cid2: 0,
+    sort: 0,
   },
 
   onLoad() {
@@ -18,6 +26,11 @@ Page({
         canIUseGetUserProfile: true
       })
     }
+
+    // 请求排行榜
+
+    // 请求图书列表
+    this.requestProductList(true)
   },
 
   onPullDownRefresh: function () {
@@ -26,6 +39,7 @@ Page({
       icon: "loading",
       duration: 1000,
     })
+    this.requestProductList(true)
   },
 
   onReachBottom: function () {
@@ -34,6 +48,7 @@ Page({
       icon: "loading",
       duration: 1000,
     })
+    this.requestProductList(false)
   },
 
   bindJumpToRank: function (e) {
@@ -47,9 +62,29 @@ Page({
   // 点击特定图书
   bindJumpToInfo: function (e) {
     let id = e.currentTarget.dataset.id
+    console.info('---', id)
     let url = '/pages/product/product_info/product_info?id=' + id
     wx.navigateTo({
       url: url,
+    })
+  },
+
+  requestProductList: function (refresh=false) {
+    request.productList(this.reqParams, res => {
+      if (res.code != 0) {
+        console.warn('requestProductList error: ', res)
+        return
+      }
+      let data = res.data.list
+      let list = this.data.recommendList
+      if (refresh) {
+        list = new Array
+      }
+      list = list.concat(data)
+      this.setData({
+        recommendList: list,
+      })
+      this.reqParams.page = refresh ? 0 : this.reqParams.page + 1
     })
   },
 

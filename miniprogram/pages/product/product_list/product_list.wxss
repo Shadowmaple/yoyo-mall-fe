@@ -1,20 +1,14 @@
 /* pages/product/product_list/product_list.wxss */
 
-.container {
-  border-top: 4rpx solid rgb(0, 0, 0, 0.5);
-  padding-top: 10rpx;
-}
-
 .search {
   width: 90%;
-  margin-bottom: 30rpx;
+  margin: 20rpx 0;
 }
 
 .main {
   width: 100%;
   /* height: 3000rpx; */
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
-  border-bottom: 0;
+  border-top: 2rpx solid rgb(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,7 +17,7 @@
 
 .filter-box {
   width: 100%;
-  border-bottom: 4rpx solid rgb(0, 0, 0, 0.2);
+  border-bottom: 2rpx solid rgb(0, 0, 0, 0.2);
   padding: 20rpx 30rpx;
 }
 
@@ -33,14 +27,24 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 4rpx solid rgb(0, 0, 0, 0.2);
-  padding: 20rpx 0;
+  border-bottom: 2rpx solid rgb(0, 0, 0, 0.2);
+}
+
+.tab-item {
+  padding: 10rpx 0;
+}
+
+.tab-item-selected {
+  color: #E74C3C;
+  border-bottom: 7rpx solid #e7371f;
+  padding: 10rpx 0;
 }
 
 .show-box {
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 20rpx;
 }
 
 .item {
@@ -51,25 +55,34 @@
   justify-content: flex-start;
   align-items: stretch;
   padding: 20rpx 0;
-  border-bottom: 4rpx solid rgb(0, 0, 0, 0.2);
+  border-bottom: 2rpx solid rgb(0, 0, 0, 0.2);
 }
 
 .item-image {
   height: 280rpx;
-  width: 220rpx;
+  width: 250rpx;
   margin-left: 20rpx;
-  margin-right: 40rpx;
+  margin-right: 30rpx;
 }
 
 .item-info {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex-grow: 1;
+  margin-right: 10rpx;
+  /* 必须要有，不然box宽度会挤占图片的空间 */
+  width: 70%;
 }
 
 .item-title {
-  font-size: 42rpx;
+  font-size: 36rpx;
+  /* 两行，多出省略 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 
 .item-author {

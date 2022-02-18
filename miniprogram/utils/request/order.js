@@ -1,7 +1,53 @@
 const app = getApp()
 const model = require("model.js")
 
-var orderCreate = (req, callback) => {
+const orderList = (req, callback) => {
+  let url = model.BaseURL + model.Paths.orderList
+  let data = {
+    limit: req.limit,
+    page: req.page,
+    kind: req.kind,
+  }
+
+  wx.request({
+    url: url,
+    method: "GET",
+    header: {
+      token: app.globalData.token,
+    },
+    timeout: 3000,
+    data: data,
+    success: res => {
+      let resp = res.data
+      callback(resp)
+    },
+    fail: res => {
+      console.error('orderList failed:', res)
+    },
+  })
+}
+
+const orderInfo = (req, callback) => {
+  let url = model.BaseURL + model.Paths.orderInfo + req.id
+
+  wx.request({
+    url: url,
+    method: "GET",
+    header: {
+      token: app.globalData.token,
+    },
+    timeout: 3000,
+    success: res => {
+      let resp = res.data
+      callback(resp)
+    },
+    fail: res => {
+      console.error('orderInfo failed:', res)
+    },
+  })
+}
+
+const orderCreate = (req, callback) => {
   let url = model.BaseURL + model.Paths.orderCreate
 
   let data = {
@@ -22,20 +68,10 @@ var orderCreate = (req, callback) => {
     header: {
       token: app.globalData.token,
     },
-    timeout: 5000,
+    timeout: 3000,
     data: data,
     success: res => {
       let resp = res.data
-      if (resp.code != 0) {
-        console.warn('orderCreate error:', resp)
-        wx.showToast({
-          title: '提交失败',
-          icon: 'error',
-          duration: 2000,
-        })
-        return
-      }
-      console.log('orderCreate ok：', resp.data)
       callback(resp)
     },
     fail: res => {
@@ -53,8 +89,8 @@ var orderCreate = (req, callback) => {
 }
 
 // 订单状态修改
-var orderUpdate = req => {
-  let url = model.BaseURL + model.Paths.orderUpdate + "/" + req.id
+const orderUpdate = (req, callback) => {
+  let url = model.BaseURL + model.Paths.orderUpdate + req.id
   let data = {
     status: req.status,
   }
@@ -66,15 +102,11 @@ var orderUpdate = req => {
       token: app.globalData.token,
       'content-type': 'application/json',
     },
-    timeout: 5000,
+    timeout: 3000,
     data: data,
     success: res => {
       let resp = res.data
-      if (resp.code != 0) {
-        console.warn('orderUpdate error:', reqsp)
-        return
-      }
-      console.log('orderUpdate ok：', resp.data)
+      callback(resp)
     },
     fail: res => {
       console.error('orderUpdate failed:', res)
@@ -83,6 +115,8 @@ var orderUpdate = req => {
 }
 
 module.exports = {
+  orderList,
+  orderInfo,
   orderCreate,
   orderUpdate,
 }

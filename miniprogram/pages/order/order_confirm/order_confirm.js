@@ -95,7 +95,17 @@ Page({
 
     // 创建订单
     request.orderCreate(req, res => {
-      let orderID = res.id
+      if (res.code != 0) {
+        console.warn('orderCreate error:', res)
+        wx.showToast({
+          title: '提交失败',
+          icon: 'error',
+          duration: 2000,
+        })
+        return
+      }
+
+      let orderID = res.data.id
       // 支付确认弹窗，确认支付则发起更改订单状态的请求
       wx.showModal({
         cancelColor: 'cancelColor',

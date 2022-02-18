@@ -1,38 +1,31 @@
 // pages/product/product_list/product_list.js
 
 const app = getApp()
-const basicColumn = {id: 0, name: '全部'}
 const request = require('../../../utils/request/product.js')
+const mock = require('../../../utils/mock-data/product')
 
-const extProducts = [{
-  "id": 1,
-  "title": "失落的文明",
-  "author": "曾力",
-  "publisher": "",
-  "cid": 1,
-  "cid2": 2,
-  "price": 20,
-  "cur_price": 19.5,
-  "image": "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
-  "sale_num": 100,
-  "comment_num": 100,
-  "comment_rate": 98,
-  "score": 8.3,
-  "publish_time": "2021-04-02",
-  "has_star": false,
-  "has_in_cart": false,
-}]
+const basicColumn = {
+  id: 0,
+  name: '全部'
+}
+const tabs =[
+  {name: '默认', kind: 0}, {name: '销量', kind: 1}, {name: '价格', kind: 2},
+  {name: '好评', kind: 4}, {name: '出版时间', kind: 5}
+]
 
 Page({
   data: {
     searchText: "",
+    tabs: tabs,
+    tabKind: 0,
+    // picker
     cidList: [],
     cidIndex: [0, 0],
     curCidShow: {
-      cid: {id: 0, name: '全部'},
-      cid2: {id: 0, name: '全部'},
+      cid: basicColumn,
+      cid2: basicColumn,
     },
-    productList: extProducts,
+    productList: mock.productList,
   },
   originalCidList: [],
   reqParams: {
@@ -40,32 +33,28 @@ Page({
     page: 0,
     cid: 0,
     cid2: 0,
-    sort: 0,  
+    sort: 0,
   },
 
   onLoad: function (options) {
     console.log('onLoad options:', options)
-    this.processCidList(options)
+    if (options != null) {
+      this.reqParams.cid = Number(options.cid)
+      this.reqParams.cid2 = Number(options.cid2)
+      this.processCidList(this.reqParams.cid, this.reqParams.cid2)
+    }
 
     this.requestProductList()
   },
 
   // 处理类目选择器，格式转换
-  processCidList: function(options) {
-    let cid = 0, cid2 = 0
-    if (options != null) {
-      cid = Number(options.cid)
-      cid2 = Number(options.cid2)
-      // let name = options.name
-    }
-
+  processCidList: function (cid, cid2) {
     let category = app.globalData.category
     this.originalCidList = category
     console.info('category:', category)
     let cid1List = [basicColumn]
     let cid2List = [basicColumn]
     let cidIndex = 0, cid2Index = 0
-    
 
     for (let i in category) {
       let item = category[i]
@@ -79,8 +68,8 @@ Page({
     }
     // 已选择一级类目
     if (cid > 0 && cidIndex > 0) {
-      for (let j in category[cidIndex-1].list) {
-        let item = category[cidIndex-1].list[j]
+      for (let j in category[cidIndex - 1].list) {
+        let item = category[cidIndex - 1].list[j]
         if (cid2 == item.id) {
           cid2Index = Number(j) + 1
         }
@@ -101,11 +90,9 @@ Page({
       cidIndex: [cidIndex, cid2Index],
       curCidShow: curCidShow,
     })
-
-    console.info('data:', this.data)
   },
 
-  bindColumnChange: function(e) {
+  bindColumnChange: function (e) {
     let column = e.detail.column, targetIndex = e.detail.value
     if (column != 0) {
       return
@@ -119,7 +106,7 @@ Page({
       })
       return
     }
-    let cid1Item = this.originalCidList[targetIndex-1]
+    let cid1Item = this.originalCidList[targetIndex - 1]
     for (let i in cid1Item.list) {
       let item = cid1Item.list[i]
       cid2List.push({
@@ -133,8 +120,8 @@ Page({
     })
   },
 
-  bindPickerChange: function(e) {
-    console.info('pickerchange:', e)
+  bindPickerChange: function (e) {
+    console.info('pickerchange:', e.detail)
     let cidIndex = e.detail.value[0], cid2Index = e.detail.value[1]
     let curCidShow = {
       cid: this.data.cidList[0][cidIndex],
@@ -145,23 +132,43 @@ Page({
       cidIndex: [cidIndex, cid2Index],
       curCidShow: curCidShow,
     })
+
+    // 重新请求数据
+    this.reqParams.cid = curCidShow.cid.id
+    this.reqParams.cid2 = curCidShow.cid2.id
+    this.requestProductList()
   },
 
   clickChangeSortKind: function (e) {
     let kind = Number(e.currentTarget.dataset.kind)
-    console.info('kind:', kind)
-    this.reqParams = kind
+    this.reqParams.sort = kind
+    this.reqParams.page = 0
+    this.setData({
+      tabKind: kind,
+    })
 
     this.requestProductList()
   },
 
-  requestProductList: function() {
+  requestProductList: function () {
     let req = this.reqParams
 
+    wx.showLoading()
 
-    // request.requestProductList(req, res => {
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 3000);
 
-    // })
+    request.productList(req, res => {
+      wx.hideLoading()
+      if (res.code != 0) {
+        console.warn('requestProductList error:', res)
+        return
+      }
+      this.setData({
+        productList: res.data.list,
+      })
+    })
   },
 
   bindJumpInfo: function (e) {

@@ -356,4 +356,17 @@ App({
       },
     })
   },
+
+  checkLogin: function (callback) {
+    if (this.globalData.token != '') {
+      callback()
+      return
+    }
+    token = wx.getStorage('token')
+    if (token != null) {
+      this.globalData.token = token
+      callback()
+      return
+    }
+  }
 })

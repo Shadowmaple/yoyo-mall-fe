@@ -3,9 +3,14 @@ const model = require("model.js")
 
 var productList = (req, callback) => {
   let url = model.BaseURL + model.Paths.productList
-  wx.showLoading({
-    title: '加载中',
-  })
+
+  let data = {
+    limit: req.limit,
+    page: req.page,
+    cid: req.cid,
+    cid2: req.cid2,
+    sort: req.sort,
+  }
 
   wx.request({
     url: url,
@@ -14,28 +19,67 @@ var productList = (req, callback) => {
       token: app.globalData.token,
     },
     timeout: 5000,
-    data: {
-      kind: req.kind,
-      limit: req.limit,
-      page: req.page,
-    },
+    data: data,
     success: res => {
       let resp = res.data
-      if (resp.code != 0) {
-        console.warn('requestProductList error:', reqsp)
-        return
-      }
       callback(resp)
     },
     fail: res => {
       console.error('requestProductList failed:', res)
     },
-    complete: res => {
-      wx.hideLoading()
+  })
+}
+
+const productInfo = (req, callback) => {
+  let url = model.BaseURL + model.Paths.productInfo + req.id
+  let data = {
+    comment_limit: 2
+  }
+
+  wx.request({
+    url: url,
+    method: 'GET',
+    header: {
+      token: app.globalData.token,
+    },
+    data: data,
+    success: res => {
+      let resp = res.data
+      callback(resp)
+    },
+    fail: res => {
+      console.error('request.productInfo failed: ', res)
+    },
+  })
+}
+
+const ranks = (req, callback) => {
+  let url = model.BaseURL + model.Paths.productRank
+  let data = {
+    kind: req.kind || 0,
+    cid: req.cid || 0,
+    cid2: req.cid2 || 0,
+  }
+
+  wx.request({
+    url: url,
+    method: 'GET',
+    header: {
+      token: app.globalData.token,
+    },
+    data: data,
+    success: res => {
+      let resp = res.data
+      callback(res)
+    },
+    fail: res => {
+      console.error('request.ranks failed: ', res)
     }
   })
 }
 
 module.exports = {
-  productList
+  productList,
+  productInfo,
+  ranks,
 }

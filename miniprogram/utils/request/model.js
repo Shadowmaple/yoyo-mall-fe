@@ -8,10 +8,20 @@ const Paths = {
   productInfo: "/product/info/",
   productSearch: "/search/product",
   productRank: "/product/rank",
+  orderList: '/order/list',
+  orderInfo: 'order/info/',
   orderCreate: "/order",
-  orderUpdate: "/order",
-  cartDel: "/cart",
-  addrAdd: "/address",
+  orderUpdate: "/order/",
+  cart: '/cart',
+  address: "/address",
+  collection: '/collection',
+  like: '/like',
+  evaluationList: '/evaluation/list',
+  evaluationCreate: '/evaluation',
+  coupon: '/coupon',
+  couponPrivate: '/coupon/private',
+  couponPublic: '/coupon/public',
+  feedback: '/feedback',
 }
 
 module.exports = {

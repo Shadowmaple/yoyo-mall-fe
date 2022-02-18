@@ -15,11 +15,14 @@
 
     <!-- 排序标签栏 -->
     <view class="tab-box">
-      <view bindtap="clickChangeSortKind" data-kind="0">默认</view>
-      <view bindtap="clickChangeSortKind" data-kind="1">销量</view>
-      <view bindtap="clickChangeSortKind" data-kind="2">价格</view>
-      <view bindtap="clickChangeSortKind" data-kind="4">好评</view>
-      <view bindtap="clickChangeSortKind" data-kind="5">出版时间</view>
+      <block wx:for="{{tabs}}" wx:key="name">
+        <block wx:if="{{item.kind == tabKind}}">
+          <view class="tab-item-selected" bindtap="clickChangeSortKind" data-kind="{{item.kind}}">{{item.name}}</view>
+        </block>
+        <block wx:else>
+          <view class="tab-item" bindtap="clickChangeSortKind" data-kind="{{item.kind}}">{{item.name}}</view>
+        </block>
+      </block>
     </view>
 
     <!-- 商品展示列表 -->

@@ -1,13 +1,17 @@
 const app = getApp()
 const model = require('./model')
 
-const searchProduct = (req, callback) => {
+const feedback = (req, callback) => {
   let url = model.BaseURL + model.Paths.productSearch
-  let data = req
+  let data = {
+    kind: req.kind,
+    content: req.content,
+    picture: req.picture,
+  }
 
   wx.request({
     url: url,
-    method: 'GET',
+    method: 'POST',
     header: {
       token: app.globalData.token,
     },
@@ -17,11 +21,11 @@ const searchProduct = (req, callback) => {
       callback(res.data)
     },
     fail: res => {
-      console.error('request.searchProduct failed: ', res)
+      console.error('request.feedback failed: ', res)
     }
   })
 }
 
 module.exports = {
-  searchProduct,
+  feedback,
 }

@@ -1,5 +1,6 @@
 // pages/product/product_info/product_info.js
-const mock = require("../../../utils/mock-data/mock")
+const mock = require("../../../utils/mock-data/product")
+const request = require('../../../utils/request/product')
 
 Page({
   data: {
@@ -14,7 +15,28 @@ Page({
       return
     }
     this.id = options.id
-    // 请求 ...
+
+    // 请求详情
+    this.requestInfo()
+    this.requestAddr()
+  },
+
+  requestInfo: function () {
+    let req = {id: this.id}
+    request.productInfo(req, res => {
+      if (res.code != 0) {
+        console.warn('request.productInfo error: ', res)
+        return
+      }
+      let data = res.data
+      this.setData({
+        info: data,
+      })
+    })
+  },
+
+  requestAddr: function () {
+
   },
 
   bindBack: function (e) {
