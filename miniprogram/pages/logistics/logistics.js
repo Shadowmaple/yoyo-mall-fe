@@ -1,66 +1,35 @@
 // pages/logistics/logistics.js
+const mock = require('../../utils/mock-data/logistics')
+const request = require('../../utils/request/logistics')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    status: mock.logistics.status,
+    list: mock.logistics.list,
   },
+  orderID: 0,
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    if (options == null) {
+      return
+    }
+    console.info('---', this.data.list)
+    let orderID = options.order_id
+    this.orderID = orderID
+    // 请求数据
+    let req = {
+      order_id: orderID,
+    }
+    request.logistics(req, res => {
+      if (res.code != 0) {
+        console.warn('request.logistics error: ', res)
+        return
+      }
+      let data = res.data
+      this.setData({
+        status: data.status,
+        list: data.list,
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

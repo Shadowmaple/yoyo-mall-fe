@@ -1,6 +1,9 @@
 // pages/product/product_info/product_info.js
 const mock = require("../../../utils/mock-data/product")
 const request = require('../../../utils/request/product')
+const addrRequest = require('../../../utils/request/address')
+const cartRequest = require('../../../utils/request/cart')
+const collRequest = require('../../../utils/request/collection')
 
 Page({
   data: {
@@ -35,8 +38,25 @@ Page({
     })
   },
 
+  // 获取默认地址
   requestAddr: function () {
-
+    let req = {}
+    addrRequest.addressList(req, res => {
+      if (res.code != 0) {
+        console.warn('addressList error: ', res)
+        return
+      }
+      let data = res.data
+      if (data.total == 0) {
+        console.log('addressList is empty: ', data)
+        return
+      }
+      let item = data.list[0]
+      let addr = item.province + item.city + item.district + item.detail
+      this.setData({
+        addr: addr,
+      })
+    })
   },
 
   bindBack: function (e) {
@@ -54,12 +74,58 @@ Page({
 
   // 收藏
   bindStar: function (e) {
-
+    let req = {
+      list: [this.id],
+    }
+    let info = this.data.info
+    // 取消收藏
+    if (info.has_star) {
+      collRequest.collectDel(req, res => {
+        if (res.code != 0) {
+          console.warn('collectionAdd error: ', res)
+          return
+        }
+        info.has_star = false
+        this.setData({
+          info: info,
+        })
+      })
+    } else {
+      // 收藏
+      collRequest.collectAdd(req, res => {
+        if (res.code != 0) {
+          console.warn('collectionAdd error: ', res)
+          return
+        }
+        info.has_star = true
+        this.setData({
+          info: info,
+        })
+      })
+    }
   },
 
   // 加入购物车
   bindAddToCart: function (e) {
+    let req = {
+      list: [{
+        id: this.id,
+        num: 1,
+      }]
+    }
 
+    cartRequest.cartAdd(req, res => {
+      if (res.code != 0) {
+        console.warn('cartAdd error: ', res)
+        return
+      }
+      let info = this.data.info
+      info.has_in_cart = true
+      info.cart_num++
+      this.setData({
+        info: info,
+      })
+    })
   },
 
   // 跳转到评论页面
@@ -97,11 +163,8 @@ Page({
     })
   },
 
-  // 加入购物车并跳转到购物车页面
+  // 跳转到购物车页面
   bindJumpToCart: function (e) {
-    // ... 加入购物车
-    // todo
-
     let url = '/pages/cart/cart'
     wx.switchTab({
       url: url,

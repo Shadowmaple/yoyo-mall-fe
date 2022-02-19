@@ -1,66 +1,73 @@
 // pages/product/rank/rank.js
+const mock = require('../../../utils/mock-data/product')
+const request = require('../../../utils/request/product')
+const rankKinds = [
+  {name: '畅销榜', kind: 0}, {name: '新书榜', kind: 1}, {name: '优惠榜', kind: 2},
+]
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    kind: 0,
+    cid: 0,
+    cid2: 0,
+    rankKinds: rankKinds,
+    list: mock.ranks,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    console.info('options: ', options)
+    if (options == null) {
+      return
+    }
+    let kind = options.kind
+    this.data.kind = kind
+    this.requestRanks(true)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  requestRanks: function (refresh=false) {
+    let req = {
+      kind: this.data.kind,
+      cid: this.data.cid,
+      cid2: this.data.cid2,
+    }
+    request.ranks(req, res => {
+      if (res.code != 0) {
+        console.warn('request.ranks error: ', res)
+        return
+      }
+      if (res.data.total == 0) {
+        return
+      }
+      let list = this.data.list
+      if (refresh) {
+        list = new Array
+      }
+      list = list.concat(res.data.list)
+      this.setData({
+        list: list,
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 更改榜单
+  bindChangeKind: function (e) {
+    let kind = e.currentTarget.dataset.kind
+    this.setData({
+      kind: kind,
+    })
+    this.requestRanks(true)
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 更改分类
+  bindChangeCid: function (e) {
+    let cid = e.currentTarget.dataset.cid
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  bindJumpInfo: function (e) {
+    let id = e.currentTarget.dataset.id
+    let url = '../product_info/product_info?id=' + id
+    wx.navigateTo({
+      url: url,
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

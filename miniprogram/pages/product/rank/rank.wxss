@@ -1,1 +1,137 @@
 /* pages/product/rank/rank.wxss */
+
+.kind-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.kind-cell {
+  padding: 5rpx 0;
+  font-weight: bold;
+}
+
+.kind-cell-selected {
+  border-bottom: 2rpx solid rgb(238, 203, 3);
+  color: rgb(238, 204, 9);
+  padding: 5rpx 0;
+  font-weight: bold;
+}
+
+.cid-box {
+  width: 100%;
+  margin: 20rpx 0;
+  border-radius: 30rpx 30rpx 0 0;
+  background-color: rgb(245, 234, 174);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cid-cell {
+  margin: 10rpx 20rpx;
+  font-size: 25rpx;
+  border-radius: 50rpx;
+  background-color: white;
+  padding: 10rpx 25rpx;
+  text-align: center;
+}
+
+.cid-cell-selected {
+  margin: 10rpx 20rpx;
+  font-size: 25rpx;
+  border-radius: 50rpx;
+  background-color: rgb(238, 204, 9);
+  color: white;
+  padding: 10rpx 25rpx;
+  text-align: center;
+}
+
+.main-box {
+  width: 100%;
+}
+
+.item {
+  margin: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-rank {
+  position: relative;
+  /* bottom: 100rpx; */
+  background-color: #E74C3C;
+  border: 2rpx solid #E74C3C;
+  padding: 5rpx 0;
+  border-radius: 100%;
+  text-align: center;
+  width: 55rpx;
+  color: white;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+}
+
+.item-image {
+  height: 280rpx;
+  width: 250rpx;
+  margin-left: 20rpx;
+  margin-right: 30rpx;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-right: 10rpx;
+  /* 必须要有，不然box宽度会挤占图片的空间 */
+  width: 70%;
+}
+
+.item-title {
+  font-size: 32rpx;
+  /* 两行，多出省略 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.item-author {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.item-publisher {
+  font-size: 26rpx;
+  margin-top: 5rpx;
+}
+
+.item-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20rpx 0;
+}
+
+.item-price-cur {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.item-price-origin {
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 15rpx;
+  color: #95A4A6;
+}
+
+.bottom {
+  text-align: center;
+  font-size: 24rpx;
+  margin: 20rpx 0;
+  color: #95A4A6;
+}

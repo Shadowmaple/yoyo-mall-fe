@@ -22,6 +22,7 @@ const Paths = {
   couponPrivate: '/coupon/private',
   couponPublic: '/coupon/public',
   feedback: '/feedback',
+  logistics: '/logistics',
 }
 
 module.exports = {

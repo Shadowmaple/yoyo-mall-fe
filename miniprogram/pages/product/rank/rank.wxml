@@ -1,2 +1,31 @@
 <!--pages/product/rank/rank.wxml-->
-<text>pages/product/rank/rank.wxml</text>
+<view class="container">
+  <view class="kind-box">
+    <block wx:for="{{rankKinds}}" wx:key="kind">
+      <view class="kind-cell-selected" wx:if="{{item.kind == kind}}">{{item.name}}</view>
+      <view class="kind-cell" wx:else bindtap="bindChangeKind" data-kind="{{item.kind}}">{{item.name}}</view>
+    </block>
+  </view>
+
+  <view class="cid-box">
+    <view class="cid-cell">总榜</view>
+  </view>
+
+  <view class="list-box">
+    <view class="item" wx:for="{{list}}" wx:key="id" bindtap="bindJumpInfo" data-id="{{item.id}}">
+      <view class="item-rank">{{index}}</view>
+      <image class="item-image" src="{{item.image}}"></image>
+      <view class="item-info">
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-author">作者 | {{item.author}}</view>
+        <view class="item-publisher">出版社 | {{item.publisher}}</view>
+        <view class="item-price">
+          <view class="item-price-cur">￥{{item.cur_price}}</view>
+          <view class="item-price-origin">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom">- 没有更多数据啦 -</view>
+  </view>
+</view>

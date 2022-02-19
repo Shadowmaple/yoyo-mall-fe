@@ -1,1 +1,61 @@
 /* pages/logistics/logistics.wxss */
+
+.main {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item-title {
+  font-size: 36rpx;
+  margin-left: 40rpx;
+}
+
+.item-time {
+  font-size: 28rpx;
+  margin-left: 40rpx;
+  margin-top: 5rpx;
+}
+
+.item-first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.item-circle {
+  border: 4rpx solid #95A4A6;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rpx;
+  margin-top: 10rpx;
+}
+
+.item-circle-core {
+  background-color: #95A4A6;
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 100%;
+}
+
+.item-circle-core-blank {
+  background-color: white;
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 100%;
+}
+
+.item-line {
+  background-color: #95A4A6;
+  width: 5rpx;
+  height: 100rpx;
+  margin: 10rpx;
+}

@@ -11,8 +11,7 @@ const cartList = (req, callback) => {
       token: app.globalData.token,
     },
     success: res => {
-      let resp = res.data
-      callback(res)
+      callback(resp.data)
     },
     fail: res => {
       console.error('request.cartList failed: ', res)

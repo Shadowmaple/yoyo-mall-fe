@@ -1,2 +1,30 @@
 <!--pages/logistics/logistics.wxml-->
-<text>pages/logistics/logistics.wxml</text>
+<view class="container">
+  <view class="main">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+      <view class="item-first">
+        <!-- 圆圈 -->
+        <view class="item-circle">
+          <view class="item-circle-core"></view>
+        </view>
+        <!-- 竖线 -->
+        <view class="item-line"></view>
+      </view>
+      <view class="item-title">{{item.content}}</view>
+      <view class="item-time">{{item.time}}</view>
+    </view>
+
+    <view class="item" wx:if="{{status < 2}}">
+      <view class="item-first">
+        <!-- 圆圈 -->
+        <view class="item-circle">
+          <view class="item-circle-core-blank"></view>
+        </view>
+      </view>
+      <view class="item-title">
+        <block wx:if="{{status == 0}}">付款完成</block>
+        <block wx:if="{{status == 1}}">已签收</block>
+      </view>
+    </view>
+  </view>
+</view>
