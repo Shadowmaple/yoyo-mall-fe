@@ -7,9 +7,9 @@ const banners = ['/images/banner/banner1.png', '/images/banner/banner2.png']
 Page({
   data: {
     banners: banners,
-    saleRanks: mock.ranks, // 图书畅销榜
-    newBookRanks: mock.ranks, // 新书榜
-    discountRanks: mock.ranks, // 优惠榜单
+    saleRanks: mock.ranks, // 图书畅销榜0
+    newBookRanks: mock.ranks, // 新书榜1
+    discountRanks: mock.ranks, // 优惠榜单2
     recommendList: [], // 推荐列表
   },
   reqParams: {
@@ -21,13 +21,15 @@ Page({
   },
 
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
+    wx.showLoading()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 2000)
 
     // 请求排行榜
+    this.requestRank(0)
+    this.requestRank(1)
+    this.requestRank(2)
 
     // 请求图书列表
     this.requestProductList(true)
@@ -69,6 +71,36 @@ Page({
     })
   },
 
+  // 请求单个榜单数据
+  requestRank: function (kind) {
+    let req = {
+      kind: kind,
+      cid: 0,
+      cid2: 0,
+    }
+    request.ranks(req, res => {
+      if (res.code != 0) {
+        console.warn('requset.ranks error:', res)
+        return
+      }
+      let list = res.data.list
+      if (kind == 0) {
+        this.setData({
+          saleRanks: list,
+        })
+      } else if (kind == 1) {
+        this.setData({
+          newBookRanks: list,
+        })
+      } else if (kind == 2) {
+        this.setData({
+          discountRanks: list,
+        })
+      }
+    })
+  },
+
+  // 请求推荐图书数据
   requestProductList: function (refresh=false) {
     request.productList(this.reqParams, res => {
       if (res.code != 0) {
@@ -87,19 +119,4 @@ Page({
       this.reqParams.page = refresh ? 0 : this.reqParams.page + 1
     })
   },
-
-
-  // getUserProfile(e) {
-  //   // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-  //   wx.getUserProfile({
-  //     desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-  //     success: (res) => {
-  //       console.log(res)
-  //       this.setData({
-  //         userInfo: res.userInfo,
-  //         hasUserInfo: true
-  //       })
-  //     }
-  //   })
-  // },
 })

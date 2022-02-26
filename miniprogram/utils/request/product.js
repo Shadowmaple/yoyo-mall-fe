@@ -1,7 +1,7 @@
 const app = getApp()
 const model = require("model.js")
 
-var productList = (req, callback) => {
+const productList = (req, callback) => {
   let url = model.BaseURL + model.Paths.productList
 
   let data = {
@@ -64,13 +64,9 @@ const ranks = (req, callback) => {
   wx.request({
     url: url,
     method: 'GET',
-    header: {
-      token: app.globalData.token,
-    },
     data: data,
     success: res => {
-      let resp = res.data
-      callback(res)
+      callback(res.data)
     },
     fail: res => {
       console.error('request.ranks failed: ', res)

@@ -28,7 +28,7 @@ const addressList = (req, callback) => {
 
   wx.request({
     url: url,
-    method: "POST",
+    method: "GET",
     header: {
       token: app.globalData.token,
     },

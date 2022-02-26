@@ -6,6 +6,7 @@ const collectDel = (req, callback) => {
   let url = model.BaseURL + model.Paths.collection
   let data = {
     list: req.list,
+    product_id: req.product_id,
   }
 
   wx.request({

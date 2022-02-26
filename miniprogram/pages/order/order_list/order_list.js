@@ -1,5 +1,6 @@
 // pages/order/order_list/order_list.js
 const request = require("../../../utils/request/order.js")
+const mock = require("../../../utils/mock-data/order")
 const staticTabs = [{
   id: 0,
   name: '全部订单'
@@ -19,54 +20,20 @@ const staticTabs = [{
 // 状态：0->待付款，1->待发货，2->待收货，3->待评价，4->交易完成，5->交易取消，6->退货中，7->交易关闭
 const staticStatusMp = ['待付款', '待发货', '待收货', '待评价', '交易完成', '交易取消', '退货中', '交易关闭']
 
-const exList = [{
-  id: 2,
-  image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  totalFee: 20.99,
-  status: 0,
-  productNum: 1,
-  title: '落叶飘风等',
-  products: [{
-    id: 23,
-    title: '落叶飘风',
-    author: '',
-    image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  }]
-}, {
-  id: 3,
-  image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  totalFee: 20.99,
-  status: 3,
-  productNum: 2,
-  title: '落叶飘风等',
-  products: [{
-    id: 23,
-    title: '落叶飘风',
-    author: '',
-    image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  }, {
-    id: 231,
-    title: '落叶飘风',
-    author: '',
-    image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  }, {
-    id: 2312,
-    title: '落叶飘风',
-    author: '',
-    image: 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-  }]
-}]
-
-
 Page({
   data: {
     tabs: staticTabs,
     tab: 0, // 0全部订单，1待付款，2待发货，3待收货，4待评价，5退款/售后
     statusMp: staticStatusMp,
-    list: exList,
+    list: mock.list,
+  },
+  req: {
+    limit: 5,
+    page: 0,
   },
 
   onLoad: function (options) {
+    console.info('orderList onLoad: ', options)
     if (options == null) {
       return
     }
@@ -74,20 +41,48 @@ Page({
     this.setData({
       tab: tab,
     })
+    this.requestList(true)
   },
 
   onReachBottom: function () {
+    this.requestList(false)
+  },
+
+  requestList: function (refresh) {
+    if (refresh) {
+      this.req.page = 0
+    }
+    let req = {
+      limit: this.req.limit,
+      page: this.req.page,
+      kind: this.data.tab,
+    }
+    this.req.page++
+
+    request.orderList(req, res => {
+      if (res.code != 0) {
+        console.warn('request.orderList error: ', res)
+        return
+      }
+      let list = this.data.list
+      if (refresh) {
+        list = new Array
+      }
+      list = list.concat(res.data.list)
+      this.setData({
+        list: list,
+      })
+    })
 
   },
 
   // 切换tab
   bindSwitchTab: function (e) {
     let kind = e.currentTarget.dataset.kind
-    // todo: 重新请求
-    // 。。。
     this.setData({
       tab: kind,
     })
+    this.requestList(true)
   },
 
   // 跳转到特定订单详情页

@@ -1,30 +1,50 @@
 // pages/collection/collection.js
 const request = require('../../utils/request/collection')
+const mock = require('../../utils/mock-data/collection')
 
 Page({
   data: {
     hasData: true,
     isEdit: false,
     selectAll: false,
-    list: [{
-      "id": 1,
-      "title": "叶落知声（的撒发链接送大礼附件阿里）",
-      "author": "舒金浩",
-      "publisher": "浙江科技出版社",
-      "price": 20,
-      "cur_price": 18.5,
-      "image": "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
-      "stock": 20, // 库存
-      'selected': false,
-  }],
+    list: mock.list,
+  },
+  req: {
+    limit: 20,
+    page: 0,
   },
 
   onLoad: function (options) {
-
+    this.requestList(true)
   },
 
   onPullDownRefresh: function () {
+    this.requestList(true)
+  },
 
+  requestList: function (refresh) {
+    if (refresh) {
+      this.req.page = 0
+    }
+    let req = this.req
+    this.req.page++
+
+    request.collectList(req, res => {
+      if (res.code != 0) {
+        console.warn('request.collectionList error:', res)
+        return
+      }
+      console.log('request.collectionList ok:', res)
+      let data = res.data
+      let list = this.data.list
+      if (refresh) {
+        list = new Array
+      }
+      list = list.concat(data.list)
+      this.setData({
+        list: list,
+      })
+    })
   },
 
   bindEdit: function (e) {

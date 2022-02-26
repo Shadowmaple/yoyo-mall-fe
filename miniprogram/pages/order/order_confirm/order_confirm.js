@@ -60,13 +60,15 @@ Page({
     // 1.发起请求，创建订单，成功后弹起支付确认框，并跳转到订单详情页
     // 2.发起请求，删除购物车中数据，若id不为0，则是“立即购买”过来的，无需删除
     let list = new Array
-    let productList = this.data.productList
+    let productList = this.data.list
     let delList = new Array
 
     for (let i in productList) {
       let item = productList[i]
       list.push({
         'id': item.product_id,
+        'title': item.title,
+        'author': item.author,
         'num': item.num,
         'total_fee': item.cur_price * item.num,
         'price': item.price,
@@ -80,21 +82,25 @@ Page({
 
     // 创建订单请求参数
     let req = {
-      totalFee: this.data.totalFee,
+      total_fee: this.data.totalFee,
       payment: this.data.purchase,
       coupon: this.data.coupon,
       freight: this.data.freight,
-      receiveName: this.data.address.name,
-      receiveTel: this.data.receiveTel,
-      receiveAddr: this.data.receiveAddr,
-      productNum: this.data.productNum,
-      list: list,
+      receive_name: this.data.address.name,
+      receive_tel: this.data.address.tel,
+      receive_addr: this.data.address.detail,
+      product_num: this.data.productNum,
+      products: list,
     }
 
     wx.showLoading()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 3000);
 
     // 创建订单
     request.orderCreate(req, res => {
+      wx.hideLoading()
       if (res.code != 0) {
         console.warn('orderCreate error:', res)
         wx.showToast({
@@ -112,34 +118,45 @@ Page({
         title: '支付',
         content: '确定支付 ' + this.data.purchase + ' 元？',
         success: res => {
+          // 取消支付
           if (res.cancel) {
             console.log('用户点击取消')
             wx.showToast({
               title: '已取消',
               icon: 'error',
-              duration: 1000
+              duration: 1500
             })
           } else if (res.confirm) {
+            // 确定支付
             console.log('用户点击确定')
             wx.showToast({
               title: '支付成功',
               icon: 'success',
-              duration: 1000
+              duration: 1500
             })
 
-            // 改变订单状态为已支付
-            request.orderUpdate({
+            let req = {
               id: orderID,
               status: 1,
+            }
+            // 改变订单状态为已支付
+            request.orderUpdate(req, res => {
+              if (res.code != 0) {
+                console.warn('request.orderUpdate error:', res)
+                return
+              }
+              console.log('request.orderUpdate ok')
             })
           }
 
-          // 跳转到订单详情页面
-          // 要先获取到订单id
-          let url = '../order_info/order_info?id=' + orderID
-          wx.navigateTo({
-            url: url,
-          })
+          setTimeout(() => {
+            // 跳转到订单详情页面
+            // 要先获取到订单id
+            let url = '../order_info/order_info?id=' + orderID
+            wx.navigateTo({
+              url: url,
+            })  
+          }, 1500);
         }
       })
     })
@@ -151,7 +168,13 @@ Page({
     let delReq = {
       list: delList
     }
-    cartRequest.cartDel(delReq, {})
+    cartRequest.cartDel(delReq, res => {
+      if (res.code != 0) {
+        console.warn('request.cartDel error:', res)
+        return
+      }
+      console.log('request.cartDel ok: req=', delReq)
+    })
   },
 
   // 选择优惠券

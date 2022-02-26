@@ -1,7 +1,7 @@
 Component({
   options: {},
   data: {
-    number: 1,
+    // number: 1,
     disabled1: false,
     disabled2: false,
   },
@@ -14,7 +14,7 @@ Component({
       type: Number,
       value: 99,
     },
-    default: {
+    number: {
       type: Number,
       value: 1,
     }
@@ -22,15 +22,15 @@ Component({
   lifetimes: {
     attached: function() {
       this.setData({
-        number: this.properties.default,
-        disabled1: this.data.number <= this.properties.min ? true : false,
-        disabled2: this.data.number >= this.properties.max ? true : false,
+        number: this.properties.number,
+        disabled1: this.properties.number <= this.properties.min ? true : false,
+        disabled2: this.properties.number >= this.properties.max ? true : false,
       })
     },
   },
   methods: {
     nextNum: function(e) {
-      let curNum = this.data.number + 1
+      let curNum = this.properties.number + 1
       this.setData({
         number: curNum,
         disabled1: curNum <= this.properties.min ? true : false,
@@ -41,7 +41,7 @@ Component({
     },
 
     preNum: function(e) {
-      let curNum = this.data.number - 1
+      let curNum = this.properties.number - 1
       this.setData({
         number: curNum,
         disabled1: curNum <= this.properties.min ? true : false,
@@ -66,7 +66,7 @@ Component({
 
     changeNum: function() {
       var detail = {
-        num: this.data.number,
+        num: this.properties.number,
       }
       this.triggerEvent('changeNum', detail)
     },

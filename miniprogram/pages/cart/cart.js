@@ -1,39 +1,33 @@
 // pages/cart/cart.js
-
+const app = getApp()
 const request = require('../../utils/request/cart')
+const mock = require('../../utils/mock-data/cart')
 
 Page({
+  hasLogin: false,
   data: {
-    hasLogin: false,
     isEdit: false,
     selectAll: false,
     selectNum: 0,
     purchase: '0', // 商品总金额
     discount: '0', // 商品促销优惠金额
-    cartList: [{
-      'id': 1,
-      'product_id': 42,
-      'title': '落叶飘零',
-      'author': '林则明',
-      'price': 20.20,
-      'cur_price': 18.50,
-      'image': 'https://img1.doubanio.com/view/subject/m/public/s2206907.jpg',
-      'num': 2,
-      'selected': false,
-      'isEdit': false, // 是否修改了数量
-    }],
+    // cartList: mock.list,
+    cartList: [],
   },
 
   onLoad: function (options) {
     if (app.globalData.token != '') {
-      this.data.hasLogin = true
+      this.hasLogin = true
       this.requestCart()
     }
   },
 
   // 页面切回来展示时刷新数据
   onShow: function () {
-    this.requestCart()
+    if (app.globalData.token != '') {
+      this.hasLogin = true
+      this.requestCart()
+    }
   },
 
   // 页面隐藏时保存商品数
@@ -43,12 +37,22 @@ Page({
 
   // 下拉刷新
   onPullDownRefresh: function () {
+    if (!this.hasLogin) {
+      return
+    }
+    this.setData({
+      isEdit: false,
+      selectAll: false,
+      selectNum: 0,
+      purchase: '0',
+      discount: '0',
+    })
     this.requestCart()
   },
 
   // 请求购物车数据
   requestCart: function () {
-    if (!this.data.hasLogin) {
+    if (!this.hasLogin) {
       return
     }
 
@@ -59,10 +63,24 @@ Page({
         return
       }
       let data = res.data
-      let cartList = new Array
-      cartList = data.list
+      let list = new Array
+      for (let i in data.list) {
+        let item = data.list[i]
+        list.push({
+          id: item.id,
+          product_id: item.product_id,
+          title: item.title,
+          author: item.author,
+          price: item.price,
+          cur_price: item.cur_price,
+          image: item.image,
+          num: item.num,
+          selected: false,
+          isEdit: false,
+        })
+      }
       this.setData({
-        cartList: cartList,
+        cartList: list,
       })
     })
   },
@@ -227,7 +245,7 @@ Page({
 
   bindJumpInfo: function (e) {
     let productID = e.currentTarget.dataset.product
-    let url = "/pages/product/product_info/product_info?product_id=" + productID
+    let url = "/pages/product/product_info/product_info?id=" + productID
     wx.navigateTo({
       url: url,
     })
@@ -235,11 +253,15 @@ Page({
 
   // 批量移入收藏
   bindBatchMoveToCollect: function (e) {
-
+    if (!this.hasLogin) {
+      return
+    }
   },
 
   // 批量删除
   bindBatchDel: function (e) {
-
+    if (!this.hasLogin) {
+      return
+    }
   },
 })

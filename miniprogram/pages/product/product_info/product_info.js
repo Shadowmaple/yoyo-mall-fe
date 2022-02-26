@@ -1,4 +1,5 @@
 // pages/product/product_info/product_info.js
+const app = getApp()
 const mock = require("../../../utils/mock-data/product")
 const request = require('../../../utils/request/product')
 const addrRequest = require('../../../utils/request/address')
@@ -86,16 +87,23 @@ Page({
       })
       return
     }
-
-    let req = {
-      list: [this.id],
-    }
+    
+    wx.showLoading()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 2000);
+    
     let info = this.data.info
     // 取消收藏
     if (info.has_star) {
+      let req = {
+        list: [],
+        product_id: Number(this.id),
+      }
       collRequest.collectDel(req, res => {
+        wx.hideLoading()
         if (res.code != 0) {
-          console.warn('collectionAdd error: ', res)
+          console.warn('collectDel error: ', res)
           return
         }
         info.has_star = false
@@ -104,8 +112,13 @@ Page({
         })
       })
     } else {
+      let req = {
+        list: [Number(this.id)],
+        product_id: Number(this.id),
+      }
       // 收藏
       collRequest.collectAdd(req, res => {
+        wx.hideLoading()
         if (res.code != 0) {
           console.warn('collectionAdd error: ', res)
           return
@@ -131,7 +144,7 @@ Page({
 
     let req = {
       list: [{
-        id: this.id,
+        id: Number(this.id),
         num: 1,
       }]
     }
@@ -146,6 +159,11 @@ Page({
       info.cart_num++
       this.setData({
         info: info,
+      })
+      wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        duration: 1000,
       })
     })
   },

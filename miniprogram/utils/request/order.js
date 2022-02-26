@@ -50,17 +50,7 @@ const orderInfo = (req, callback) => {
 const orderCreate = (req, callback) => {
   let url = model.BaseURL + model.Paths.orderCreate
 
-  let data = {
-    'total_fee': req.totalFee,
-    'payment': req.payment,
-    'coupon': req.coupon,
-    'freight': req.freight,
-    'receive_name': req.receiveName,
-    'receive_tel': req.receiveTel,
-    'receive_addr': req.receiveAddr,
-    'product_num': req.productNum,
-    'products': req.list,
-  }
+  let data = req
 
   wx.request({
     url: url,
@@ -71,8 +61,7 @@ const orderCreate = (req, callback) => {
     timeout: 3000,
     data: data,
     success: res => {
-      let resp = res.data
-      callback(resp)
+      callback(res.data)
     },
     fail: res => {
       console.error('orderCreate failed:', res)
@@ -81,9 +70,6 @@ const orderCreate = (req, callback) => {
         icon: 'error',
         duration: 2000,
       })
-    },
-    complete: res => {
-      wx.hideLoading()
     }
   })
 }

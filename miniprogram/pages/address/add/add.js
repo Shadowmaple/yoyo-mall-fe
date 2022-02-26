@@ -81,10 +81,23 @@ Page({
   },
 
   bindConfirm: function (e) {
-    let req = {}
-    wx.showLoading({
-      title: '',
-    })
+    let req = {
+      id: this.id,
+      name: this.data.name,
+      tel: this.data.tel,
+      province: this.data.province,
+      city: this.data.city,
+      district: this.data.district,
+      detail: this.data.detail,
+      is_default: this.data.is_default,
+    }
+
+    // 校验输入信息
+    if (!this.validInput(req)) {
+      return
+    }
+
+    wx.showLoading()
     setTimeout(function() {
       wx.hideLoading()
     }, 2000)
@@ -92,21 +105,56 @@ Page({
     request.addressAdd(req, res => {
       wx.hideLoading()
       if (res.code != 0) {
+        console.warn('request.addressAdd error: ', res)
         wx.showToast({
-          title: '内部错误',
+          title: res.msg,
           icon: 'error',
           duration: 1000,
         })
-      } else {
-        wx.showToast({
-          title: '添加成功',
-          icon: 'success',
-          duration: 1000,
-        })
+        return
       }
+
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 1000,
+      })
+
       wx.navigateBack({
         delta: 0,
       })
     })
   },
+
+  validInput: function (data) {
+    let msg = ''
+    if (data.name == '') {
+      msg = '姓名不能为空'
+    }
+    if (data.tel == '') {
+      msg = '联系电话不能为空'
+    }
+    if (data.province == '' || data.city == '' || data.district == '') {
+      msg = '所在地区不能为空'
+    }
+    if (data.detail == '') {
+      msg = '详细地址不能为空'
+    }
+
+    // todo: 校验联系电话
+    if (data.tel != '') {
+      
+    }
+
+    if (msg == '') {
+      return true
+    }
+
+    wx.showModal({
+      title: '信息填写错误',
+      content: msg,
+      showCancel: false,
+    })
+    return false
+  }
 })

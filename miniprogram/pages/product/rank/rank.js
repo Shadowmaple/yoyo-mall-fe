@@ -20,7 +20,9 @@ Page({
       return
     }
     let kind = options.kind
-    this.data.kind = kind
+    this.setData({
+      kind: kind,
+    })
     this.requestRanks(true)
   },
 

@@ -43,7 +43,7 @@
 
         <view class="item-line4">
           <view class="item-remainTime"></view>
-          <view class="item-button" bindtap="bindGetLogistics">查看物流</view>
+          <view class="item-button" bindtap="bindGetLogistics" data-id="{{item.id}}">查看物流</view>
           <block wx:if="{{item.status == 0}}">
             <view class="item-button1" bindtap="bindPay">立即支付</view>
           </block>

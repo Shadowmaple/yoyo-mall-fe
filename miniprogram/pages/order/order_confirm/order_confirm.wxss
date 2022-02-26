@@ -11,7 +11,8 @@
   justify-content: space-between;
   align-items: center;
   width: 95%;
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 10rpx;
   margin: 10rpx 0;
 }
 
@@ -35,7 +36,8 @@
 
 .pay-method-box {
   width: 95%;
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 10rpx;
   margin: 10rpx 0;
 }
 
@@ -60,7 +62,8 @@
 
 .product-box {
   width: 95%;
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 10rpx;
   margin: 10rpx 0;
 }
 
@@ -86,6 +89,18 @@
   flex-grow: 1;
   margin: 20rpx 0;
   margin-right: 30rpx;
+  /* 必须要有，不然box宽度会挤占图片的空间 */
+  width: 70%;
+}
+
+.item-info {
+  /* 两行，多出省略 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 
 .item-purchase {
@@ -111,8 +126,10 @@
 
 .amount-box {
   width: 95%;
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
+  border-radius: 10rpx;
   margin: 10rpx 0;
+  margin-bottom: 140rpx;
 }
 
 .amount-item {
@@ -123,7 +140,7 @@
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 10rpx;
   display: flex;
   flex-direction: row;
@@ -131,7 +148,7 @@
   align-items: center;
   width: 100%;
   background-color: white;
-  border-top: 4rpx solid rgb(0, 0, 0, 0.5);
+  border-top: 2rpx solid rgb(0, 0, 0, 0.2);
 }
 
 .footer-purchase {

@@ -44,7 +44,11 @@ Page({
       this.processCidList(this.reqParams.cid, this.reqParams.cid2)
     }
 
-    this.requestProductList()
+    this.requestProductList(true)
+  },
+
+  onReachBottom: function () {
+    this.requestProductList(false)
   },
 
   // 处理类目选择器，格式转换
@@ -136,7 +140,7 @@ Page({
     // 重新请求数据
     this.reqParams.cid = curCidShow.cid.id
     this.reqParams.cid2 = curCidShow.cid2.id
-    this.requestProductList()
+    this.requestProductList(true)
   },
 
   clickChangeSortKind: function (e) {
@@ -147,11 +151,15 @@ Page({
       tabKind: kind,
     })
 
-    this.requestProductList()
+    this.requestProductList(true)
   },
 
-  requestProductList: function () {
+  requestProductList: function (refresh=true) {
+    if (refresh) {
+      this.reqParams.page = 0
+    }
     let req = this.reqParams
+    this.reqParams.page++
 
     wx.showLoading()
 
@@ -165,8 +173,13 @@ Page({
         console.warn('requestProductList error:', res)
         return
       }
+      let list = this.data.productList
+      if (refresh) {
+        list = new Array
+      }
+      list = list.concat(res.data.list)
       this.setData({
-        productList: res.data.list,
+        productList: list,
       })
     })
   },

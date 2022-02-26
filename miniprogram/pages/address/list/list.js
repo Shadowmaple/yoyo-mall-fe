@@ -1,5 +1,6 @@
 // pages/address/list/list.js
 const mock = require('../../../utils/mock-data/addr')
+const request = require('../../../utils/request/address')
 
 Page({
   data: {
@@ -7,12 +8,25 @@ Page({
   },
 
   onLoad: function (options) {
-    
+    this.requestList()
   },
  
   onShow: function () {
-    // 请求地址
-    // ...
+    this.requestList()
+  },
+
+  requestList: function () {
+    let req = {}
+    request.addressList(req, res => {
+      if (res.code != 0) {
+        console.warn('request.addressList error: ', res)
+        return
+      }
+      let list = res.data.list
+      this.setData({
+        list: list,
+      })
+    })
   },
 
   bindOp: function (e) {
@@ -55,8 +69,18 @@ Page({
         if (!res.confirm) {
           return
         }
+
         // 请求删除
-        // todo
+        let req = {
+          id: id,
+        }
+        request.addressDel(req, res => {
+          if (res.code != 0) {
+            console.warn('request.addressDel error:', res)
+            return
+          }
+          console.log('request.addressDel ok')
+        })
 
         let list = this.data.list
         list.splice(idx, 1)

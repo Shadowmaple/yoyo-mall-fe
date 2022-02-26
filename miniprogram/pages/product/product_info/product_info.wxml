@@ -32,7 +32,7 @@
     <view class="addr-line">
       <view class="addr-line-title">送至</view>
       <view class="addr-line-content">
-        <image class="icon" src="/images/icon/wechat-fill.png"></image>
+        <image class="icon" src="/images/icon/map.png"></image>
         <view class="addr-detail">{{addr}}</view>
       </view>
       <image class="icon" src="/images/icon/arrow-right-line.svg"></image>
@@ -43,7 +43,7 @@
     </view>
     <view class="addr-line">
       <view class="addr-flag">
-        <image class="addr-flag-icon" src="/images/icon/wechat-fill.png"></image>
+        <image class="addr-flag-icon" src="/images/icon/coupon-line.png"></image>
         <view>支持七天无理由退货</view>
       </view>
     </view>
