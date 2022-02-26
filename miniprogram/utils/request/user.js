@@ -51,6 +51,9 @@ const updateUserInfo = (req, callback) => {
   wx.request({
     url: url,
     method: 'POST',
+    header: {
+      token: app.globalData.token,
+    },
     data: data,
     timeout: 3000,
     success: res => {

@@ -2,8 +2,15 @@
 <view class="container">
   <!-- 用户信息 -->
   <view class="userInfo-box">
-    <image class="userInfo-avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
-    <view class="userInfo-nickname">{{userInfo.nickname}}</view>
+    <block wx:if="{{hasLogin}}">
+      <image class="userInfo-avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      <view class="userInfo-nickname">{{userInfo.nickname}}</view>
+    </block>
+    <block wx:else>
+      <image class="userInfo-avatar" src="/images/user-unlogin.png" mode="aspectFill"></image>
+      <view class="userInfo-nickname">未登录</view>
+    </block>
+
     <image class="userInfo-arrow" src="/images/icon/arrow-right-line.svg" bindtap="clickJumpUserInfo"></image>
   </view>
 

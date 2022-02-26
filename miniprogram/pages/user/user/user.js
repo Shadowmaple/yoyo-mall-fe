@@ -5,8 +5,8 @@ Page({
   data: {
     hasLogin: false,
     userInfo: {
-      nickname: "没影子的猫h",
-      avatar: "/images/user-unlogin.png"
+      nickname: "--",
+      avatar: ""
     }
   },
 

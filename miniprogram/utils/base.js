@@ -1,7 +1,7 @@
 const app = getApp()
 const request = require('./request/user')
 
-const login = () => {
+const login = (callback) => {
   wx.login({
     success: res => {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -35,6 +35,7 @@ const login = () => {
 
         // 用户信息
         getUserInfo(data.is_new, res => {
+          console.info('userInfo: ', res)
           if (res == null) {
             console.warn('getUserInfo error')
             return
@@ -43,9 +44,17 @@ const login = () => {
           app.globalData.userInfo = res
           wx.setStorage({
             key: 'userInfo',
-            data: userInfo
+            data: res
+          })
+          callback({
+            ok: true,
           })
         })
+      })
+    },
+    fail: res => {
+      callback({
+        ok: false,
       })
     }
   })
@@ -82,13 +91,13 @@ const getUserInfo = (is_new, callback) => {
     success: res => {
       if (res.confirm) {
         console.log('用户点击确定')
-        getUserProfile()
+        getUserProfile(callback)
       }
     }
   })
 }
 
-const getUserProfile = () => {
+const getUserProfile = (callback) => {
   // 使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
   wx.getUserProfile({
     desc: '展示用户信息',
@@ -105,6 +114,7 @@ const getUserProfile = () => {
           console.warn('request.updateUserInfo error:', res)
           return
         }
+        console.log('request.updateUserInfo ok')
       })
 
       callback(userInfo)

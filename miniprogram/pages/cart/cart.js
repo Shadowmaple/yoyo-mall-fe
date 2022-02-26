@@ -1,7 +1,10 @@
 // pages/cart/cart.js
 
+const request = require('../../utils/request/cart')
+
 Page({
   data: {
+    hasLogin: false,
     isEdit: false,
     selectAll: false,
     selectNum: 0,
@@ -22,8 +25,10 @@ Page({
   },
 
   onLoad: function (options) {
-
-    this.requestCart()
+    if (app.globalData.token != '') {
+      this.data.hasLogin = true
+      this.requestCart()
+    }
   },
 
   // 页面切回来展示时刷新数据
@@ -43,7 +48,23 @@ Page({
 
   // 请求购物车数据
   requestCart: function () {
+    if (!this.data.hasLogin) {
+      return
+    }
 
+    let req = {}
+    request.cartList(req, res => {
+      if (res.code != 0) {
+        console.warn('request.cartList error:', res)
+        return
+      }
+      let data = res.data
+      let cartList = new Array
+      cartList = data.list
+      this.setData({
+        cartList: cartList,
+      })
+    })
   },
 
   // 编辑商品事件

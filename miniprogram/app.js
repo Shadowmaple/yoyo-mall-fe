@@ -1,6 +1,5 @@
 const model = require("./utils/request/model.js")
 const mock = require('./utils/mock-data/category')
-const util = require('./utils/base')
 
 // app.js
 App({
