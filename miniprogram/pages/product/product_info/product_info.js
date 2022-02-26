@@ -7,6 +7,7 @@ const collRequest = require('../../../utils/request/collection')
 
 Page({
   data: {
+    hasLogin: false,
     info: mock.productInfo,
     addr: '湖北省武汉市洪山区雄楚大道382号华中师范大学',
     freight: 10,
@@ -18,6 +19,9 @@ Page({
       return
     }
     this.id = options.id
+    if (app.globalData.token != '') {
+      this.data.hasLogin = true
+    }
 
     // 请求详情
     this.requestInfo()
@@ -74,6 +78,15 @@ Page({
 
   // 收藏
   bindStar: function (e) {
+    // 未登录
+    if (!this.data.hasLogin) {
+      let url = '/pages/login/login'
+      wx.navigateTo({
+        url: url,
+      })
+      return
+    }
+
     let req = {
       list: [this.id],
     }
@@ -107,6 +120,15 @@ Page({
 
   // 加入购物车
   bindAddToCart: function (e) {
+    // 未登录
+    if (!this.data.hasLogin) {
+      let url = '/pages/login/login'
+      wx.navigateTo({
+        url: url,
+      })
+      return
+    }
+
     let req = {
       list: [{
         id: this.id,
@@ -143,6 +165,15 @@ Page({
 
   // 立即购买，跳转到订单确认页面
   bindBuy: function (e) {
+    // 未登录
+    if (!this.data.hasLogin) {
+      let url = '/pages/login/login'
+      wx.navigateTo({
+        url: url,
+      })
+      return
+    }
+
     let info = this.data.info
     let confirmData = {
       'purchase': info.cur_price,

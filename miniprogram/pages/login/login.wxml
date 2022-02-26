@@ -1,0 +1,9 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="title">yoyo书城</view>
+
+  <view class="button">
+    <view class="button-login" bindtap="bindLogin">授权登录</view>
+    <view class="button-cancel" bindtap="bindCancel">取消登录</view>
+  </view>
+</view>

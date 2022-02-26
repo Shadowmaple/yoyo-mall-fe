@@ -1,0 +1,42 @@
+/* pages/login/login.wxss */
+
+.title {
+  margin-top: 100rpx;
+  font-size: 38rpx;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200rpx;
+}
+
+.button-login {
+  width: 50%;
+  height: 70rpx;
+  background-color: #f3543f;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  margin: 10rpx 0;
+}
+
+.button-cancel {
+  color: #f3543f;
+  border: 2rpx solid #f3543f;
+  width: 50%;
+  height: 70rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  margin: 10rpx 0;
+}

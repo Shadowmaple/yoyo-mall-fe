@@ -1,2 +1,11 @@
 <!--pages/user/user_info/user_info.wxml-->
-<text>pages/user/user_info/user_info.wxml</text>
+<view class="container">
+
+  <view>
+    <image src="{{avatar}}"></image>
+  </view>
+  <view>
+    <view>昵称</view>
+    <view>{{nickname}}</view>
+  </view>
+</view>
