@@ -16,30 +16,30 @@
 
   <!-- 订单模块 -->
   <view class="order-box">
-    <navigator class="order-item" url="/pages/order/order_list/order_list?kind=1">
+    <view class="order-item" bindtap="bindJumpOrder" data-kind="1">
       <image class="order-icon" src="/images/icon/wallet-3-line.png"></image>
       <view class="order-item-name">待付款</view>
-    </navigator>
+    </view>
 
-    <navigator class="order-item" url="/pages/order/order_list/order_list?kind=3">
+    <view class="order-item" bindtap="bindJumpOrder" data-kind="3">
       <image class="order-icon" src="/images/icon/truck-line.png"></image>
       <view class="order-item-name">待收货</view>
-    </navigator>
+    </view>
 
-    <navigator class="order-item" url="/pages/order/order_list/order_list?kind=4">
+    <view class="order-item" bindtap="bindJumpOrder" data-kind="4">
       <image class="order-icon" src="/images/icon/message-3-line.png"></image>
       <view class="order-item-name">待评价</view>
-    </navigator>
+    </view>
 
-    <navigator class="order-item" url="/pages/order/order_list/order_list?kind=5">
+    <view class="order-item" bindtap="bindJumpOrder" data-kind="5">
       <image class="order-icon" src="/images/icon/money-cny-circle-line.png"></image>
       <view class="order-item-name">退款/售后</view>
-    </navigator>
+    </view>
 
-    <navigator class="order-item" url="/pages/order/order_list/order_list?kind=0">
+    <view class="order-item" bindtap="bindJumpOrder" data-kind="0">
       <image class="order-icon" src="/images/icon/file-list-line.png"></image>
       <view class="order-item-name">全部订单</view>
-    </navigator>
+    </view>
   </view>
 
   <!-- 功能栏目 -->
@@ -47,41 +47,41 @@
     <!-- 收藏 -->
     <view class="module-item">
       <image class="module-icon" src="/images/icon/star-fill.png"></image>
-      <navigator url="/pages/collection/collection" hover-class="navigator-hover" class="module-navigator">
+      <view bindtap="bindJumpModule" data-url="/pages/collection/collection" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">收藏</view>
-      </navigator>
+      </view>
     </view>
 
     <!-- 优惠券 -->
     <view class="module-item">
       <image class="module-icon" src="/images/icon/coupon-line.png"></image>
-      <navigator url="/pages/coupon/private_list/private_list" hover-class="navigator-hover" class="module-navigator">
+      <view bindtap="bindJumpModule" data-url="/pages/coupon/private_list/private_list" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">优惠券</view>
-      </navigator>
+      </view>
     </view>
 
     <!-- 我的地址 -->
     <view class="module-item">
       <image class="module-icon" src="/images/icon/home-smile-2-line.png"></image>
-      <navigator url="/pages/address/list/list" hover-class="navigator-hover" class="module-navigator">
+      <view bindtap="bindJumpModule" data-url="/pages/address/list/list" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">我的地址</view>
-      </navigator>
+      </view>
     </view>
 
     <!-- 我的消息 -->
     <!-- <view class="module-item">
       <image class="module-icon" src="/images/icon/message-3-line.png"></image>
-      <navigator url="/pages/message/message" hover-class="navigator-hover" class="module-navigator">
+      <view bindtap="bindJumpModule" data-url="/pages/message/message" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">我的消息</view>
-      </navigator>
+      </view>
     </view> -->
 
     <!-- 意见反馈 -->
     <view class="module-item">
       <image class="module-icon" src="/images/icon/customer-service-2-line.png"></image>
-      <navigator url="/pages/feedback/feedback" hover-class="navigator-hover" class="module-navigator">
+      <view bindtap="bindJumpModule" data-url="/pages/feedback/feedback" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">意见反馈</view>
-      </navigator>
+      </view>
     </view>
   </view>
 </view>

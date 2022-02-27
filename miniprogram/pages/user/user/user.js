@@ -40,4 +40,29 @@ Page({
       url: url,
     })
   },
+
+  bindJumpOrder: function (e) {
+    let kind = e.currentTarget.dataset.kind
+    let url = '/pages/order/order_list/order_list?kind=' + kind
+
+    if (!this.data.hasLogin) {
+      url = '/pages/login/login'
+    }
+
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
+  bindJumpModule: function (e) {
+    let url = e.currentTarget.dataset.url
+
+    if (!this.data.hasLogin) {
+      url = '/pages/login/login'
+    }
+
+    wx.navigateTo({
+      url: url,
+    })
+  },
 })
