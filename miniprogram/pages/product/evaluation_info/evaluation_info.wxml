@@ -54,7 +54,10 @@
     </view>
   </view>
 
-  <view class="bottom">- 没有更多啦 -</view>
+  <view class="bottom">
+    <block wx:if="{{moreData}}">- 下拉加载更多 -</block>
+    <block wx:else>- 没有更多啦 -</block>
+  </view>
 
   <view class="footer">
     <input class="footer-input" placeholder="说点什么吧~" bindconfirm="bindPublish" />

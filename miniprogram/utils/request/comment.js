@@ -65,7 +65,20 @@ const evaluationCreate = (req, callback) => {
 
 // 评价详情
 const evaluationInfo = (req, callback) => {
+  let url = model.BaseURL + '/evaluation/info/' + req.id
 
+  wx.request({
+    url: url,
+    method: 'GET',
+    header: {token: app.globalData.token},
+    timeout: 3000,
+    success: res => {
+      callback(res.data)
+    },
+    fail: res => {
+      console.error('request.evaluationInfo failed: ', res)
+    }
+  })
 }
 
 // 评论列表

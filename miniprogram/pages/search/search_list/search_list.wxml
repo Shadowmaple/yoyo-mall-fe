@@ -22,7 +22,7 @@
   </view>
 
   <view class="bottom">
-    <block wx:if="{{moreData}}">加载更多</block>
+    <block wx:if="{{moreData}}">- 加载更多 -</block>
     <block wx:else>- 没有更多啦 -</block>
   </view>
 

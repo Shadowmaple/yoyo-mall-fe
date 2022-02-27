@@ -70,8 +70,25 @@
 .item-info {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 20rpx;
+  justify-content: space-around;
+  flex-grow: 1;
+  width: 50%;
+}
+
+.item-info-line1 {
+  font-size: 32rpx;
+  /* 两行，超出省略 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.item-info-line2 {
+  font-size: 26rpx;
+  color: #747777;
+  margin-bottom: 10rpx;
 }
 
 .item-line3 {
@@ -108,4 +125,12 @@
 .item-button1 {
   border-color: #e7371f;
   color: #e7371f;
+}
+
+.bottom {
+  margin: 20rpx;
+  font-size: 24rpx;
+  color: #95A4A6;
+  width: 100%;
+  text-align: center;
 }

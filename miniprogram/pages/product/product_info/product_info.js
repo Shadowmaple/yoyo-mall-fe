@@ -152,6 +152,11 @@ Page({
     cartRequest.cartAdd(req, res => {
       if (res.code != 0) {
         console.warn('cartAdd error: ', res)
+        wx.showToast({
+          title: '内部错误',
+          icon: 'error',
+          duration: 1000,
+        })
         return
       }
       let info = this.data.info
@@ -170,7 +175,7 @@ Page({
 
   // 跳转到评论页面
   bindEvaluationPage: function(e) {
-    let url = '../evaluations/evaluations'
+    let url = '../evaluations/evaluations?product_id=' + this.id
     wx.navigateTo({
       url: url,
     })

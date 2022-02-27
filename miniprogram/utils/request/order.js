@@ -38,8 +38,7 @@ const orderInfo = (req, callback) => {
     },
     timeout: 3000,
     success: res => {
-      let resp = res.data
-      callback(resp)
+      callback(res.data)
     },
     fail: res => {
       console.error('orderInfo failed:', res)
@@ -91,8 +90,7 @@ const orderUpdate = (req, callback) => {
     timeout: 3000,
     data: data,
     success: res => {
-      let resp = res.data
-      callback(resp)
+      callback(res.data)
     },
     fail: res => {
       console.error('orderUpdate failed:', res)

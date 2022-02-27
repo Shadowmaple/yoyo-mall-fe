@@ -9,7 +9,7 @@ const Paths = {
   productSearch: "/search/product",
   productRank: "/product/rank",
   orderList: '/order/list',
-  orderInfo: 'order/info/',
+  orderInfo: '/order/info/',
   orderCreate: "/order",
   orderUpdate: "/order/",
   cart: '/cart',

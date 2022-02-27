@@ -15,15 +15,18 @@
     <block wx:for="{{list}}" wx:key="id">
       <view class="item">
         <view class="item-line1">
-          <view>订单编号：{{item.id}}</view>
+          <view>订单编号：{{item.order_code}}</view>
           <view class="item-status">{{statusMp[item.status]}}</view>
         </view>
 
-        <view class="item-line2" bindtap="bindClickOrder">
-          <block wx:if="{{item.productNum == 1}}">
+        <view class="item-line2" bindtap="bindClickOrder" data-id="{{item.id}}">
+          <block wx:if="{{item.product_num == 1}}">
             <image class="item-image" src="{{item.image}}"></image>
             <view class="item-info">
-              <view>{{item.title}}</view>
+              <view class="item-info-line1">{{item.title}}</view>
+              <view class="item-info-line2">
+                ￥{{item.products[0].cur_price}} X {{item.products[0].num}}
+              </view>
             </view>
           </block>
           <block wx:else>
@@ -37,28 +40,33 @@
         </view>
 
         <view class="item-line3">
-          <view class="item-productNum">共{{item.productNum}}件商品</view>
-          <view style="color: #e7371f;">￥{{item.totalFee}}元</view>
+          <view class="item-productNum">共{{item.product_num}}件商品</view>
+          <view style="color: #e7371f;">￥{{item.total_fee}}元</view>
         </view>
 
         <view class="item-line4">
           <view class="item-remainTime"></view>
           <view class="item-button" bindtap="bindGetLogistics" data-id="{{item.id}}">查看物流</view>
           <block wx:if="{{item.status == 0}}">
-            <view class="item-button1" bindtap="bindPay">立即支付</view>
+            <view class="item-button1" bindtap="bindPay" data-id="{{item.id}}">立即支付</view>
           </block>
           <block wx:if="{{item.status > 0 && item.status < 3}}">
-            <view class="item-button1" bindtap="bindReceive">确认收货</view>
+            <view class="item-button1" bindtap="bindReceive" data-id="{{item.id}}" data-idx="{{index}}">确认收货</view>
           </block>
           <block wx:if="{{item.status == 3}}">
-            <view class="item-button1" bindtap="bindEvaluate">立即评价</view>
+            <view class="item-button1" bindtap="bindEvaluate" data-id="{{item.id}}">立即评价</view>
           </block>
           <block wx:if="{{item.status == 4 || item.status == 5 || item.status == 7}}">
-            <view class="item-button1" bindtap="bindBugAgain">再次购买</view>
+            <view class="item-button1" bindtap="bindBugAgain" data-idx="{{index}}">再次购买</view>
           </block>
         </view>
       </view>
     </block>
+  </view>
+
+  <view class="bottom">
+    <block wx:if="{{moreData}}">- 下拉加载更多 -</block>
+    <block wx:else>- 我也是有底线的！-</block>
   </view>
 
 </view>

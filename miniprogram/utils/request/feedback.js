@@ -2,7 +2,7 @@ const app = getApp()
 const model = require('./model')
 
 const feedback = (req, callback) => {
-  let url = model.BaseURL + model.Paths.productSearch
+  let url = model.BaseURL + model.Paths.feedback
   let data = {
     kind: req.kind,
     content: req.content,

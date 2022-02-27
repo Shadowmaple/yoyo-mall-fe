@@ -27,6 +27,7 @@
   flex-direction: column;
   border-bottom: 2rpx solid rgb(0, 0, 0, 0.2);
   padding-bottom: 20rpx;
+  width: 70%;
 }
 
 .item-line1 {

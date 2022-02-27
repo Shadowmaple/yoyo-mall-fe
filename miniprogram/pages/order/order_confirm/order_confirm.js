@@ -145,7 +145,7 @@ Page({
                 console.warn('request.orderUpdate error:', res)
                 return
               }
-              console.log('request.orderUpdate ok')
+              console.log('订单付款完成：', req.id)
             })
           }
 
@@ -156,7 +156,7 @@ Page({
             wx.navigateTo({
               url: url,
             })  
-          }, 1500);
+          }, 2000);
         }
       })
     })

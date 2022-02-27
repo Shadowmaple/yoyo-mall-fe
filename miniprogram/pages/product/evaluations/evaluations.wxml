@@ -23,7 +23,7 @@
       </view> -->
     </view>
 
-    <view class="item-line2" bindtap="bindJumpInfo" data-id="{{item.id}}" data-idx="{{index}}">
+    <view class="item-line2" bindtap="bindJumpInfo" data-id="{{item.id}}">
       {{item.content}}
     </view>
 
@@ -55,5 +55,9 @@
     </view>
   </view>
 
+  <view class="bottom">
+    <block wx:if="{{moreData}}">- 下拉加载更多 -</block>
+    <block wx:else>- 没有更多啦 -</block>
+  </view>
 
 </view>

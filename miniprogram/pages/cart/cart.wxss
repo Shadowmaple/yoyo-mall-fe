@@ -1,7 +1,7 @@
 /* pages/cart/cart.wxss */
 
 .container {
-  border-top: 4rpx solid rgb(0, 0, 0, 0.5);
+  border-top: 2rpx solid rgb(0, 0, 0, 0.3);
 }
 
 .header {
@@ -52,9 +52,10 @@
   flex-direction: row;
   justify-content: flex-start;
   padding: 40rpx 20rpx;
-  border: 4rpx solid rgb(0, 0, 0, 0.5);
+  border: 2rpx solid rgb(0, 0, 0, 0.5);
   border-radius: 20rpx;
   /* height: 220rpx; */
+  margin: 10rpx 0;
 }
 
 .item-radio {

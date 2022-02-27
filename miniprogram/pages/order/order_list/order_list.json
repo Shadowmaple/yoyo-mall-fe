@@ -3,5 +3,6 @@
     "search-tab": "../../../components/search/search"
   },
   "navigationBarTitleText": "订单",
-  "backgroundColor": "#787878"
+  "backgroundColor": "#787878",
+  "enablePullDownRefresh": true
 }

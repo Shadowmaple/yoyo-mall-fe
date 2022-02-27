@@ -29,7 +29,7 @@ Page({
   },
 
   clickJumpUserInfo: function () {
-    let url = '../user_info/user_info?nickname=' + this.data.nickname + '&avatar=' + this.data.avatar
+    let url = '../user_info/user_info?nickname=' + this.data.userInfo.nickname + '&avatar=' + this.data.userInfo.avatar
 
     // 未登录
     if (!this.data.hasLogin) {

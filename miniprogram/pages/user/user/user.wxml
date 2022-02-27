@@ -69,12 +69,12 @@
     </view>
 
     <!-- 我的消息 -->
-    <view class="module-item">
+    <!-- <view class="module-item">
       <image class="module-icon" src="/images/icon/message-3-line.png"></image>
       <navigator url="/pages/message/message" hover-class="navigator-hover" class="module-navigator">
         <view class="module-name">我的消息</view>
       </navigator>
-    </view>
+    </view> -->
 
     <!-- 意见反馈 -->
     <view class="module-item">

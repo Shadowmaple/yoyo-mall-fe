@@ -68,3 +68,9 @@
   margin-right: 10rpx;
   margin-left: 20rpx;
 }
+
+.bottom {
+  margin: 20rpx;
+  font-size: 24rpx;
+  color: #95A4A6;
+}

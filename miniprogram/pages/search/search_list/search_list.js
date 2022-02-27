@@ -4,9 +4,13 @@ const mock = require('../../../utils/mock-data/search')
 
 Page({
   data: {
-    key: '略略略',
-    moreData: false,
+    key: '',
+    moreData: true,
     list: mock.productList,
+  },
+  req: {
+    limit: 5,
+    page: 0,
   },
 
   onLoad: function (options) {
@@ -18,31 +22,61 @@ Page({
       key: key,
     })
 
-    this.requestList(key)
+    this.requestList(true)
   },
 
-  // todo 搜素
-  requestList: function (key) {
+  onReachBottom: function () {
+    if (!this.data.moreData) {
+      return
+    }
+    this.requestList(false)
+  },
+
+  // 商品搜素
+  requestList: function (refresh=false) {
+    if (!this.data.moreData) {
+      return
+    }
+    this.req.page = refresh ? 0 : this.req.page + 1
     let req = {
-      key: key
+      title: this.data.key,
+      limit: this.req.limit,
+      page: this.req.page,
     }
 
     wx.showLoading()
     setTimeout(function () {
       wx.hideLoading()
-      wx.showToast({
-        title: '内部错误',
-        icon: 'error',
-        duration: 1000,
-      })
     }, 2000)
 
     request.searchProduct(req, res => {
       wx.hideLoading()
       if (res.code != 0) {
+        console.warn('request.searchProduct error:', res)
+        wx.showToast({
+          title: '内部错误',
+          icon: 'error',
+          duration: 1000,
+        })
         return
       }
-
+      let data = res.data
+      let list = this.data.list
+      if (refresh) {
+        list = new Array
+      }
+      if (data.total == 0) {
+        this.setData({
+          moreData: false,
+          list: list,
+        })
+        return
+      }
+      list = list.concat(data.list)
+      this.setData({
+        moreData: true,
+        list: list,
+      })
     })
   },
 
@@ -57,8 +91,10 @@ Page({
   // 搜索框搜索
   bindSearch: function (e) {
     let value = e.detail.value
-    console.info('--', value)
+    this.setData({
+      key: value,
+    })
 
-    this.requestList(value)
+    this.requestList(true)
   }
 })
