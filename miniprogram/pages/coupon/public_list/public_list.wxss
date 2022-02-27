@@ -68,9 +68,10 @@
   margin-right: 20rpx;
 }
 
-.reach-bottom {
-  text-align: center;
+.bottom {
+  margin: 20rpx;
   font-size: 24rpx;
-  margin: 20rpx 0;
   color: #95A4A6;
+  width: 100%;
+  text-align: center;
 }

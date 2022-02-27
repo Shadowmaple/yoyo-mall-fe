@@ -24,12 +24,21 @@
       </view>
 
       <view class="item-right">
-        <view wx:if="{{tab == 0}}" class="item-use" bindtap="bindUse">去使用</view>
+        <view wx:if="{{tab == 0}}" class="item-use" bindtap="bindUse" data-idx="{{index}}">去使用</view>
         <view wx:if="{{tab == 1}}" class="item-used">已使用</view>
         <view wx:if="{{tab == 2}}" class="item-expired">已过期</view>
       </view>
     </view>
-    <view class="reach-bottom">已经到底啦~</view>
+  </view>
+
+  <!-- todo:没数据时展示... -->
+  <view wx:if="{{!hasData}}">
+  
+  </view>
+
+  <view class="bottom">
+    <block wx:if="{{moreData}}">- 下拉加载更多 -</block>
+    <block wx:else>- 已经到底啦 -</block>
   </view>
 
   <view class="footer">

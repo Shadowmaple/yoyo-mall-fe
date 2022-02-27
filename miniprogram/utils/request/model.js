@@ -12,6 +12,7 @@ const Paths = {
   orderInfo: '/order/info/',
   orderCreate: "/order",
   orderUpdate: "/order/",
+  orderSearch: "/search/order",
   cart: '/cart',
   address: "/address",
   collection: '/collection',

@@ -59,16 +59,16 @@
     </view>
     <view class="purchase-line">
       <view>总付款：</view>
-      <view>￥{{info.payment}}</view>
+      <view class="purchase-line-payment">￥{{info.payment}}</view>
     </view>
   </view>
 
   <view class="footer">
-    <view class="footer-button" wx:if="{{info.status == 1 || info.status == 2}}" bindtap="bindReceive">确认签收</view>
+    <view class="footer-button2" wx:if="{{info.status == 1 || info.status == 2}}" bindtap="bindReceive">确认签收</view>
     <view class="footer-button" wx:if="{{info.status == 0}}" bindtap="bindCancelOrder">取消订单</view>
-    <view class="footer-button" wx:if="{{info.status == 0}}" bindtap="bindPay">立即支付</view>
-    <view class="footer-button" wx:if="{{info.status == 3}}" bindtap="bindEvaluate">立即评价</view>
-    <view class="footer-button" wx:if="{{info.status == 4 || info.status == 5 || info.status == 7 || info.status == 6}}" bindtap="bindBugAgain">再次购买</view>
+    <view class="footer-button2" wx:if="{{info.status == 0}}" bindtap="bindPay">立即支付</view>
+    <view class="footer-button2" wx:if="{{info.status == 3}}" bindtap="bindEvaluate">立即评价</view>
+    <view class="footer-button2" wx:if="{{info.status == 4 || info.status == 5 || info.status == 7 || info.status == 6}}" bindtap="bindBugAgain">再次购买</view>
   </view>
 
 </view>

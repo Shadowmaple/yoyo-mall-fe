@@ -53,6 +53,9 @@
     </view>
   </view>
 
-  <view class="reach-bottom">已经到底啦~</view>
+  <view class="bottom">
+    <block wx:if="{{moreData}}">- 下拉加载更多 -</block>
+    <block wx:else>- 已经到底啦 -</block>
+  </view>
 
 </view>

@@ -42,7 +42,6 @@ Page({
         status: status,
         list: data.list,
       })
-      console.info('---', this.data)
     })
   },
 })

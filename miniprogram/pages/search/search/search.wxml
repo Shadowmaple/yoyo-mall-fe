@@ -1,6 +1,6 @@
 <!--pages/search/search/search.wxml-->
 <view class="container">
-  <search-tab class="search" isJump="false" confirmSrc="/pages/search/search_list/search_list"></search-tab>
+  <search-tab class="search" isJump="false" confirmSrc="{{src}}"></search-tab>
 
   <view class="history-box">
     <view class="history-title">搜素历史</view>

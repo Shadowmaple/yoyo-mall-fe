@@ -14,6 +14,19 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+// 将时间字符串转换为Date对象
+const parseTime = s => {
+  s = s.replace("-","/")
+  return new Date(Date.parse(s))
+}
+
+// 获取当前时间
+const getCurrentTime = () => {
+  return new Date()
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  parseTime,
+  getCurrentTime,
 }

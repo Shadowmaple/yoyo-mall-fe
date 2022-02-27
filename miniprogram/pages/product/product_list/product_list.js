@@ -39,8 +39,8 @@ Page({
   onLoad: function (options) {
     console.log('onLoad options:', options)
     if (options != null) {
-      this.reqParams.cid = Number(options.cid)
-      this.reqParams.cid2 = Number(options.cid2)
+      this.reqParams.cid = Number(options.cid) || 0
+      this.reqParams.cid2 = Number(options.cid2) || 0
       this.processCidList(this.reqParams.cid, this.reqParams.cid2)
     }
 
@@ -155,14 +155,11 @@ Page({
   },
 
   requestProductList: function (refresh=true) {
-    if (refresh) {
-      this.reqParams.page = 0
-    }
+    this.reqParams.page = refresh ? 0 : this.reqParams.page + 1
     let req = this.reqParams
-    this.reqParams.page++
+    console.info('----', req)
 
     wx.showLoading()
-
     setTimeout(() => {
       wx.hideLoading()
     }, 3000);
@@ -173,10 +170,7 @@ Page({
         console.warn('requestProductList error:', res)
         return
       }
-      let list = this.data.productList
-      if (refresh) {
-        list = new Array
-      }
+      let list = refresh ? new Array : this.data.productList
       list = list.concat(res.data.list)
       this.setData({
         productList: list,

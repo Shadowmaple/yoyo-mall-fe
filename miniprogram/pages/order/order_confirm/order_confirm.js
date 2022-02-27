@@ -122,7 +122,7 @@ Page({
           if (res.cancel) {
             console.log('用户点击取消')
             wx.showToast({
-              title: '已取消',
+              title: '已取消支付',
               icon: 'error',
               duration: 1500
             })
@@ -153,7 +153,7 @@ Page({
             // 跳转到订单详情页面
             // 要先获取到订单id
             let url = '../order_info/order_info?id=' + orderID
-            wx.navigateTo({
+            wx.redirectTo({
               url: url,
             })  
           }, 2000);

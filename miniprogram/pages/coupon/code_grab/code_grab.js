@@ -1,23 +1,12 @@
 // pages/coupon/code_grab/code_grab.js
-
 const request = require('../../../utils/request/coupon')
-
-const exCoupon = {
-  "id": 2,
-  "begin_time": "2022-01-01 12:00:00",
-  "end_time": "2022-02-28 12:00:00",
-  "cid": 2,
-  "cid2": 4,
-  "title": "大额神券 满200减20",
-  "discount": 20,
-  "threshold": 200,
-}
+const mock = require('../../../utils/mock-data/coupon')
 
 Page({
   data: {
     code: "",
     showCoupon: false,
-    coupon: exCoupon,
+    coupon: {},
   },
 
   onLoad: function (options) {
@@ -37,9 +26,14 @@ Page({
     request.couponGrab(req, res => {
       // todo: 不同错误类型，兑换码错误、失效、无剩余等等
       if (res.code != 0) {
-        console.warn('couponGrab error:', res.code, res.msg)
+        console.warn('request.couponGrab error:', res)
+        wx.showModal({
+          showCancel: false,
+          content: '兑换失败：' + res.msg,
+        })
         return
       }
+      console.log('优惠券兑换成功; req=', req)
       let data = res.data
       let coupon = {
         id: data.id,

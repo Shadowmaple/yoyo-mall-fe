@@ -1,11 +1,15 @@
 <!--pages/user/user_info/user_info.wxml-->
-<view class="container">
 
-  <view>
-    <image src="{{avatar}}"></image>
+<view class="container">
+  <view class="avatar-item">
+    <view class="avatar-title">头像：</view>
+    <image class="avatar-img" src="{{avatar}}" mode="aspectFill" bindtap="bindChangeAvatar"></image>
   </view>
-  <view>
-    <view>昵称</view>
-    <view>{{nickname}}</view>
+
+  <view class="nickname-item">
+    <view class="nickname-title">昵称：</view>
+    <input class="nickname-value" value="{{nickname}}" bindinput="bindInput" />
   </view>
+
+  <button type="button" class="confirm-button" bindtap="bindConfirm">保存</button>
 </view>
