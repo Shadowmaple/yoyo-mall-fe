@@ -1,13 +1,12 @@
 <template>
   <div>
-    Login
+    coupon
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
-  components: {}
+  name: 'Coupon'
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>页脚</div>
 </template>
 
 <script>
