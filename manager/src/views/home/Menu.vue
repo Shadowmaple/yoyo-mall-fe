@@ -1,7 +1,7 @@
 <template>
   <el-menu
         router
-        active-text-color="#ffd04b"
+        active-text-color="#4BA4FF"
         background-color="#545c64"
         text-color="#ffffff"
       >
@@ -17,8 +17,8 @@
         <el-menu-item index="/feedback">
           <span>用户反馈</span>
         </el-menu-item>
-        <el-menu-item index="/logistics">
-          <span>物流管理</span>
+        <el-menu-item index="/order">
+          <span>订单管理</span>
         </el-menu-item>
       </el-menu>
 </template>
@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .title {
   margin: 0;
   color: white;

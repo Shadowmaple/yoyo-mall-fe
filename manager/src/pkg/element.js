@@ -2,14 +2,23 @@ import {
     ElAside,
     ElButton,
     ElContainer,
+    ElDescriptions,
+    ElDescriptionsItem,
+    ElDialog,
+    ElDivider,
+    ElDrawer,
     ElHeader,
     ElIcon,
+    ElInput,
     ElMain,
     ElMenu,
     ElMenuItem,
     ElSubMenu,
     ElTable,
-    ElTableColumn
+    ElTableColumn,
+    ElTabPane,
+    ElTabs,
+    ElTag
 } from "element-plus";
 import 'element-plus/dist/index.css';
 
@@ -25,4 +34,13 @@ export default [
     ElIcon,
     ElTable,
     ElTableColumn,
+    ElInput,
+    ElTabs,
+    ElTabPane,
+    ElDrawer,
+    ElDescriptions,
+    ElDescriptionsItem,
+    ElTag,
+    ElDialog,
+    ElDivider,
 ]
