@@ -87,7 +87,7 @@
 </template>
 
 <script>
-const mock = require('../../utils/mock-data/order')
+const mock = require('../../../utils/mock-data/order')
 const statusMp = ['待付款', '待发货', '待收货', '待评价', '交易完成', '交易取消', '退货中', '交易关闭']
 
 export default {
@@ -133,7 +133,7 @@ export default {
       let req = {
         page: this.req.page,
         limit: this.req.limit,
-        kind: this.tab,
+        kind: Number(this.tab),
       }
       console.log('order getList req:', req)
 

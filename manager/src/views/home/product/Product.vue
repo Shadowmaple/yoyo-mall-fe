@@ -14,14 +14,14 @@
       </div>
       <div class="search-buttons">
           <el-button type="primary" @click="search">搜索</el-button>
-          <el-button type="info" @click="refresh">取消</el-button>
+          <el-button type="info" @click="refresh">重置</el-button>
       </div>
     </div>
 
     <!-- 添加栏 -->
-    <div class="foo-box">
+    <!-- <div class="foo-box">
       <el-button type="primary" @click="addItem">添加</el-button>
-    </div>
+    </div> -->
 
     <!-- 列表 -->
     <div class="table-box">

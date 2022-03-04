@@ -1,7 +1,7 @@
 import Home from '../views/Home.vue'
-import Coupon from '../views/home/Coupon.vue'
-import Feedback from '../views/home/Feedback.vue'
-import Order from '../views/home/Order.vue'
+import Coupon from '../views/home/coupon/Coupon.vue'
+import Feedback from '../views/home/feedback/Feedback.vue'
+import Order from '../views/home/order/Order.vue'
 import Product from '../views/home/product/Product.vue'
 import Login from '../views/Login.vue'
 
