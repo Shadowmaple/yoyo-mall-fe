@@ -70,6 +70,7 @@
 </template>
 
 <script scope>
+import { RequestFeedback, RequestFeedbackRead } from '../../../utils/request/feedback'
 const mock = require('../../../utils/mock-data/feedback')
 const StaticKindOptions = [{
   id: -1,
@@ -129,21 +130,11 @@ export default {
       }
     },
     created() {
+      this.processData(mock.feedbackList)
       this.getList()
     },
     methods: {
-      getList() {
-        let req = {
-          limit: this.req.limit,
-          page: this.req.page,
-          kind: this.selected.kind,
-          read: this.selected.read,
-        }
-        console.info('feedback getList req:', req)
-        // todo
-        // ...
-
-        let items = mock.feedbackList
+      processData(items) {
         let list = new Array
         for (let i in items) {
           let item = items[i]
@@ -162,6 +153,24 @@ export default {
         }
         this.list = list
       },
+      getList() {
+        let req = {
+          limit: this.req.limit,
+          page: this.req.page,
+          kind: this.selected.kind,
+          read: this.selected.read,
+        }
+        console.info('feedback getList req:', req)
+        // 请求
+        RequestFeedback(req, res => {
+          if (res.code != 0) {
+            console.warn('requestFeedback error:', res)
+            return
+          }
+          let data = res.data
+          this.processData(data.list)
+        })
+      },
       // 点击已读
       clickRead(index) {
         let item = this.list[index]
@@ -171,14 +180,17 @@ export default {
         let req = {
           data: [item.id]
         }
-        console.info('-- clickRead:', req)
-
-        // todo
-        // ...
-
-        item.has_read = true
-        item.has_read_str = '已读'
-        this.list[index] = item
+        // 请求
+        RequestFeedbackRead(req, res => {
+          if (res.code != 0) {
+            console.warn('requestFeedbackRead error:', res)
+            return
+          }
+          console.log('已读成功:', req)
+          item.has_read = true
+          item.has_read_str = '已读'
+          this.list[index] = item
+        })
       },
       clickSearch() {
         this.getList()

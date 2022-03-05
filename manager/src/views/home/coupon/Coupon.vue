@@ -132,6 +132,7 @@
 
 <script>
 const mock = require('../../../utils/mock-data/coupon')
+import { RequestCouponAdd, RequestCouponDelete, RequestCouponList } from '../../../utils/request/coupon'
 
 const staticForm = {
   title: '大额优惠券',
@@ -168,11 +169,12 @@ export default {
     }
   },
   created() {
+    this.processList(mock.couponList) // 假数据
+
     this.getList()
   },
   methods: {
-    getList() {
-      let items = mock.couponList
+    processList(items) {
       let list = new Array
       for (let i in items) {
         let item = items[i]
@@ -203,6 +205,24 @@ export default {
       }
       this.list = list
     },
+    getList() {
+      let req = {
+        limit: this.req.limit,
+        page: this.req.page,
+        cid: this.req.cid,
+        cid2: this.req.cid2,
+      }
+      // 请求
+      RequestCouponList(req, res => {
+        if (res.code != 0) {
+          console.warn('requestCouponList error:', res)
+          return
+        }
+        let data = res.data
+        this.processList(data.list)
+      })
+
+    },
     // 点击切换标签
     clickTab() {
       this.getList()
@@ -230,35 +250,42 @@ export default {
         "code_begin_time": this.form.code_begin_time,
         "code_end_time": this.form.code_end_time,
       }
-      console.info('--- req:', req)
+      // console.info('--- req:', req)
 
-      // todo: 请求
-      // ...
+      // 请求
+      RequestCouponAdd(req, res => {
+        if (res.code != 0) {
+          console.warn('requestCouponAdd error:', res)
+          return
+        }
+        console.log('优惠券添加或修改成功:', req)
 
-      // 界面数据更新
-      if (this.selectedIdx == -1) {
-        return
-      }
-      // 修改
-      let item = this.list[this.selectedIdx]
-      item.title = this.form.title
-      item.discount = this.form.discount
-      item.threshold = this.form.threshold
-      item.remain = this.form.remain
-      item.is_public = this.form.is_public
-      item.code = this.form.can_by_code ? this.form.code : ''
-      item.begin_time = this.form.begin_time
-      item.end_time = this.form.end_time
-      item.grab_begin_time = this.form.grab_begin_time
-      item.grab_end_time = this.form.grab_end_time
-      item.code_begin_time = this.form.code_begin_time
-      item.code_end_time = this.form.code_end_time
-      item.is_public_str = item.is_public ? '是' : '否',
-      item.grab_time = item.grab_begin_time + ' ~ ' + item.grab_end_time,
-      item.valid_time = item.begin_time + ' ~ ' + item.end_time,
-      item.code_time = item.code_begin_time + ' ~ ' + item.code_end_time,
+        // 界面数据更新
+        if (this.selectedIdx == -1) {
+          return
+        }
+        // 修改
+        let item = this.list[this.selectedIdx]
+        item.title = this.form.title
+        item.discount = this.form.discount
+        item.threshold = this.form.threshold
+        item.remain = this.form.remain
+        item.is_public = this.form.is_public
+        item.code = this.form.can_by_code ? this.form.code : ''
+        item.begin_time = this.form.begin_time
+        item.end_time = this.form.end_time
+        item.grab_begin_time = this.form.grab_begin_time
+        item.grab_end_time = this.form.grab_end_time
+        item.code_begin_time = this.form.code_begin_time
+        item.code_end_time = this.form.code_end_time
+        item.is_public_str = item.is_public ? '是' : '否',
+        item.grab_time = item.grab_begin_time + ' ~ ' + item.grab_end_time,
+        item.valid_time = item.begin_time + ' ~ ' + item.end_time,
+        item.code_time = item.code_begin_time + ' ~ ' + item.code_end_time,
 
-      this.list[this.selectedIdx] = item
+        this.list[this.selectedIdx] = item
+      })
+
     },
     // 点击修改
     clickUpdateRow(index) {
@@ -288,10 +315,16 @@ export default {
       let req = {
         id: this.list[index].id,
       }
-      console.info('delete row:', req)
-      // todo
-      // ..
-      this.list.splice(index, 1)
+      // console.info('delete row:', req)
+      // 请求
+      RequestCouponDelete(req, res => {
+        if (res.code != 0) {
+          console.warn('requestCouponDelete error:', res)
+          return
+        }
+        console.log('优惠券删除成功：', req)
+        this.list.splice(index, 1)
+      })
     },
   }
 }

@@ -87,7 +87,8 @@
 </template>
 
 <script>
-const mock = require('../../../utils/mock-data/order')
+// const mock = require('../../../utils/mock-data/order')
+import { RequestOrder, RequestOrderUpdate } from '../../../utils/request/order'
 const statusMp = ['待付款', '待发货', '待收货', '待评价', '交易完成', '交易取消', '退货中', '交易关闭']
 
 export default {
@@ -128,19 +129,7 @@ export default {
         return this.tab == 2 || this.tab == 0 && this.list[index].status == 2
       }
     },
-    // 获取订单数据列表
-    getList() {
-      let req = {
-        page: this.req.page,
-        limit: this.req.limit,
-        kind: Number(this.tab),
-      }
-      console.log('order getList req:', req)
-
-      // todo:请求
-      // ...
-
-      let items = mock.orderList
+    processData(items) {
       let list = new Array
       for (let i in items) {
         let item = items[i]
@@ -165,12 +154,32 @@ export default {
       }
       this.list = list
     },
+    // 获取订单数据列表
+    getList() {
+      let req = {
+        page: this.req.page,
+        limit: this.req.limit,
+        kind: Number(this.tab),
+      }
+      console.log('order getList req:', req)
+
+      // let items = mock.orderList
+
+      // 请求
+      RequestOrder(req, res => {
+        if (res.code != 0) {
+          console.warn('requestOrder error:', res)
+          return
+        }
+        let data = res.data
+        this.processData(data.list)
+      })
+
+    },
     clickTab() {
-      // this.tab = Number(this.activeTab)
       this.getList()
     },
     viewDetail(index) {
-      console.info('viewDetail:', index)
       this.showInfoWin = true
       this.showInfo.idx = index
       this.showInfo.item = this.list[index]
@@ -186,7 +195,18 @@ export default {
     clickConfirmDialog() {
       this.showDialog = false
       this.showInfoWin = false
-      // todo
+
+      // 请求发货
+      let req = {
+        id: this.list[this.dialog.selectedIndex].id,
+      }
+      RequestOrderUpdate(req, res => {
+        if (res.code != 0) {
+          console.war('requestOrderUpdate error:', res)
+          return
+        }
+        console.log('RequestOrderUpdate ok; 发货成功;')
+      })
     },
     prePage() {
       this.req.page = this.req.page <= 0 ? 0 : this.req.page-1

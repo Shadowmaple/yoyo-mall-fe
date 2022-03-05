@@ -75,7 +75,8 @@
 </template>
 
 <script>
-import { list } from "../../../utils/mock-data/product";
+import { list } from "../../../utils/mock-data/product"
+import { RequestProducts, RequestProductSearch } from "../../../utils/request/product"
 
 export default {
   name: "Product",
@@ -99,18 +100,24 @@ export default {
     }
   },
   created() {
-    this.getList(true)
+    this.getList()
   },
   methods: {
     // 请求获取图书数据
-    getList(refresh=true) {
-      this.req.page = refresh ? 0 : this.req.page + 1
+    getList() {
       let req = {
         limit: this.req.limit,
         page: this.req.page,
-        title: this.titleInput,
       }
-      console.info('getList req:', req)
+
+      RequestProducts(req, res => {
+        if (res.code != 0) {
+          console.error('requestProducts error:', res)
+          return
+        }
+        let data = res.data
+        this.list = data.list
+      })
     },
     // 添加图书
     addItem() {
@@ -147,15 +154,37 @@ export default {
       // ...
       this.showWin = false
     },
+    requestSearch() {
+      let req = {
+        title: this.titleInput,
+        author: this.authorInput,
+        limit: this.req.limit,
+        page: this.req.page,
+      }
+      RequestProductSearch(req, res => {
+        if (res.code != 0) {
+          console.warn('request productSearch error:', res)
+          return
+        }
+        let data = res.data
+        this.list = data.list
+      })
+    },
+    // 点击搜索
     search() {
-      console.info('---', this.titleInput)
-      this.getList(true)
+      this.req.page = 0
+      if (this.titleInput == '' && this.authorInput == '') {
+        this.getList()
+      } else {
+        this.requestSearch()
+      }
     },
     // 重置/刷新
     refresh() {
       this.titleInput = ''
+      this.authorInput = ''
       this.req.page = 0
-      this.getList(true)
+      this.getList()
     },
   }
 };
