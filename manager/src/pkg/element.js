@@ -1,7 +1,6 @@
 import {
     ElAside,
-    ElButton,
-    ElCol,
+    ElButton, ElCol,
     ElContainer,
     ElDatePicker,
     ElDescriptions,
@@ -17,8 +16,7 @@ import {
     ElInput,
     ElMain,
     ElMenu,
-    ElMenuItem,
-    ElOption,
+    ElMenuItem, ElOption,
     ElSelect,
     ElSubMenu,
     ElSwitch,

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <el-main class="container">
     <div class="title">用户反馈</div>
     <el-divider></el-divider>
 
@@ -66,7 +66,7 @@
       </el-table>
 
     </div>
-  </div>
+  </el-main>
 </template>
 
 <script scope>

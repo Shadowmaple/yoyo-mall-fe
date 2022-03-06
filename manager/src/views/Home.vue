@@ -31,8 +31,15 @@ export default {
   padding: 0;
 }
 
-
 .el-header {
   background-color: white;
+}
+
+.el-container {
+  height: 100%;
+}
+
+.el-main {
+  height: 100%;
 }
 </style>

@@ -8,6 +8,7 @@ import Login from '../views/Login.vue'
 const routes = [{
     path: '/',
     component: Home,
+    redirect: "/product",
     children: [{
         path: 'product',
         component: Product,

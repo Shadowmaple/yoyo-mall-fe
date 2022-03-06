@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <el-main class="container">
     <div class="title">图书管理</div>
     <el-divider></el-divider>
 
@@ -70,8 +70,7 @@
         </div>
       </template>
     </el-dialog>
-
-  </div>
+  </el-main>
 </template>
 
 <script>

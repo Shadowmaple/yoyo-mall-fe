@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <el-main class="container">
     <div class="title">优惠券</div>
     <el-divider></el-divider>
 
@@ -127,7 +127,7 @@
       </template>
     </el-dialog>
 
-  </div>
+  </el-main>
 </template>
 
 <script>
@@ -250,7 +250,9 @@ export default {
         "code_begin_time": this.form.code_begin_time,
         "code_end_time": this.form.code_end_time,
       }
-      // console.info('--- req:', req)
+
+      // 清空表单
+      this.form = staticForm
 
       // 请求
       RequestCouponAdd(req, res => {
@@ -262,6 +264,7 @@ export default {
 
         // 界面数据更新
         if (this.selectedIdx == -1) {
+          this.getList()
           return
         }
         // 修改
@@ -315,7 +318,6 @@ export default {
       let req = {
         id: this.list[index].id,
       }
-      // console.info('delete row:', req)
       // 请求
       RequestCouponDelete(req, res => {
         if (res.code != 0) {

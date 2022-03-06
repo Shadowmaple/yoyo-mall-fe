@@ -3,25 +3,6 @@ const baseURL = host + '/api/v1'
 
 const axios = require('axios')
 
-// const SendGetRequest = (url, params, headers) => {
-//     // Make a request for a user with a given ID
-//     axios.get(url, {
-//         params: params,
-//         headers: headers,
-//     })
-//     .then(function (response) {
-//         // handle success
-//         console.log("SendGetRequest ok", response);
-//     })
-//     .catch(function (error) {
-//         // handle error
-//         console.log("SendGetRequest failed", error);
-//     })
-//     .then(function () {
-//         // always executed
-//     });
-// }
-
 const SendRequest = (url, method, headers, params, data, callback) => {
     axios({
         baseURL: baseURL,
@@ -39,12 +20,15 @@ const SendRequest = (url, method, headers, params, data, callback) => {
     })
     .catch(function (error) {
         // handle error
-        console.log("SendRequest failed", error, url, method, headers, params, data);
+        console.error("SendRequest failed", error, url, method, headers, params, data);
     })
 }
 
+const GetToken = () => {
+    return localStorage.getItem('token') || ''
+}
+
 export {
-    baseURL,
-    // SendGetRequest,
     SendRequest,
+    GetToken,
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <el-main class="container">
     <div class="title">订单中心</div>
     <el-divider></el-divider>
 
@@ -83,12 +83,12 @@
       </template>
     </el-dialog>
 
-  </div>
+  </el-main>
 </template>
 
 <script>
 // const mock = require('../../../utils/mock-data/order')
-import { RequestOrder, RequestOrderUpdate } from '../../../utils/request/order'
+import { RequestOrders, RequestOrderUpdate } from '../../../utils/request/order'
 const statusMp = ['待付款', '待发货', '待收货', '待评价', '交易完成', '交易取消', '退货中', '交易关闭']
 
 export default {
@@ -166,7 +166,7 @@ export default {
       // let items = mock.orderList
 
       // 请求
-      RequestOrder(req, res => {
+      RequestOrders(req, res => {
         if (res.code != 0) {
           console.warn('requestOrder error:', res)
           return

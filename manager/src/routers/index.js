@@ -14,6 +14,15 @@ const router = createRouter({
 // 全局前置守卫
 router.beforeEach((to, from) => {
   console.info('router beforeEach:', to, from)
+  if (to.path == '/login') {
+    return true
+  }
+  let token = localStorage.getItem('token')
+  if (token == null || token == '') {
+    router.replace('/login')
+    // return false
+  }
+
   return true
 })
 
