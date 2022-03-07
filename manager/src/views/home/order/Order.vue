@@ -30,7 +30,7 @@
         <el-table-column fixed="right" label="操作" width="150">
           <template #default="scope">
             <el-button type="primary" size="small" @click="viewDetail(scope.$index)">查看详情</el-button>
-            <el-button type="primary" size="small" @click="clickDeliver(scope)" v-if="checkIfShowButton(0, scope.$index)">发货</el-button>
+            <el-button type="primary" size="small" @click="clickDeliver(scope.$index)" v-if="checkIfShowButton(0, scope.$index)">发货</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -64,7 +64,7 @@
       </el-descriptions>
 
       <div class="detailWin-buttons">
-        <el-button type="primary" @click="clickDeliver(scope.$index)" v-if="checkIfShowButton(0, showInfo.idx)">发货</el-button>
+        <el-button type="primary" @click="clickDeliver(showInfo.idx)" v-if="checkIfShowButton(0, showInfo.idx)">发货</el-button>
       </div>
     </el-drawer>
 
@@ -89,6 +89,8 @@
 <script>
 // const mock = require('../../../utils/mock-data/order')
 import { RequestOrders, RequestOrderUpdate } from '../../../utils/request/order'
+import { ElMessage } from 'element-plus'
+
 const statusMp = ['待付款', '待发货', '待收货', '待评价', '交易完成', '交易取消', '退货中', '交易关闭']
 
 export default {
@@ -126,8 +128,9 @@ export default {
     // kind: 0->发货
     checkIfShowButton(kind, index) {
       if (kind == 0) {
-        return this.tab == 2 || this.tab == 0 && this.list[index].status == 2
+        return this.tab == 2 || this.tab == 0 && this.list[index].status == 1
       }
+      return false
     },
     processData(items) {
       let list = new Array
@@ -195,17 +198,20 @@ export default {
     clickConfirmDialog() {
       this.showDialog = false
       this.showInfoWin = false
+      let item = this.list[this.dialog.selectedIndex]
 
       // 请求发货
       let req = {
-        id: this.list[this.dialog.selectedIndex].id,
+        id: Number(item.id),
       }
       RequestOrderUpdate(req, res => {
         if (res.code != 0) {
           console.war('requestOrderUpdate error:', res)
           return
         }
-        console.log('RequestOrderUpdate ok; 发货成功;')
+        console.log('RequestOrderUpdate ok; 发货成功')
+        ElMessage('发货成功')
+        this.getList()
       })
     },
     prePage() {

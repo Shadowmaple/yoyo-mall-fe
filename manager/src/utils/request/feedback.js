@@ -12,6 +12,7 @@ const RequestFeedbackRead = (req, callback) => {
     let url = '/feedback/read'
     let headers = {
         token: GetToken(),
+        'Content-Type': 'application/json',
     }
     let data = req
     SendRequest(url, 'post', headers, {}, data, callback)

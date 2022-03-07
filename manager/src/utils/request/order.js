@@ -12,11 +12,12 @@ const RequestOrderUpdate = (req, callback) => {
     let url = '/order/' + Number(req.id)
     let headers = {
         token: GetToken(),
+        'Content-Type': 'application/json',
     }
     let data = {
         status: 2,
     }
-    SendRequest(url, 'put', headers, req, data, callback)
+    SendRequest(url, 'put', headers, {}, data, callback)
 }
 
 export {

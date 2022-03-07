@@ -4,7 +4,7 @@ const feedbackList = [{
     "has_read": false,
     "kind": 0, // 0产品建议，1功能异常，2违规举报，3交易投诉
     "time": "2022-01-01 20:20:20",
-    "picture": [
+    "pictures": [
         "https://wx1.sinaimg.cn/bmiddle/0083zaPbgy1gzxvqgjatrj30rs0rswip.jpg",
         "https://wx1.sinaimg.cn/bmiddle/0083zaPbgy1gzxvqfmntkj30rs0rswje.jpg",
     ],

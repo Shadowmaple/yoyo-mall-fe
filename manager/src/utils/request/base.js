@@ -15,7 +15,7 @@ const SendRequest = (url, method, headers, params, data, callback) => {
     })
     .then(function (response) {
         // handle success
-        console.log("SendRequest ok", response);
+        console.log("SendRequest ok", response.data);
         callback(response.data)
     })
     .catch(function (error) {

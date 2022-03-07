@@ -39,13 +39,13 @@
               <div class="table-expand-title">反馈内容：</div>
               <div>{{props.row.content}}</div>
             </div>
-            <div class="table-expand-image" v-if="props.row.picture.length > 0">
+            <div class="table-expand-image" v-if="props.row.pictures.length > 0">
               <div class="table-expand-title">图片：</div>
-              <template v-for="src in props.row.picture" v-bind:key="src">
+              <template v-for="src in props.row.pictures" v-bind:key="src">
                 <el-image
                   class="table-expand-image-item"
                   :src="src"
-                  :preview-src-list="props.row.picture"
+                  :preview-src-list="props.row.pictures"
                   fit="cover"
                 ></el-image>
               </template>
@@ -144,7 +144,7 @@ export default {
             has_read: item.has_read,
             time: item.time,
             kind: item.kind,
-            picture: item.picture,
+            pictures: item.pictures,
             user_nickname: item.user_nickname,
             user_avatar: item.user_avatar,
             kind_str: KindStr(item.kind),
