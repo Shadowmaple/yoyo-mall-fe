@@ -1,6 +1,7 @@
 // pages/feedback/feedback.js
 const staticType = ['产品建议', '功能异常', '违规举报', '交易投诉']
 const request = require('../../utils/request/feedback')
+const uploadRequest = require('../../utils/request/upload')
 
 Page({
   data: {
@@ -10,9 +11,7 @@ Page({
     pictures: [],
   },
 
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
 
   bindTypeChange: function (e) {
     let idx = e.detail.value
@@ -26,7 +25,44 @@ Page({
   },
 
   bindAddPicture: function (e) {
-
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album'],
+      success: res => {
+        console.log(res.tempFiles)
+        let tempFiles = res.tempFiles
+        if (tempFiles.length == 0) {
+          return
+        }
+        let item = tempFiles[0]
+        if (item.fileType != 'image') {
+          return
+        }
+        let path = item.tempFilePath
+        let req = {
+          image: path,
+        }
+        uploadRequest.requestUpload(req, res => {
+          if (res.code != 0) {
+            console.warn('requestUpload error:', res)
+            wx.showToast({
+              title: '上传图片失败',
+              icon: 'error',
+              duration: 1500,
+            })
+            return
+          }
+          let url = res.data.url
+          console.log('上传成功：', url)
+          let pictures = this.data.pictures
+          pictures.push(url)
+          this.setData({
+            pictures: pictures,
+          })
+        })
+      }
+    })
   },
 
   // 确认反馈

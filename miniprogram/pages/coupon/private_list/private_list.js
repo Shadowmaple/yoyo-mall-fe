@@ -16,6 +16,17 @@ Page({
     this.requestList()
   },
 
+  onShow: function () {
+    this.requestList()
+  },
+
+  onPullDownRefresh: function() {
+    this.setData({
+      tab: 0,
+    })
+    this.requestList()
+  },
+
   // 请求列表
   requestList: function () {
     let req = {

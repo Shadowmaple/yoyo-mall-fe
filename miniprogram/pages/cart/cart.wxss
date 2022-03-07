@@ -74,6 +74,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 50%;
+}
+
+.item-title {
+  word-break: break-all;
+  /* 两行，超出省略 */
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .item-purchase {
@@ -107,7 +118,7 @@
   justify-content: space-between;
   align-items: stretch;
   /* border: 4rpx solid rgb(0, 0, 0, 0.5); */
-  position: absolute;
+  position: fixed;
   bottom: 20rpx;
 }
 

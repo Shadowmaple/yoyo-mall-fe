@@ -25,7 +25,8 @@ Page({
       cid: basicColumn,
       cid2: basicColumn,
     },
-    productList: mock.productList,
+    // productList: mock.productList,
+    productList: [],
   },
   originalCidList: [],
   reqParams: {

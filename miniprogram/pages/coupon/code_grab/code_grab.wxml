@@ -1,7 +1,7 @@
 <!--pages/coupon/code_grab/code_grab.wxml-->
 <view class="container">
   <view class="main">
-    <input class="main-input" placeholder="请输入兑换码" bindinput="bindInput" maxlength="50" disabled="{{showCoupon}}" />
+    <input class="main-input" placeholder="请输入兑换码" bindinput="bindInput" maxlength="50" disabled="{{showCoupon}}" value="{{code}}" />
     <view class="main-button" bindtap="bindGrab">立即兑换</view>
   </view>
 

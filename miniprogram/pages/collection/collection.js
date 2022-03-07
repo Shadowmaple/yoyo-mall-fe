@@ -7,7 +7,8 @@ Page({
     hasData: true,
     isEdit: false,
     selectAll: false,
-    list: mock.list,
+    // list: mock.list,
+    list: [],
   },
   req: {
     limit: 20,
@@ -23,25 +24,26 @@ Page({
   },
 
   requestList: function (refresh) {
-    if (refresh) {
-      this.req.page = 0
-    }
+    this.req.page = refresh ? 0 : this.req.page+1
     let req = this.req
-    this.req.page++
+
+    wx.showLoading()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 2000);
 
     request.collectList(req, res => {
+      wx.hideLoading()
       if (res.code != 0) {
         console.warn('request.collectionList error:', res)
         return
       }
       console.log('request.collectionList ok:', res)
       let data = res.data
-      let list = this.data.list
-      if (refresh) {
-        list = new Array
-      }
+      let list = refresh ? new Array : this.data.list
       list = list.concat(data.list)
       this.setData({
+        hasData: true,
         list: list,
       })
     })
@@ -120,6 +122,14 @@ Page({
     this.setData({
       selectAll: selectAll,
       list: list,
+    })
+  },
+
+  bindJumpInfo: function(e) {
+    let id = e.currentTarget.dataset.product
+    let url = '/pages/product/product_info/product_info?id=' + id
+    wx.navigateTo({
+      url: url,
     })
   },
 })

@@ -1,6 +1,7 @@
 // pages/cart/cart.js
 const app = getApp()
 const request = require('../../utils/request/cart')
+const colRequest = require('../../utils/request/collection')
 const mock = require('../../utils/mock-data/cart')
 
 Page({
@@ -256,6 +257,46 @@ Page({
     if (!this.hasLogin) {
       return
     }
+    let list = this.data.cartList
+    let newList = new Array
+    let reqList = new Array
+    for (let i in list) {
+      let item = list[i]
+      if (item.selected) {
+        reqList.push(item.id)
+      } else {
+        newList.push(item)
+      }
+    }
+    if (reqList.length == 0) {
+      return
+    }
+    // 1.加入收藏夹
+    // 2.购物车中删除
+    let colReq = {
+      list: reqList,
+    }
+    colRequest.collectAdd(colReq, res => {
+      if (res.code != 0) {
+        console.warn('request.collectAdd error:', res)
+        return
+      }
+      console.log('request.collectAdd ok:', colReq)
+    })
+
+    let delReq = {
+      list: reqList,
+    }
+    request.cartDel(delReq, res => {
+      if (res.code != 0) {
+        console.warn('request.cartDel error:', res)
+        return
+      }
+      console.log('request.cartDel ok:', delReq)
+      this.setData({
+        cartList: newList,
+      })
+    })
   },
 
   // 批量删除
@@ -263,5 +304,33 @@ Page({
     if (!this.hasLogin) {
       return
     }
+    let list = this.data.cartList
+    let newList = new Array
+    let delList = new Array
+    for (let i in list) {
+      let item = list[i]
+      if (item.selected) {
+        delList.push(item.id)
+      } else {
+        newList.push(item)
+      }
+    }
+    console.info('--', delList, list)
+    if (delList.length == 0) {
+      return
+    }
+    let req = {
+      list: delList,
+    }
+    request.cartDel(req, res => {
+      if (res.code != 0) {
+        console.warn('request.cartDel error:', res)
+        return
+      }
+      console.log('request.cartDel ok:', req)
+      this.setData({
+        cartList: newList,
+      })
+    })
   },
 })

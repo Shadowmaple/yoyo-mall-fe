@@ -24,6 +24,7 @@ const Paths = {
   couponPublic: '/coupon/public',
   feedback: '/feedback',
   logistics: '/logistics',
+  upload: '/upload/image',
 }
 
 module.exports = {

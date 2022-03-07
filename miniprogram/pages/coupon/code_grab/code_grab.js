@@ -27,9 +27,17 @@ Page({
       // todo: 不同错误类型，兑换码错误、失效、无剩余等等
       if (res.code != 0) {
         console.warn('request.couponGrab error:', res)
+        let msg = '兑换失败' + res.msg
+        if (res.code == 23001) {
+          msg = '兑换码错误'
+        } else if (res.code == 23002) {
+          msg = '您已兑换过了'
+        } else if (res.code == 23004) {
+          msg = '优惠券不存在'
+        }
         wx.showModal({
           showCancel: false,
-          content: '兑换失败：' + res.msg,
+          content: msg,
         })
         return
       }
@@ -56,6 +64,7 @@ Page({
   // 对话框确认
   bindConfirm: function (e) {
     this.setData({
+      code: "",
       showCoupon: false,
       coupon: {},
     })
