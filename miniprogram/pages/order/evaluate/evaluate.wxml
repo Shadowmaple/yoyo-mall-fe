@@ -3,15 +3,17 @@
 <view class="container">
   <view class="level-line">
     <view class="line-title">商品评价</view>
-    <!-- todo：图标，选中变色 -->
-    <view bindtap="bindLevel" data-level="0">好评</view>
-    <view bindtap="bindLevel" data-level="1">一般</view>
-    <view bindtap="bindLevel" data-level="2">差评</view>
+    <!-- 图标，选中变色 -->
+    <view class="level-block" bindtap="bindLevel" data-level="{{item.level}}" wx:for="{{staticLevels}}" wx:key="{{item.level}}">
+      <image class="icon" src="{{item.icon}}" wx:if="{{level != item.level}}"></image>
+      <image class="icon" src="{{item.selectedIcon}}" wx:if="{{level == item.level}}"></image>
+      <view class="level-value">{{item.value}}</view>
+    </view>
   </view>
 
   <view class="score-line">
     <view class="line-title">评分</view>
-    <slider class="score-slider" step="1" min="1" max="10" show-value />
+    <slider class="score-slider" activeColor="#E74C3C" step="1" min="1" max="10" show-value value="{{score}}" bindchange="bindScore" />
   </view>
 
   <view class="input-content">
@@ -27,7 +29,7 @@
   </view>
 
   <view class="radio-box">
-    <radio checked="{{isAnonymous}}" bindtap="bindSwitchAnonymous">匿名评价</radio>
+    <radio checked="{{isAnonymous}}" color="#E74C3C" bindtap="bindSwitchAnonymous">匿名评价</radio>
   </view>
 
   <button class="button" bindtap="bindEvaluate">提交评价</button>

@@ -11,7 +11,8 @@ Page({
   data: {
     statusMp: staticStatusMp,
     logisticMp: staticLogisMp,
-    info: mock.orderInfo,
+    // info: mock.orderInfo,
+    info: {},
   },
   orderID: 0,
 
@@ -44,6 +45,7 @@ Page({
 
   // 点击收货
   bindReceive: function (e) {
+    let status = this.data.info.status
     // 当前是待收货状态
     if (status == 2) {
       wx.showModal({

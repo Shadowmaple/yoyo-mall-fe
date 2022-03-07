@@ -17,15 +17,7 @@ Page({
     coupon: 0, // 优惠券优惠额
     productNum: 1,
     // 商品列表
-    list: [{
-      'id': 1, // 购物车记录id
-      'product_id': 333,
-      'title': "琐碎的",
-      'price': 32.30,
-      'cur_price': 30.33,
-      'image': "https://img1.doubanio.com/view/subject/m/public/s2206907.jpg",
-      'num': 3,
-    }],
+    list: [],
   },
 
   onLoad: function (options) {

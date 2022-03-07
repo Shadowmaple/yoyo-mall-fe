@@ -5,7 +5,8 @@ const request = require('../../../utils/request/comment')
 Page({
   data: {
     moreData: true,
-    list: mock.evaluationList,
+    // list: mock.evaluationList,
+    list: [],
   },
   productID: 0,
   req: {

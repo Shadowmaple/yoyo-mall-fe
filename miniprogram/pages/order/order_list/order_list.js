@@ -26,7 +26,8 @@ Page({
     tabs: staticTabs,
     tab: 0, // 0全部订单，1待付款，2待发货，3待收货，4待评价，5退款/售后
     statusMp: staticStatusMp,
-    list: mock.list,
+    // list: mock.list,
+    list: [],
     moreData: true, // 是否能下拉加载更多数据
   },
   req: {
@@ -43,6 +44,10 @@ Page({
     this.setData({
       tab: tab,
     })
+    this.requestList(true)
+  },
+
+  onShow: function() {
     this.requestList(true)
   },
 
