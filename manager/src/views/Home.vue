@@ -5,7 +5,9 @@
     </el-aside>
 
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <my-header></my-header>
+      </el-header>
       <el-main>
         <router-view></router-view>
       </el-main>
@@ -15,11 +17,13 @@
 
 <script>
 import Menu from "./home/Menu.vue";
+import MyHeader from "../components/MyHeader.vue"
 
 export default {
   name: "Home",
   components: {
     Menu,
+    MyHeader,
   },
 };
 </script>

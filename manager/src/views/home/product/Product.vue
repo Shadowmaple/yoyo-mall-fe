@@ -35,7 +35,7 @@
         <el-table-column prop="price" label="原价" width="80" />
         <el-table-column prop="cur_price" label="优惠价" width="80" />
         <el-table-column prop="sale_num" label="销量" width="80" />
-        <el-table-column fixed="right" label="操作" width="180">
+        <!-- <el-table-column fixed="right" label="操作" width="180">
           <template #default="scope">
             <el-button
               type="primary"
@@ -52,7 +52,7 @@
               删除
             </el-button>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
     </div>
 

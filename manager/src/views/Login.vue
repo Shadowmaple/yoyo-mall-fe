@@ -18,7 +18,7 @@
               class="form-input" />
           </el-form-item>
           <el-form-item class="form-buttons">
-            <el-button type="primary" @click="clickLogin" class="button">登录</el-button>
+            <el-button type="primary" @click.once="clickLogin" class="button" @keyup.enter="clickLogin">登录</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -44,6 +44,14 @@ export default {
   methods: {
     // 点击登录
     clickLogin() {
+      if (this.form.username == '') {
+        ElMessage('用户名不能为空！')
+        return
+      }
+      if (this.form.password == '') {
+        ElMessage('密码不能为空！')
+        return
+      }
       let req = {
         username: this.form.username,
         password: this.form.password,
@@ -65,6 +73,12 @@ export default {
         let token = res.data.token
         localStorage.setItem('token', token)
         console.log('登录成功：', token)
+
+        ElMessage('登录成功！')
+
+        setTimeout(() => {
+          this.$router.replace('/')
+        }, 1000);
       })
     },
   }

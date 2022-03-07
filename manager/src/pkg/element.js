@@ -1,6 +1,5 @@
 import {
-    ElAside,
-    ElButton, ElCol,
+    ElAside, ElButton, ElCol,
     ElContainer,
     ElDatePicker,
     ElDescriptions,
@@ -8,6 +7,9 @@ import {
     ElDialog,
     ElDivider,
     ElDrawer,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu,
     ElForm,
     ElFormItem,
     ElHeader,
@@ -57,4 +59,7 @@ export default [
     ElSelect,
     ElOption,
     ElImage,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem,
 ]
