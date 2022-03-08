@@ -107,7 +107,10 @@ const commentList = (req, callback) => {
 // 评论发布或修改
 const commentCreate = (req, callback) => {
   let url = model.BaseURL + '/evaluation/info/' + req.id + '/comment'
-  let data = req.data
+  let data = {
+    content: req.content,
+    is_anonymous: req.is_anonymous,
+  }
 
   wx.request({
     url: url,

@@ -42,15 +42,18 @@ Page({
       product_id: this.productID,
     }
 
+    wx.showLoading()
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 3000)
+
     request.evaluationList(req, res => {
+      wx.hideLoading()
       if (res.code != 0) {
         console.warn('request.evaluationList error:', res)
         return
       }
-      let list = this.data.list
-      if (refresh) {
-        list = new Array
-      }
+      let list = refresh ? new Array : this.data.list
       if (res.data.total == 0) {
         this.setData({
           moreData: false,

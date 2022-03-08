@@ -59,7 +59,9 @@
         <view>
           <view>{{item.user_nickname}}</view>
           <!-- todo:换成星星填充形式 -->
-          <view class="comment-score">{{item.score}}分</view>
+          <view class="comment-score">
+            <rating value="{{item.score}}" size="30"></rating>
+          </view>
         </view>
       </view>
       <view class="comment-content">{{item.content}}</view>

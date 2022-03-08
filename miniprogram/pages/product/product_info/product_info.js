@@ -9,7 +9,8 @@ const collRequest = require('../../../utils/request/collection')
 Page({
   data: {
     hasLogin: false,
-    info: mock.productInfo,
+    // info: mock.productInfo,
+    info: {},
     addr: '湖北省武汉市洪山区雄楚大道382号华中师范大学',
     freight: 10,
   },

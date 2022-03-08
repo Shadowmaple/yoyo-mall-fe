@@ -27,6 +27,10 @@
   flex-direction: column;
 }
 
+.item-line1-col2-score {
+  margin-top: 10rpx;
+}
+
 .item-line2 {
   margin: 20rpx;
   line-height: 1.5;

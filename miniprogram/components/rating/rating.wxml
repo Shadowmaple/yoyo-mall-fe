@@ -1,0 +1,7 @@
+<view class="star-box">
+    <image
+      src="{{item == 0 ? './img/star.png' : (item == 1 ? './img/star-half.png' : './img/star-fill.png')}}"
+      style="width: {{size}}rpx; height: {{size}}rpx;"
+      wx:for="{{stars}}" wx:key="index"
+    ></image>
+</view>

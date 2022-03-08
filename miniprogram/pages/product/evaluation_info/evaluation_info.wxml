@@ -11,7 +11,9 @@
 
       <view>{{evaluation.user_nickname}}</view>
     </view>
-    <view class="eva-line2">{{evaluation.score}}分</view>
+    <view class="eva-line2">
+      <rating value="{{evaluation.score}}" size="30"></rating>
+    </view>
     <view class="eva-line3">{{evaluation.content}}</view>
     <view class="eva-line4">
       <block wx:for="{{evaluation.pictures}}" wx:key="*this">
@@ -42,13 +44,7 @@
       </view>
       <view class="comment-line2">{{item.content}}</view>
       <view class="comment-line3">
-        <!-- todo -->
-        <blcok wx:if="{{item.has_liked}}">
-          <image class="footer-icon" src="/images/icon/thumb-up-line-red.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
-        </blcok>
-        <block wx:else>
-          <image class="footer-icon" src="/images/icon/thumb-up-line.png" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
-        </block>
+        <image class="footer-icon" src="{{item.has_liked ? '/images/icon/thumb-up-line-red.png' : '/images/icon/thumb-up-line.png'}}" bindtap="bindLike" data-kind="1" data-idx="{{index}}"></image>
         <view>{{item.like_num}}</view>
       </view>
     </view>
@@ -60,7 +56,7 @@
   </view>
 
   <view class="footer">
-    <input class="footer-input" placeholder="说点什么吧~" bindconfirm="bindPublish" />
+    <input class="footer-input" value="{{replyInput}}" placeholder="说点什么吧~" bindconfirm="bindPublish" />
 
     <!-- todo -->
     <image class="footer-icon" src="/images/icon/message-3-line-black.png"></image>

@@ -5,8 +5,11 @@ const request = require('../../../utils/request/comment')
 Page({
   data: {
     moreData: true,
-    evaluation: mock.evaluation,
-    comments: mock.commentList,
+    // evaluation: mock.evaluation,
+    // comments: mock.commentList,
+    evaluation: {},
+    comments: [],
+    replyInput: '', // 输入的回复
   },
   id: 0, // 评价id
   req: {
@@ -15,7 +18,6 @@ Page({
   },
 
   onLoad: function (options) {
-    console.info('-- evaluation_info onload: ', option)
     if (options == null) {
       return
     }
@@ -93,14 +95,14 @@ Page({
   bindPublish: function (e) {
     let value = e.detail.value
     let req = {
-      id: 0,
+      id: this.id,
       content: value,
       is_anonymous: false,
     }
 
-    request.commentCreateOrUpdate(req, res => {
+    request.commentCreate(req, res => {
       if (res.code != 0) {
-        console.warn('request.commentCreateOrUpdate error:', res)
+        console.warn('request.commentCreate error:', res)
         wx.showToast({
           title: '发布失败',
           icon: 'error',
@@ -108,11 +110,14 @@ Page({
         })
         return
       }
-      console.log('发布评论成功，evaluationID='+ this.id)
+      console.log('发布评论成功，req=', req)
       wx.showToast({
         title: '发布成功',
         icon: 'error',
         duration: 1500,
+      })
+      this.setData({
+        replyInput: '',
       })
       // 重新刷新
       this.requestComments(true)
@@ -122,6 +127,7 @@ Page({
   // 点赞，kind=0为评价点赞，kind=1为评论点赞
   bindLike: function (e) {
     let kind = Number(e.currentTarget.dataset.kind)
+    let idx = e.currentTarget.dataset.idx
     var req = {
       kind: kind,
     }
@@ -129,7 +135,6 @@ Page({
       req.id = this.data.evaluation.id
       req.expected_status = !this.data.evaluation.has_liked
     } else {
-      let idx = e.currentTarget.dataset.idx
       req.id = this.data.comments[idx].id
       req.expected_status = !this.data.comments[idx].has_liked
     }
@@ -150,7 +155,7 @@ Page({
         })
         return
       }
-      console.log('点赞完成；req:', req)
+      console.log('request.like ok! req:', req)
 
       // 评价点赞
       if (kind == 0) {

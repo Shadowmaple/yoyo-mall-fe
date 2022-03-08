@@ -13,8 +13,10 @@
           <block wx:if="{{item.is_anonymous}}">匿名用户</block>
           <block wx:else>{{item.user_nickname}}</block>
         </view>
-        <!-- todo: 评分 -->
-        <view>{{item.score}}分</view>
+        <!-- 评分 -->
+        <view class="item-line1-col2-score">
+          <rating value="{{item.score}}" size="30"></rating>
+        </view>
       </view>
 
       <!-- todo -->

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "rating": "/components/rating/rating"
+  },
   "navigationStyle": "custom"
 }
