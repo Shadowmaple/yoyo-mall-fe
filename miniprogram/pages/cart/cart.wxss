@@ -41,9 +41,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* border: 4rpx solid rgb(0, 0, 0, 0.5); */
-  border-bottom: 0;
-  /* height: 1000rpx; */
+  margin-bottom: 100rpx;
 }
 
 .main-item {

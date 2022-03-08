@@ -1,4 +1,4 @@
-const Host = "127.0.0.1:4096"
+const Host = "124.222.171.153:4096"
 const BaseURL = "http://" + Host + "/api/v1"
 const Paths = {
   category: "/category",

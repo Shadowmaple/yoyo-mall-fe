@@ -8,8 +8,10 @@ const request = require('../../utils/request/logistics')
 
 Page({
   data: {
-    status: mock.logistics.status, // 当前物流状态
-    list: mock.logistics.list,
+    // status: mock.logistics.status, // 当前物流状态
+    // list: mock.logistics.list,
+    status: 0, // 当前物流状态
+    list: [],
   },
   orderID: 0,
 

@@ -15,7 +15,9 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+  },
 
+  onShow() {
     this.checkLogin(res => {
       console.info('checkLogin res: ', res)
       // 已登录
@@ -33,9 +35,11 @@ App({
       }
 
       // 未登录
-      wx.navigateTo({
-        url: '/pages/login/login',
-      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })  
+      }, 2000);
     })
 
     // this.requestCategory()

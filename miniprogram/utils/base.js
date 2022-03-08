@@ -75,7 +75,6 @@ const getUserInfo = (is_new, callback) => {
       data = {
         nickname: res.data.nickname,
         avatar: res.data.avatar,
-        gender: res.data.gender,
       }
       callback(data)
     })
@@ -102,10 +101,10 @@ const getUserProfile = (callback) => {
   wx.getUserProfile({
     desc: '展示用户信息',
     success: res => {
+      console.log('wx.getUserProfile res:', res)
       var userInfo = {
         'nickname': res.userInfo.nickName,
         'avatar': res.userInfo.avatarUrl,
-        'gender': res.userInfo.gender,
       }
 
       // 请求后台API更新用户信息

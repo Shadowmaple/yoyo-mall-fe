@@ -11,7 +11,8 @@ Page({
     cid: 0,
     cid2: 0,
     rankKinds: rankKinds,
-    list: mock.ranks,
+    // list: mock.ranks,
+    list: [],
   },
 
   onLoad: function (options) {

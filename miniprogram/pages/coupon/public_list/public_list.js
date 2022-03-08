@@ -6,7 +6,8 @@ const util = require('../../../utils/util')
 Page({
   data: {
     moreData: true,
-    list: mock.list,
+    // list: mock.list,
+    list: [],
   },
   req: {
     limit: 20,

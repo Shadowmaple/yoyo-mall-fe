@@ -9,7 +9,8 @@ Page({
     hasData: false,
     tabs: staticTab,
     tab: 0, // 当前选中的tab
-    list: mock.privateList,
+    // list: mock.privateList,
+    list: [],
   },
 
   onLoad: function (options) {

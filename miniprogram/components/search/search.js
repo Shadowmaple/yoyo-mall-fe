@@ -23,6 +23,11 @@ Component({
     confirmSrc: {
       type: String,
       value: ""
+    },
+    // 0->商品搜素，1->订单搜素
+    kind: {
+      type: Number,
+      value: 0,
     }
   },
   methods: {
@@ -49,14 +54,40 @@ Component({
       }
       this.triggerEvent('confirm', call)
 
+      // 存储搜素记录
+      // let key = this.getStoreKey()
+      // console.info('-- key', key)
+      // if (key != null && key != '' && value != '') {
+      //   console.log('-- store')
+      //   let raw = wx.getStorageSync(key)
+      //   console.info('-- raw', raw)
+      //   let list = new Array
+      //   if (raw != null && raw != '') {
+      //     list = JSON.parse(raw)
+      //   }
+      //   list.push(value)
+      //   wx.setStorage({
+      //     key: key,
+      //     data: JSON.stringify(list),
+      //   })
+      // }
+
       if (this.properties.confirmSrc == '') {
         return
       }
-      
+
       let url = this.properties.confirmSrc + '?value=' + value
       wx.navigateTo({
         url: url,
       })
-    }
+    },
+
+    getStoreKey: function () {
+      switch (this.properties.kind) {
+        case 0: return 'search-history-p'
+        case 1: return 'search-history-o'
+      }
+      return ''
+    },
   }
 })

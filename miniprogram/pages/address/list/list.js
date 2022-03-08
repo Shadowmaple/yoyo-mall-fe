@@ -4,7 +4,8 @@ const request = require('../../../utils/request/address')
 
 Page({
   data: {
-    list: mock.addrList,
+    // list: mock.addrList,
+    list: [],
   },
 
   onLoad: function (options) {

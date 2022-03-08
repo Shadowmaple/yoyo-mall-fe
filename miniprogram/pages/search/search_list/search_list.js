@@ -6,7 +6,8 @@ Page({
   data: {
     key: '',
     moreData: true,
-    list: mock.productList,
+    // list: mock.productList,
+    list: [],
   },
   req: {
     limit: 5,
@@ -95,6 +96,7 @@ Page({
       key: value,
     })
 
+    console.log('search:', value)
     this.requestList(true)
   }
 })

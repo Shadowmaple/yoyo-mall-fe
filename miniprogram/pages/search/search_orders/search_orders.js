@@ -10,7 +10,8 @@ Page({
     statusMp: staticStatusMp,
     key: '',
     moreData: false,
-    list: mock.list,
+    // list: mock.list,
+    list: [],
   },
 
   onLoad: function (options) {

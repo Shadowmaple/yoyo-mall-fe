@@ -3,15 +3,7 @@ const app = getApp()
 // pages/category/category.js
 Page({
   data: {
-    cateList: [{
-      id: 1,
-      name: '文学',
-      list: [{
-        id: 3,
-        name: '小说',
-        image: '',
-      }]
-    }],
+    cateList: [],
     selectData: {
       index: 0,
       id: 1,

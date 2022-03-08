@@ -1,12 +1,14 @@
 Component({
   options: {},
   data: {
-    // stars: [2, 2, 2, 2, 2], // 0->空心star, 1->半个star，2->整个star
-    stars: [-1, -1, -1, -1, -1]
+    stars: [2, 2, 2, 2, 2], // 0->空心star, 1->半个star，2->整个star
   },
   properties: {
     // 分值
-    value: 10,
+    value: {
+      type: Number,
+      value: 10,
+    },
     size: {
       type: Number,
       value: 24,

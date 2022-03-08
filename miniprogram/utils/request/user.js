@@ -45,7 +45,6 @@ const updateUserInfo = (req, callback) => {
   let data = {
     avatar: req.avatar,
     nickname: req.nickname,
-    gender: req.gender,
   }
 
   wx.request({
