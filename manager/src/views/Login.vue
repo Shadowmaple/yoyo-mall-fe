@@ -18,7 +18,7 @@
               class="form-input" />
           </el-form-item>
           <el-form-item class="form-buttons">
-            <el-button type="primary" @click.once="clickLogin" class="button" @keyup.enter="clickLogin">登录</el-button>
+            <el-button type="primary" @click="clickLogin" class="button" @keyup.enter="clickLogin">登录</el-button>
           </el-form-item>
         </el-form>
       </div>

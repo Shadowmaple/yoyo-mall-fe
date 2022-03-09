@@ -1,4 +1,4 @@
-const host = 'http://127.0.0.1:4096'
+const host = 'http://124.222.171.153:4096'
 const baseURL = host + '/api/v1'
 
 const axios = require('axios')
