@@ -19,15 +19,15 @@
     </div>
 
     <!-- 添加栏 -->
-    <!-- <div class="foo-box">
+    <div class="foo-box">
       <el-button type="primary" @click="addItem">添加</el-button>
-    </div> -->
+    </div>
 
     <!-- 列表 -->
     <div class="table-box">
       <el-table :data="list" stripe style="width: 100%" highlight-current-row border>
         <el-table-column type="index"></el-table-column>
-        <el-table-column prop="id" label="id" width="50" />
+        <el-table-column prop="id" label="id" width="70" />
         <el-table-column prop="title" label="标题" />
         <el-table-column prop="author" label="作者" width="120" />
         <el-table-column prop="publisher" label="出版社" />
@@ -35,7 +35,7 @@
         <el-table-column prop="price" label="原价" width="80" />
         <el-table-column prop="cur_price" label="优惠价" width="80" />
         <el-table-column prop="sale_num" label="销量" width="80" />
-        <!-- <el-table-column fixed="right" label="操作" width="180">
+        <el-table-column fixed="right" label="操作" width="180">
           <template #default="scope">
             <el-button
               type="primary"
@@ -52,21 +52,24 @@
               删除
             </el-button>
           </template>
-        </el-table-column> -->
+        </el-table-column>
       </el-table>
     </div>
 
     <!-- 修改或添加弹窗 -->
+    <Form :show="showWin" :formData="form" @submit="formSubmit" @cancel="formCancel"></Form>
+
     <el-dialog
-      v-model="showWin"
-      title="图书"
-      width="40%"
+      v-model="showDelWin"
+      title="弹窗确认"
+      width="30%"
     >
-      <span>This is a message</span>
+      <span>确认删除？</span>
+
       <template #footer>
         <div>
-          <el-button @click="showWin = false">取消</el-button>
-          <el-button type="primary" @click="clickConfirm">确认</el-button>
+          <el-button @click="showDelWin = false">取消</el-button>
+          <el-button type="primary" @click="clickDelConfirm">确认</el-button>
         </div>
       </template>
     </el-dialog>
@@ -75,11 +78,23 @@
 
 <script>
 import { list } from "../../../utils/mock-data/product"
-import { RequestProducts, RequestProductSearch } from "../../../utils/request/product"
+import { RequestProductDelete, RequestProducts, RequestProductSearch } from "../../../utils/request/product"
+import Form from './components/Form.vue'
+
+const staticForm = {
+  id: 0,
+  title: '',
+  author: '',
+  publisher: '',
+  price: 0,
+  cur_price: 0,
+}
 
 export default {
   name: "Product",
-  components: {},
+  components: {
+    Form,
+  },
   data() {
     return {
       showWin: false, // 是否显示商品更改弹窗
@@ -89,14 +104,11 @@ export default {
       req: {
         page: 0,
         limit: 20,
-      }
+      },
+      selectedIdx : 0,
+      form: staticForm,
+      showDelWin: false, // 删除确认弹窗
     };
-  },
-  computed: {
-    // 获取弹窗的样式
-    getWinClass() {
-      return this.showWin ? 'win' : 'win-hidden'
-    }
   },
   created() {
     this.getList()
@@ -124,34 +136,32 @@ export default {
     },
     updateRow(index) {
       console.info('update row:', index)
+      this.selectedIdx = index
+      this.getFormData()
       this.showWin = true
     },
     deleteRow(index) {
       console.info('delete row:', index)
-      // todo:请求..
-      // ...
-
-      // this.$confirm({
-      //   title: '删除',
-      //   content: `确定要删除选该用户吗？`,
-      //   okText: '删除',
-      //   okType: 'danger',
-      //   async onOk () {
-      //     self.$message.success('删除成功')
-      //     self.search()
-      //   },
-      //   onCancel () {
-      //     self.$message.warning('取消删除')
-      //   }
-      // })
-
-      list.splice(index, 1)
+      this.selectedIdx = index
+      this.showDelWin = true
     },
-    // 弹窗中添加或修改确认
-    clickConfirm() {
-      // todo:请求..
-      // ...
-      this.showWin = false
+    clickDelConfirm() {
+      let list = this.list
+      let idx = this.selectedIdx
+      let req = {
+        id: list[idx].id,
+      }
+      RequestProductDelete(req, res => {
+        if (res.code != 0) {
+          console.warn('RequestProductDelete error:', res)
+          return
+        }
+        console.log('删除商品成功; id=', req.id)
+        list.splice(idx, 1)
+        this.list = list
+        this.selectedIdx = 0
+        this.showDelWin = false
+      })
     },
     requestSearch() {
       let req = {
@@ -185,6 +195,29 @@ export default {
       this.req.page = 0
       this.getList()
     },
+    // Form 组件
+    getFormData() {
+      let item = this.list[this.selectedIdx]
+      this.form = {
+        id: item.id,
+        title: item.title,
+        author: item.author,
+        publisher: item.publisher,
+        price: Number(item.price),
+        cur_price: Number(item.cur_price),
+      }
+    },
+    formSubmit() {
+      this.showWin = false
+      this.form = {}
+      this.selectedIdx = 0
+      // todo:更新数据
+    },
+    formCancel() {
+      this.showWin = false
+      this.form = {}
+      this.selectedIdx = 0
+    }
   }
 };
 </script>
@@ -232,7 +265,6 @@ export default {
   margin: 20px 20px;
   background-color: aqua;
 }
-
 
 .el-input {
   width: 300px;
